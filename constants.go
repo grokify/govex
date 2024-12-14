@@ -47,3 +47,15 @@ func ParseSeverity(sev string) (string, error) {
 		return "", fmt.Errorf("severity not found (%s)", sev)
 	}
 }
+
+func SeveritySliceFinding() []string {
+	return []string{SeverityCritical, SeverityHigh, SeverityMedium, SeverityLow}
+}
+
+func SeveritySliceAnalyzed() []string {
+	return []string{SeverityCritical, SeverityHigh, SeverityMedium, SeverityLow, SeverityInformational, SeverityNone}
+}
+
+func SeveritySliceAll() []string {
+	return []string{SeverityCritical, SeverityHigh, SeverityMedium, SeverityLow, SeverityInformational, SeverityNone, SeverityUnknown}
+}
