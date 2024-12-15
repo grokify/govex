@@ -15,6 +15,7 @@ const (
 	SeverityUnknown       = "Unknown"
 )
 
+/*
 func severityMap() map[string]string {
 	return map[string]string{
 		strings.ToLower(SeverityCritical):      SeverityCritical,
@@ -26,6 +27,7 @@ func severityMap() map[string]string {
 		strings.ToLower(SeverityUnknown):       SeverityUnknown,
 	}
 }
+*/
 
 func ParseSeverity(sev string) (string, error) {
 	sev = strings.ToLower(strings.TrimSpace(sev))

@@ -13,10 +13,10 @@ const (
 	StatusOutOfSLA       = "Out of SLA"
 )
 
-type SLAMap map[string]uint
+type SLAMap map[string]int64
 
 func SLAMapFedRAMP() SLAMap {
-	return map[string]uint{
+	return map[string]int64{
 		SeverityCritical: 30,
 		SeverityHigh:     30,
 		SeverityMedium:   90,
@@ -36,7 +36,7 @@ func (slaMap SLAMap) SLAStatusOverdue(severity string, dur time.Duration) (bool,
 		return false, fmt.Errorf("severity not found in SLA map (%s)", severity)
 	} else {
 		ageDays := timeutil.DurationDaysInt64(dur)
-		return ageDays > int64(slaDays), nil
+		return ageDays > slaDays, nil
 	}
 }
 
