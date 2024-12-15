@@ -1,11 +1,10 @@
-package sla
+package jvex
 
 import (
 	"fmt"
 	"time"
 
 	"github.com/grokify/mogo/time/timeutil"
-	"github.com/grokify/vex"
 )
 
 const (
@@ -18,15 +17,15 @@ type SLAMap map[string]uint
 
 func SLAMapFedRAMP() SLAMap {
 	return map[string]uint{
-		vex.SeverityCritical: 30,
-		vex.SeverityHigh:     30,
-		vex.SeverityMedium:   90,
-		vex.SeverityLow:      180,
+		SeverityCritical: 30,
+		SeverityHigh:     30,
+		SeverityMedium:   90,
+		SeverityLow:      180,
 	}
 }
 
 func (slaMap SLAMap) SLAStatusOverdue(severity string, dur time.Duration) (bool, error) {
-	severityParsed, err := vex.ParseSeverity(severity)
+	severityParsed, err := jvex.ParseSeverity(severity)
 	if err != nil {
 		return false, err
 	}

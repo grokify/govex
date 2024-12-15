@@ -1,4 +1,4 @@
-package vex
+package jvex
 
 const (
 	StatusIdentified    = "Identified"

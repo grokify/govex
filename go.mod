@@ -1,4 +1,4 @@
-module github.com/grokify/vex
+module github.com/grokify/jvex
 
 go 1.22.7
 
