@@ -9,7 +9,7 @@ import (
 	"github.com/grokify/vex/cve20"
 )
 
-func (vulns Vulnerabilities) ReportMarkdownLinesFixedVersion(fixVersion string, releaseDate *time.Time) ([]string, error) {
+func (vs *Vulnerabilities) ReportMarkdownLinesFixedVersion(fixVersion string, releaseDate *time.Time) ([]string, error) {
 	var lines []string
 
 	severities := []string{
@@ -19,7 +19,7 @@ func (vulns Vulnerabilities) ReportMarkdownLinesFixedVersion(fixVersion string, 
 		cve20.BaseSeverityLow}
 
 	for _, sev := range severities {
-		sevLines, err := vulns.ReportMarkdownLinesVulnsFixed(fixVersion, releaseDate, sev)
+		sevLines, err := vs.ReportMarkdownLinesVulnsFixed(fixVersion, releaseDate, sev)
 		if err != nil {
 			return lines, err
 		}
@@ -35,8 +35,8 @@ func (vulns Vulnerabilities) ReportMarkdownLinesFixedVersion(fixVersion string, 
 	return lines, nil
 }
 
-func (vulns Vulnerabilities) ReportMarkdownLinesVulnsFixed(fixVersion string, releaseDate *time.Time, baseSeverity string) ([]string, error) {
-	cves, err := vulns.FilterFixedInVersion([]string{fixVersion}, baseSeverity)
+func (vs *Vulnerabilities) ReportMarkdownLinesVulnsFixed(fixVersion string, releaseDate *time.Time, baseSeverity string) ([]string, error) {
+	cves, err := vs.FilterFixedInVersion([]string{fixVersion}, baseSeverity)
 	if err != nil {
 		return []string{}, err
 	}
