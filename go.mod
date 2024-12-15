@@ -5,9 +5,9 @@ go 1.22.7
 toolchain go1.23.2
 
 require (
-	github.com/grokify/gocharts/v2 v2.21.1
-	github.com/grokify/gojira v0.22.0
-	github.com/grokify/mogo v0.66.1
+	github.com/grokify/gocharts/v2 v2.21.2
+	github.com/grokify/gojira v0.22.1
+	github.com/grokify/mogo v0.66.2
 	github.com/pandatix/go-cvss v0.6.2
 	github.com/relvacode/iso8601 v1.6.0
 )
@@ -29,7 +29,7 @@ require (
 	github.com/googleapis/enterprise-certificate-proxy v0.3.4 // indirect
 	github.com/googleapis/gax-go/v2 v2.14.0 // indirect
 	github.com/grokify/base36 v1.0.5 // indirect
-	github.com/grokify/goauth v0.22.5 // indirect
+	github.com/grokify/goauth v0.22.6 // indirect
 	github.com/huandu/xstrings v1.5.0 // indirect
 	github.com/jessevdk/go-flags v1.6.1 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
@@ -57,7 +57,7 @@ require (
 	go.opentelemetry.io/otel/metric v1.33.0 // indirect
 	go.opentelemetry.io/otel/trace v1.33.0 // indirect
 	golang.org/x/crypto v0.31.0 // indirect
-	golang.org/x/exp v0.0.0-20241210194714-1829a127f884 // indirect
+	golang.org/x/exp v0.0.0-20241215155358-4a5509556b9e // indirect
 	golang.org/x/image v0.23.0 // indirect
 	golang.org/x/net v0.32.0 // indirect
 	golang.org/x/oauth2 v0.24.0 // indirect
@@ -69,3 +69,5 @@ require (
 	google.golang.org/grpc v1.69.0 // indirect
 	google.golang.org/protobuf v1.35.2 // indirect
 )
+
+// replace github.com/grokify/gocharts/v2 => ../gocharts
