@@ -9,35 +9,35 @@ func TableColumnDefinitionSetSAST() table.ColumnDefinitionSet {
 		DefaultFormat: table.FormatString,
 		Definitions: []table.ColumnDefinition{
 			{
-				Name:         "Category",
+				Name:         FieldCategory,
 				SourceName:   FieldCategory,
-				DefaultValue: "SAST",
+				DefaultValue: CategorySAST,
 			},
 			{
-				Name:         "Severity",
+				Name:         FieldSeverity,
 				SourceName:   FieldSeverity,
 				DefaultValue: SeverityUnknown,
 			},
 			{
-				Name:       "Name",
+				Name:       FieldName,
 				SourceName: FieldNameWithURL,
 				Format:     table.FormatURL,
 			},
 			{
-				Name:       "Description",
+				Name:       FieldDescription,
 				SourceName: FieldDescription,
 			},
 			{
-				Name:       "Location",
+				Name:       FieldLocationPath,
 				SourceName: FieldLocationPath,
 			},
 			{
-				Name:       "Start Line",
+				Name:       FieldLocationLineStart,
 				SourceName: FieldLocationLineStart,
 				Format:     table.FormatInt,
 			},
 			{
-				Name:       "End Line",
+				Name:       FieldLocationLineEnd,
 				SourceName: FieldLocationLineEnd,
 				Format:     table.FormatInt,
 			},
