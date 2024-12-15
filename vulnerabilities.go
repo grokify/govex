@@ -1,4 +1,4 @@
-package jvex
+package govex
 
 import (
 	"cmp"
@@ -6,7 +6,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/grokify/jvex/cve20"
+	"github.com/grokify/govex/cve20"
 	"github.com/grokify/mogo/type/slicesutil"
 	"github.com/grokify/mogo/type/stringsutil"
 )
