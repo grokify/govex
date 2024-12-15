@@ -1,4 +1,4 @@
-package govex
+package vex
 
 import (
 	"fmt"

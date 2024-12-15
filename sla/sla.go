@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/grokify/govex"
 	"github.com/grokify/mogo/time/timeutil"
+	"github.com/grokify/vex"
 )
 
 const (
@@ -18,15 +18,15 @@ type SLAMap map[string]uint
 
 func SLAMapFedRAMP() SLAMap {
 	return map[string]uint{
-		govex.SeverityCritical: 30,
-		govex.SeverityHigh:     30,
-		govex.SeverityMedium:   90,
-		govex.SeverityLow:      180,
+		vex.SeverityCritical: 30,
+		vex.SeverityHigh:     30,
+		vex.SeverityMedium:   90,
+		vex.SeverityLow:      180,
 	}
 }
 
 func (slaMap SLAMap) SLAStatusOverdue(severity string, dur time.Duration) (bool, error) {
-	severityParsed, err := govex.ParseSeverity(severity)
+	severityParsed, err := vex.ParseSeverity(severity)
 	if err != nil {
 		return false, err
 	}

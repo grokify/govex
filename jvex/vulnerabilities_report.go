@@ -5,8 +5,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/grokify/govex/cve20"
 	"github.com/grokify/mogo/time/timeutil"
+	"github.com/grokify/vex/cve20"
 )
 
 func (vulns Vulnerabilities) ReportMarkdownLinesFixedVersion(fixVersion string, releaseDate *time.Time) ([]string, error) {
