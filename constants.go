@@ -1,4 +1,4 @@
-package vex
+package jvex
 
 import (
 	"fmt"
@@ -11,8 +11,8 @@ const (
 	SeverityMedium        = "Medium"
 	SeverityLow           = "Low"
 	SeverityInformational = "Informational"
-	SeverityUnknown       = "Unknown"
 	SeverityNone          = "None"
+	SeverityUnknown       = "Unknown"
 )
 
 func severityMap() map[string]string {
