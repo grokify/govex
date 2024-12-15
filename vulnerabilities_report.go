@@ -1,11 +1,11 @@
-package jvex
+package govex
 
 import (
 	"fmt"
 	"strings"
 	"time"
 
-	"github.com/grokify/jvex/cve20"
+	"github.com/grokify/govex/cve20"
 	"github.com/grokify/mogo/time/timeutil"
 )
 

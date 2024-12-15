@@ -1,4 +1,4 @@
-package jvex
+package govex
 
 import (
 	"fmt"

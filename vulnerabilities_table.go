@@ -1,4 +1,4 @@
-package jvex
+package govex
 
 import (
 	"github.com/grokify/gocharts/v2/data/table"
