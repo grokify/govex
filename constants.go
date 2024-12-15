@@ -6,6 +6,14 @@ import (
 )
 
 const (
+	CategoryAntiVirus = "Anti-Virus"
+	CategoryContainer = "Container"
+	CategoryDAST      = "DAST"
+	CategoryPentest   = "Pentest"
+	CategorySAST      = "SAST"
+	CategorySCA       = "SCA"
+	CategorySecret    = "Secret"
+
 	SeverityCritical      = "Critical"
 	SeverityHigh          = "High"
 	SeverityMedium        = "Medium"
