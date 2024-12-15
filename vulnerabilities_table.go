@@ -7,12 +7,8 @@ import (
 func (vs *Vulnerabilities) Table(colDefs table.ColumnDefinitionSet, opts *ValueOpts) (*table.Table, error) {
 	t := table.NewTable("")
 	t.LoadColumnDefinitionSet(colDefs)
-	colSourceNames, err := colDefs.Definitions.SourceNames(false, true)
-	if err != nil {
-		return nil, err
-	}
 	for _, v := range *vs {
-		t.Rows = append(t.Rows, v.Values(colSourceNames, opts))
+		t.Rows = append(t.Rows, v.Values(colDefs.Definitions, opts))
 	}
 	return &t, nil
 }
