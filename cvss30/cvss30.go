@@ -4,7 +4,6 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/grokify/mogo/fmt/fmtutil"
 	gocvss30 "github.com/pandatix/go-cvss/30"
 )
 
@@ -93,7 +92,6 @@ func VectorToMap(v string) (map[string]string, error) {
 	for _, p1 := range p {
 		p2 := strings.Split(p1, ":")
 		if len(p2) != 2 {
-			fmtutil.PrintJSON(p1)
 			return out, errors.New("invalid format")
 		}
 		out[p2[0]] = p2[1]
