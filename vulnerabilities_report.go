@@ -52,17 +52,17 @@ func (vs *Vulnerabilities) ReportMarkdownLinesVulnsFixed(fixVersion string, rele
 			dateStr = ci.StartTime.Format(timeutil.DateTextUSAbbr3)
 		}
 
-		title := strings.TrimSpace(ci.Title)
+		name := strings.TrimSpace(ci.Name)
 		desc := strings.TrimSpace(ci.Description)
 
-		if title != "" {
-			title += " " + dateStr
+		if name != "" {
+			name += " " + dateStr
 		} else if desc != "" {
 			desc += " " + dateStr
 		}
 
-		if title != "" {
-			parts = append(parts, title)
+		if name != "" {
+			parts = append(parts, name)
 		}
 		if desc != "" {
 			parts = append(parts, desc)

@@ -92,7 +92,7 @@ func (vs *Vulnerabilities) OrderdListMarkdownLines(opts *ValueOpts) []string {
 			ji.Value(FieldID, "", opts),
 			ji.Value(FieldSeverity, "", opts),
 			ji.Value(FieldSLAOpenStatus, "", opts),
-			ji.Value(FieldTitleAndDesc, "", opts),
+			ji.Value(FieldNameAndDesc, "", opts),
 			ji.Value(FieldAcceptedTimeRFC3339, "", opts),
 			ji.Value(FieldFixVersion, "", opts),
 		}
