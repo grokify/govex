@@ -2,8 +2,6 @@ module github.com/grokify/jvex
 
 go 1.22.7
 
-toolchain go1.23.2
-
 require (
 	github.com/grokify/gocharts/v2 v2.21.2
 	github.com/grokify/gojira v0.22.1
