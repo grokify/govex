@@ -1,3 +1,3 @@
-# GoVEX
+# VEX
 
-`govex` is a Go package with various VEX helpers.
+`vex` is a Go package with various VEX helpers.
