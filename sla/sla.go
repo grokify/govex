@@ -25,7 +25,7 @@ func SLAMapFedRAMP() SLAMap {
 	}
 }
 
-func (slaMap SLAMap) SLAStatus(severity string, dur time.Duration) (bool, error) {
+func (slaMap SLAMap) SLAStatusOverdue(severity string, dur time.Duration) (bool, error) {
 	severityParsed, err := govex.ParseSeverity(severity)
 	if err != nil {
 		return false, err
@@ -37,18 +37,18 @@ func (slaMap SLAMap) SLAStatus(severity string, dur time.Duration) (bool, error)
 		return false, fmt.Errorf("severity not found in SLA map (%s)", severity)
 	} else {
 		ageDays := timeutil.DurationDaysInt64(dur)
-		return ageDays < int64(slaDays), nil
+		return ageDays > int64(slaDays), nil
 	}
 }
 
-func (slaMap SLAMap) SLAStatusTimes(severity string, startTime, evalTime time.Time) (bool, error) {
-	return slaMap.SLAStatus(severity, evalTime.Sub(startTime))
+func (slaMap SLAMap) slaStatusOverdueTimes(severity string, startTime, evalTime time.Time) (bool, error) {
+	return slaMap.SLAStatusOverdue(severity, evalTime.Sub(startTime))
 }
 
 func (slaMap SLAMap) SLAStatusTimesString(severity string, startTime *time.Time, evalTime time.Time, unknownString string) (string, error) {
 	if startTime == nil {
 		return unknownString, nil
-	} else if withinSLA, err := slaMap.SLAStatusTimes(severity, *startTime, evalTime); err != nil {
+	} else if withinSLA, err := slaMap.slaStatusOverdueTimes(severity, *startTime, evalTime); err != nil {
 		return unknownString, err
 	} else if withinSLA {
 		return StatusWithinSLA, nil
