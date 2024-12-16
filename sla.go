@@ -8,11 +8,13 @@ import (
 )
 
 const (
+	// Status categories
 	StatusWithinSLA      = "Within SLA"
 	StatusApproachingSLA = "Approaching SLA"
 	StatusOutOfSLA       = "Out of SLA"
 )
 
+// SLAMap provides a commen representation of SLAs by severity and day.
 type SLAMap map[string]int64
 
 func SLAMapFedRAMP() SLAMap {

@@ -1,6 +1,7 @@
 package govex
 
 const (
+	// Status fields. See `docs/status.md` for more.
 	StatusIdentified    = "Identified"
 	StatusAnalyzing     = "Analyzing"
 	StatusValidated     = "Validated"

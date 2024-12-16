@@ -6,6 +6,7 @@ import (
 )
 
 const (
+	// Vulnerability source category.
 	CategoryAntiVirus = "Anti-Virus"
 	CategoryContainer = "Container"
 	CategoryDAST      = "DAST"
@@ -14,6 +15,7 @@ const (
 	CategorySCA       = "SCA"
 	CategorySecret    = "Secret"
 
+	// Common severities
 	SeverityCritical      = "Critical"
 	SeverityHigh          = "High"
 	SeverityMedium        = "Medium"
