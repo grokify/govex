@@ -6,9 +6,10 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/grokify/govex/cve20"
 	"github.com/grokify/mogo/type/slicesutil"
 	"github.com/grokify/mogo/type/stringsutil"
+
+	"github.com/grokify/govex/cve20"
 )
 
 type Vulnerabilities []Vulnerability
