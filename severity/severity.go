@@ -37,15 +37,15 @@ func ParseSeverity(sev string) (string, error) {
 	}
 }
 
-func SeveritySliceFinding() []string {
+func SeveritiesFinding() []string {
 	return []string{SeverityCritical, SeverityHigh, SeverityMedium, SeverityLow}
 }
 
-func SeveritySliceAnalyzed() []string {
+func SeveritiesAnalyzed() []string {
 	return []string{SeverityCritical, SeverityHigh, SeverityMedium, SeverityLow, SeverityInformational, SeverityNone}
 }
 
-func SeveritySliceAll() []string {
+func SeveritiesAll() []string {
 	return []string{SeverityCritical, SeverityHigh, SeverityMedium, SeverityLow, SeverityInformational, SeverityNone, SeverityUnknown}
 }
 

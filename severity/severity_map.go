@@ -40,9 +40,7 @@ func (sm SeverityMap) SeverityFromScore(score decimal.Decimal) (string, error) {
 	if score.Cmp(d10) > 0 || score.Cmp(d0) < 0 {
 		return SeverityUnknown, errors.New("score out of range")
 	}
-	sevs := []string{
-		SeverityCritical, SeverityHigh, SeverityMedium, SeverityLow, SeverityInformational, SeverityNone, SeverityUnknown,
-	}
+	sevs := SeveritiesAll()
 	for _, sev := range sevs {
 		if min, ok := sm[sev]; ok {
 			if score.Cmp(min) >= 0 {
