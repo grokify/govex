@@ -6,9 +6,9 @@
 [![LOC][loc-svg]][repo-url]
 [![License][license-svg]][license-url]
 
-`govex` is a Go package with various VEX helpers, including:
+`govex` is a Go package with various VEX helpers, including the following:
 
-1. Definition of `govex` structs for vulnerabilities.
+1. Definition of `govex` structs for vulnerabilities. There is no standard format for "VEX", and there are many standards well-developed for specific purposes, so this package defines its own format. The format used here is prioritized for use cases supported by this package, currently writing tabular and text reports.
 1. Conversion of `Vulnerabilities` slice to a [GoCharts `Table`](https://pkg.go.dev/github.com/grokify/gocharts/v2/data/table#Table) via [`Vulnerabilities.Table()`](https://pkg.go.dev/github.com/grokify/govex#Vulnerabilities.Table) with customizable columns. This can then be exported as a CSV or XLSX file.
 
 ## Contributing
