@@ -1,6 +1,9 @@
 package govex
 
 import (
+	"fmt"
+	"strings"
+
 	"github.com/grokify/gocharts/v2/data/table"
 	"github.com/grokify/govex/severity"
 )
@@ -12,6 +15,30 @@ func (vs *Vulnerabilities) Table(colDefs table.ColumnDefinitionSet, opts *ValueO
 		t.Rows = append(t.Rows, v.Values(colDefs.Definitions, opts))
 	}
 	return &t, nil
+}
+
+func (vs *Vulnerabilities) TableSet(colDefs table.ColumnDefinitionSet, filters VulnerabilitiesFilters, addCountsToNames bool, opts *ValueOpts) (*table.TableSet, error) {
+	ts := table.NewTableSet("")
+	for i, fil := range filters {
+		if vsFiltered, err := vs.FilterSeverities(fil.SeveritiesIncl); err != nil {
+			return nil, err
+		} else if tblFiltered, err := vsFiltered.Table(colDefs, opts); err != nil {
+			return nil, err
+		} else {
+			name := strings.TrimSpace(fil.Name)
+			if name == "" {
+				name = fmt.Sprintf("Sheet %d", i+1)
+			}
+			if addCountsToNames {
+				name += fmt.Sprintf(" (%d)", len(tblFiltered.Rows))
+			}
+			tblFiltered.Name = name
+			if err := ts.Add(tblFiltered); err != nil {
+				return nil, err
+			}
+		}
+	}
+	return ts, nil
 }
 
 func TableColumnDefinitionSetSAST() table.ColumnDefinitionSet {
