@@ -49,6 +49,35 @@ func SeveritiesAll() []string {
 	return []string{SeverityCritical, SeverityHigh, SeverityMedium, SeverityLow, SeverityInformational, SeverityNone, SeverityUnknown}
 }
 
+type MapBool map[string]bool
+
+func NewMapBool(def bool) MapBool {
+	return map[string]bool{
+		SeverityCritical:      def,
+		SeverityHigh:          def,
+		SeverityMedium:        def,
+		SeverityLow:           def,
+		SeverityInformational: def,
+		SeverityNone:          def,
+		SeverityUnknown:       def,
+	}
+}
+
+// AllTrueStrict checks if all severities are true. Strict checks
+// that no additional severities are included in the map.
+func (mb MapBool) AllTrue(strict bool) bool {
+	sevs := SeveritiesAll()
+	if strict && len(mb) != len(sevs) {
+		return false
+	}
+	for _, sev := range sevs {
+		if v, ok := mb[sev]; !ok || !v {
+			return false
+		}
+	}
+	return true
+}
+
 /*
 func severityMap() map[string]string {
 	return map[string]string{
