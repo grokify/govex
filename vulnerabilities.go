@@ -7,59 +7,11 @@ import (
 	"strings"
 
 	"github.com/grokify/mogo/type/slicesutil"
-	"github.com/grokify/mogo/type/stringsutil"
 
 	"github.com/grokify/govex/cve20"
 )
 
 type Vulnerabilities []Vulnerability
-
-// FilterFixedInVersion returns a filtered subset with a fix version match, including empty string.
-func (vs *Vulnerabilities) FilterFixedInVersion(fixVersions []string, severity string) (Vulnerabilities, error) {
-	fixVersions = stringsutil.SliceCondenseSpace(fixVersions, true, true)
-	severity = strings.TrimSpace(severity)
-	fnIncl := func(jv Vulnerability) (bool, error) {
-		verExcl := strings.TrimSpace(jv.VersionEndExcluding)
-		if !slices.Contains(fixVersions, verExcl) {
-			return false, nil
-		}
-		if severity != "" && severity != jv.Severity {
-			return false, nil
-		} else {
-			return true, nil
-		}
-	}
-	return vs.FilterFunc(fnIncl)
-}
-
-func (vs *Vulnerabilities) FilterFunc(fnFilter func(j Vulnerability) (bool, error)) (Vulnerabilities, error) {
-	out := Vulnerabilities{}
-	for _, ji := range *vs {
-		if incl, err := fnFilter(ji); err != nil {
-			return out, err
-		} else if incl {
-			out = append(out, ji)
-		}
-	}
-	return out, nil
-}
-
-// FilterFixedInVersion returns a filtered subset with a fix version match, including empty string.
-func (vs *Vulnerabilities) FilterFixedInVersionAge(fixVersion, baseSeverity string, slaDays uint, slaElapsed bool) Vulnerabilities {
-	fixVersion = strings.TrimSpace(fixVersion)
-	baseSeverity = strings.TrimSpace(baseSeverity)
-	out := Vulnerabilities{}
-	for _, ci := range *vs {
-		verExcl := strings.TrimSpace(ci.VersionEndExcluding)
-		if verExcl != fixVersion {
-			continue
-		}
-		if baseSeverity != "" && baseSeverity != ci.Severity {
-			continue
-		}
-	}
-	return out
-}
 
 func (vs *Vulnerabilities) IDs(unique bool) []string {
 	var ids []string
