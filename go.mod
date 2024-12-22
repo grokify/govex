@@ -3,8 +3,8 @@ module github.com/grokify/govex
 go 1.22.7
 
 require (
-	github.com/grokify/gocharts/v2 v2.21.2
-	github.com/grokify/mogo v0.66.2
+	github.com/grokify/gocharts/v2 v2.21.3
+	github.com/grokify/mogo v0.66.3
 	github.com/pandatix/go-cvss v0.6.2
 	github.com/relvacode/iso8601 v1.6.0
 	github.com/shopspring/decimal v1.4.0

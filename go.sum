@@ -1,7 +1,11 @@
 github.com/grokify/gocharts/v2 v2.21.2 h1:wEbZH3euPXTJ0VLcZMaq7ica1JgYl7EPik+CGXJbYAw=
 github.com/grokify/gocharts/v2 v2.21.2/go.mod h1:jOCtERsySKTj7ZWkAVB4uPFH/f4DRmd53V3MnL7H/rw=
+github.com/grokify/gocharts/v2 v2.21.3 h1:ijpp0+USeURHUHwshJ5Sj4APrzzvaLY2cwKzmUDuHwM=
+github.com/grokify/gocharts/v2 v2.21.3/go.mod h1:s+zfuu5N8XTY3kURVZUcj8q/jgr/ns3EeY5UzCX0Bq0=
 github.com/grokify/mogo v0.66.2 h1:4GBxS+CKhP8H2jiXQnZrp2by+tWh40cPfAcUBbuLecU=
 github.com/grokify/mogo v0.66.2/go.mod h1:S7yY+CvDcWXgJJtvaovzzA/mq9dAojldkAseERK+nmo=
+github.com/grokify/mogo v0.66.3 h1:nEiKofCduqyJDkflkcNFi7xNSct90mn3tgIeoBONwV8=
+github.com/grokify/mogo v0.66.3/go.mod h1:tjp3ilgEOTTtCifK9D7NpxS42I3dNb5Hy0blVLggPts=
 github.com/huandu/xstrings v1.5.0 h1:2ag3IFq9ZDANvthTwTiqSSZLjDc+BedvHPAp5tJy2TI=
 github.com/huandu/xstrings v1.5.0/go.mod h1:y5/lhBue+AyNmUVz9RLU9xbLR0o4KIIExikq4ovT0aE=
 github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 h1:RWengNIwukTxcDr9M+97sNutRR1RKhG96O6jWumTTnw=
