@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/grokify/govex/severity"
 	"github.com/grokify/mogo/time/timeutil"
 )
 
@@ -19,15 +20,15 @@ type SLAMap map[string]int64
 
 func SLAMapFedRAMP() SLAMap {
 	return map[string]int64{
-		SeverityCritical: 30,
-		SeverityHigh:     30,
-		SeverityMedium:   90,
-		SeverityLow:      180,
+		severity.SeverityCritical: 30,
+		severity.SeverityHigh:     30,
+		severity.SeverityMedium:   90,
+		severity.SeverityLow:      180,
 	}
 }
 
-func (slaMap SLAMap) SLAStatusOverdue(severity string, dur time.Duration) (bool, error) {
-	severityParsed, err := ParseSeverity(severity)
+func (slaMap SLAMap) SLAStatusOverdue(sev string, dur time.Duration) (bool, error) {
+	severityParsed, err := severity.ParseSeverity(sev)
 	if err != nil {
 		return false, err
 	}
@@ -35,7 +36,7 @@ func (slaMap SLAMap) SLAStatusOverdue(severity string, dur time.Duration) (bool,
 		slaMap = SLAMapFedRAMP()
 	}
 	if slaDays, ok := slaMap[severityParsed]; !ok {
-		return false, fmt.Errorf("severity not found in SLA map (%s)", severity)
+		return false, fmt.Errorf("severity not found in SLA map (%s)", sev)
 	} else {
 		ageDays := timeutil.DurationDaysInt64(dur)
 		return ageDays > slaDays, nil
