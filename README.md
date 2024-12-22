@@ -13,7 +13,8 @@
 
 ## Contributing
 
-1. Commits are prefixed with Conventional Commits conventions available here: [https://www.conventionalcommits.org/](https://www.conventionalcommits.org/)
+1. By contributing to this repository, you agree that your contributions will be licensed under the MIT License.
+1. Commits style uses Conventional Commits conventions available here: [https://www.conventionalcommits.org/](https://www.conventionalcommits.org/)
 
  [build-status-svg]: https://github.com/grokify/govex/workflows/test/badge.svg
  [build-status-url]: https://github.com/grokify/govex/actions/workflows/test.yaml
