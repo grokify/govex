@@ -1,6 +1,6 @@
 module github.com/grokify/govex
 
-go 1.22.7
+go 1.23.2
 
 require (
 	github.com/grokify/gocharts/v2 v2.21.3
