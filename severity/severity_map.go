@@ -21,7 +21,19 @@ func NewSeverityMapFromFloat32(m map[string]float32) (SeverityMap, error) {
 	return sm, nil
 }
 
-func SeverityMapDefault() map[string]decimal.Decimal {
+func NewSeverityMapSeveritiesOnly(severities []string) (SeverityMap, error) {
+	sm := SeverityMap{}
+	for _, k := range severities {
+		if sev, err := ParseSeverity(k); err != nil {
+			return sm, err
+		} else {
+			sm[sev] = decimal.NewFromInt(0)
+		}
+	}
+	return sm, nil
+}
+
+func SeverityMapScoreDefault() map[string]decimal.Decimal {
 	return map[string]decimal.Decimal{
 		SeverityCritical:      decimal.NewFromInt(9),
 		SeverityHigh:          decimal.NewFromInt(7),
