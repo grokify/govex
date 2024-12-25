@@ -6,34 +6,56 @@ import (
 	"testing"
 )
 
-var severitiesHigherTests = []struct {
-	sevs      []string
-	sev       string
-	inclusive bool
-	want      []string
+var severitiesHigherLowerTests = []struct {
+	sevs            []string
+	sev             string
+	inclusiveHigher bool
+	inclusiveLower  bool
+	wantHigher      []string
+	wantLower       []string
 }{
 	{
-		sevs:      SeveritiesAll(),
-		sev:       SeverityHigh,
-		inclusive: true,
-		want:      []string{SeverityCritical, SeverityHigh},
+		sevs:            SeveritiesAll(),
+		sev:             SeverityMedium,
+		inclusiveHigher: true,
+		wantHigher:      []string{SeverityCritical, SeverityHigh, SeverityMedium},
+		inclusiveLower:  false,
+		wantLower:       []string{SeverityLow, SeverityInformational, SeverityNone, SeverityUnknown},
 	},
 	{
-		sevs:      SeveritiesAll(),
-		sev:       SeverityHigh,
-		inclusive: false,
-		want:      []string{SeverityCritical},
+		sevs:            SeveritiesAll(),
+		sev:             SeverityHigh,
+		inclusiveHigher: true,
+		wantHigher:      []string{SeverityCritical, SeverityHigh},
+		inclusiveLower:  true,
+		wantLower:       []string{SeverityHigh, SeverityMedium, SeverityLow, SeverityInformational, SeverityNone, SeverityUnknown},
+	},
+	{
+		sevs:            SeveritiesAll(),
+		sev:             SeverityHigh,
+		inclusiveHigher: false,
+		wantHigher:      []string{SeverityCritical},
+		inclusiveLower:  false,
+		wantLower:       []string{SeverityMedium, SeverityLow, SeverityInformational, SeverityNone, SeverityUnknown},
 	},
 }
 
-func TestSeveritiesHigher(t *testing.T) {
-	for _, tt := range severitiesHigherTests {
-		higher, err := SeveritiesHigher(tt.sevs, tt.sev, tt.inclusive)
+func TestSeveritiesHigherLower(t *testing.T) {
+	for _, tt := range severitiesHigherLowerTests {
+		higher, err := SeveritiesHigher(tt.sevs, tt.sev, tt.inclusiveHigher)
 		if err != nil {
 			t.Errorf("severity.SeveritiesHigher() error (%s)", err.Error())
-		} else if !slices.Equal(tt.want, higher) {
+		} else if !slices.Equal(tt.wantHigher, higher) {
 			t.Errorf("severity.SeveritiesHigher() Mismatch Error: want (%s), got (%s)",
-				strings.Join(tt.want, ", "),
+				strings.Join(tt.wantHigher, ", "),
+				strings.Join(higher, ", "))
+		}
+		lower, err := SeveritiesLower(tt.sevs, tt.sev, tt.inclusiveLower)
+		if err != nil {
+			t.Errorf("severity.SeveritiesLower() error (%s)", err.Error())
+		} else if !slices.Equal(tt.wantLower, lower) {
+			t.Errorf("severity.SeveritiesLower() Mismatch Error: want (%s), got (%s)",
+				strings.Join(tt.wantLower, ", "),
 				strings.Join(higher, ", "))
 		}
 	}
