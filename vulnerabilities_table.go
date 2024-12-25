@@ -17,6 +17,14 @@ func (vs *Vulnerabilities) Table(colDefs table.ColumnDefinitionSet, opts *ValueO
 	return &t, nil
 }
 
+func (vs *Vulnerabilities) TableSetSplitSeverity(colDefs table.ColumnDefinitionSet, sevCutoff string, sevInclWithHigher bool, name1, name2 string, addCountsToNames bool, opts *ValueOpts) (*table.TableSet, error) {
+	if vfs, err := BuildVulnerabilitiesFiltersSplit(sevCutoff, sevInclWithHigher, name1, name2); err != nil {
+		return nil, err
+	} else {
+		return vs.TableSet(colDefs, vfs, addCountsToNames, opts)
+	}
+}
+
 func (vs *Vulnerabilities) TableSet(colDefs table.ColumnDefinitionSet, filters VulnerabilitiesFilters, addCountsToNames bool, opts *ValueOpts) (*table.TableSet, error) {
 	ts := table.NewTableSet("")
 	for i, fil := range filters {

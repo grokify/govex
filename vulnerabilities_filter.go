@@ -20,6 +20,34 @@ func (vfs VulnerabilitiesFilters) HasSeverityFullCoverage() bool {
 	return mb.AllTrue(true)
 }
 
+func BuildVulnerabilitiesFiltersSplit(sevCutoff string, sevInclWithHigher bool, name1, name2 string) (VulnerabilitiesFilters, error) {
+	inclWithHigher := false
+	inclWithLower := false
+	if sevInclWithHigher {
+		inclWithHigher = true
+	} else {
+		inclWithLower = true
+	}
+	sevs1, err := severity.SeveritiesHigher(severity.SeveritiesAll(), sevCutoff, inclWithHigher)
+	if err != nil {
+		return VulnerabilitiesFilters{}, err
+	}
+	sevs2, err := severity.SeveritiesHigher(severity.SeveritiesAll(), sevCutoff, inclWithLower)
+	if err != nil {
+		return VulnerabilitiesFilters{}, err
+	}
+	return VulnerabilitiesFilters{
+		{
+			Name:           name1,
+			SeveritiesIncl: sevs1,
+		},
+		{
+			Name:           name2,
+			SeveritiesIncl: sevs2,
+		},
+	}, nil
+}
+
 type VulnerabilitiesFilter struct {
 	Name           string
 	SeveritiesIncl []string
