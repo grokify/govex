@@ -1,6 +1,7 @@
 package govex
 
 import (
+	"errors"
 	"fmt"
 	"strings"
 
@@ -57,20 +58,30 @@ func (vs *Vulnerabilities) WriteFileXLSX(filename, sheetname string, colDefs tab
 	}
 }
 
-func (vs *Vulnerabilities) WriteFileXLSXSplitSeverity(filename string, colDefs table.ColumnDefinitionSet, sevCutoff, name1, name2 string, opts *ValueOpts) error {
+func (vs *Vulnerabilities) WriteFileXLSXSplitSeverity(filename string, colDefs table.ColumnDefinitionSet, sevCutoff, name1, name2 string, opts *ValueOpts) (int, int, error) {
 	if sevCutoff != "" {
-		if ts, err := vs.TableSetSplitSeverity(
+		ts, err := vs.TableSetSplitSeverity(
 			colDefs,
 			sevCutoff, true, name1, name2,
-			true, opts); err != nil {
-			return err
-		} else if err = ts.WriteXLSX(filename); err != nil {
-			return err
-		} else {
-			return nil
+			true, opts)
+		if err != nil {
+			return -1, -1, err
 		}
+		lens := ts.LensOrdered()
+		if len(lens) != 2 {
+			return -1, -1, errors.New("error in `Vulnerabilities.WriteFileXLSXSplitSeverity`: lengths mismatch")
+		}
+		len1 := lens[0]
+		len2 := lens[1]
+		if err = ts.WriteXLSX(filename); err != nil {
+			return len1, len2, err
+		} else {
+			return len1, len2, nil
+		}
+	} else if tbl, err := vs.Table(colDefs, opts); err != nil {
+		return -1, -1, err
 	} else {
-		return vs.WriteFileXLSX(filename, name1, colDefs, opts)
+		return len(tbl.Rows), -1, tbl.WriteXLSX(filename, name1)
 	}
 }
 
