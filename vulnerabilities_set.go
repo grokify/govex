@@ -11,6 +11,12 @@ type VulnerabilitiesSet struct {
 	Vulnerabilities Vulnerabilities `json:"vulnerabilities"`
 }
 
+func NewVulnerabilitiesSet() VulnerabilitiesSet {
+	return VulnerabilitiesSet{
+		Vulnerabilities: Vulnerabilities{},
+	}
+}
+
 func (vs *VulnerabilitiesSet) WriteFileXLSX(filename, sheetname string, colDefs table.ColumnDefinitionSet, opts *ValueOpts) error {
 	if tbl, err := vs.Vulnerabilities.Table(colDefs, opts); err != nil {
 		return err
