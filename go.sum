@@ -1,7 +1,7 @@
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/grokify/gocharts/v2 v2.21.3 h1:ijpp0+USeURHUHwshJ5Sj4APrzzvaLY2cwKzmUDuHwM=
-github.com/grokify/gocharts/v2 v2.21.3/go.mod h1:s+zfuu5N8XTY3kURVZUcj8q/jgr/ns3EeY5UzCX0Bq0=
+github.com/grokify/gocharts/v2 v2.21.4 h1:JWNhbHipcd3t5ETzDQJ8Ir6g4HDT5j5QFkvC2QyBhEU=
+github.com/grokify/gocharts/v2 v2.21.4/go.mod h1:E06+lIbaq/F5cilWvV5dPfCZvvEffTjneHl195XVH/A=
 github.com/grokify/mogo v0.66.4 h1:gA8snXmuhRTseZXVAehjNbhklPR14xlGt98M3fAyvKk=
 github.com/grokify/mogo v0.66.4/go.mod h1:tjp3ilgEOTTtCifK9D7NpxS42I3dNb5Hy0blVLggPts=
 github.com/huandu/xstrings v1.5.0 h1:2ag3IFq9ZDANvthTwTiqSSZLjDc+BedvHPAp5tJy2TI=
