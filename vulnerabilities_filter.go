@@ -32,7 +32,7 @@ func BuildVulnerabilitiesFiltersSplit(sevCutoff string, sevInclWithHigher bool, 
 	if err != nil {
 		return VulnerabilitiesFilters{}, err
 	}
-	sevs2, err := severity.SeveritiesHigher(severity.SeveritiesAll(), sevCutoff, inclWithLower)
+	sevs2, err := severity.SeveritiesLower(severity.SeveritiesAll(), sevCutoff, inclWithLower)
 	if err != nil {
 		return VulnerabilitiesFilters{}, err
 	}
