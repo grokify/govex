@@ -52,19 +52,9 @@ func SeveritiesAll() []string {
 }
 
 func SeveritiesHigher(sevs []string, sev string, inclusive bool) ([]string, error) {
-	sev, err := ParseSeverity(sev)
+	sevs, sev, err := parseSeveritySliceIndexInfo(sevs, sev)
 	if err != nil {
 		return []string{}, err
-	}
-	for i, si := range sevs {
-		si, err := ParseSeverity(si)
-		if err != nil {
-			return []string{}, err
-		}
-		sevs[i] = si
-	}
-	if slices.Index(sevs, sev) < 0 {
-		return []string{}, errors.New("severity not in slice")
 	}
 	var out []string
 	for _, si := range sevs {
@@ -78,6 +68,44 @@ func SeveritiesHigher(sevs []string, sev string, inclusive bool) ([]string, erro
 		}
 	}
 	return out, nil
+}
+
+func SeveritiesLower(sevs []string, sev string, inclusive bool) ([]string, error) {
+	sevs, sev, err := parseSeveritySliceIndexInfo(sevs, sev)
+	if err != nil {
+		return []string{}, err
+	}
+	var out []string
+	matched := false
+	for _, si := range sevs {
+		if si == sev {
+			if inclusive {
+				out = append(out, si)
+			}
+			matched = true
+		} else if matched {
+			out = append(out, si)
+		}
+	}
+	return out, nil
+}
+
+func parseSeveritySliceIndexInfo(sevs []string, sev string) ([]string, string, error) {
+	sev, err := ParseSeverity(sev)
+	if err != nil {
+		return sevs, sev, err
+	}
+	for i, si := range sevs {
+		si, err := ParseSeverity(si)
+		if err != nil {
+			return sevs, sev, err
+		}
+		sevs[i] = si
+	}
+	if slices.Index(sevs, sev) < 0 {
+		return sevs, sev, errors.New("severity not in slice")
+	}
+	return sevs, sev, nil
 }
 
 type MapBool map[string]bool
