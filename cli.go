@@ -11,23 +11,23 @@ type CLIMergeJSONs2XLSXOptions struct {
 	DoNowSeverityCutOffIncl string   `short:"s" long:"severityfiltercutoff" description:"Outputfile" required:"false"`
 }
 
-func CLIMergeJSONs2XLSXExec() (int, int, error) {
+func CLIMergeJSONs2XLSXExec() (*CLIMergeJSONs2XLSXOptions, int, int, error) {
 	opts := CLIMergeJSONs2XLSXOptions{}
 	_, err := flags.Parse(&opts)
 	if err != nil {
-		return -1, -1, err
+		return nil, -1, -1, err
 	}
 
 	vs, err := ReadFilesVulnerabilitiesSet(opts.InputFilename)
 	if err != nil {
-		return -1, -1, err
+		return nil, -1, -1, err
 	}
 	len1 := -1
 	len2 := -1
 	if opts.OutputFileJSON != "" {
 		err := vs.WriteFileJSON(opts.OutputFileJSON, "", "  ", 0600)
 		if err != nil {
-			return len1, len2, err
+			return nil, len1, len2, err
 		}
 	}
 	if opts.OutputFileXLSX != "" {
@@ -37,10 +37,10 @@ func CLIMergeJSONs2XLSXExec() (int, int, error) {
 			opts.DoNowSeverityCutOffIncl,
 			P1DoNow, P2DoNext, nil)
 		if err != nil {
-			return -1, -1, err
+			return nil, -1, -1, err
 		} else {
-			return len1, len2, nil
+			return &opts, len1, len2, nil
 		}
 	}
-	return -1, -1, nil
+	return nil, -1, -1, nil
 }
