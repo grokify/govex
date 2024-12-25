@@ -51,6 +51,9 @@ func SeveritiesAll() []string {
 	return []string{SeverityCritical, SeverityHigh, SeverityMedium, SeverityLow, SeverityInformational, SeverityNone, SeverityUnknown}
 }
 
+// SeveritiesHigher returns a subset of the provided severities with elements
+// that with a lower index than the provided severity. The provided severities
+// mus be ranked from high to low.
 func SeveritiesHigher(sevs []string, sev string, inclusive bool) ([]string, error) {
 	sevs, sev, err := parseSeveritySliceIndexInfo(sevs, sev)
 	if err != nil {
@@ -70,6 +73,9 @@ func SeveritiesHigher(sevs []string, sev string, inclusive bool) ([]string, erro
 	return out, nil
 }
 
+// SeveritiesLower returns a subset of the provided severities with elements
+// that with a higher index than the provided severity. The provided severities
+// mus be ranked from high to low.
 func SeveritiesLower(sevs []string, sev string, inclusive bool) ([]string, error) {
 	sevs, sev, err := parseSeveritySliceIndexInfo(sevs, sev)
 	if err != nil {
