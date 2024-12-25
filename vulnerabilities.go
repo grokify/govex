@@ -6,9 +6,13 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/grokify/gocharts/v2/data/histogram"
+	"github.com/grokify/mogo/type/maputil"
 	"github.com/grokify/mogo/type/slicesutil"
+	"github.com/grokify/mogo/type/stringsutil"
 
 	"github.com/grokify/govex/cve20"
+	"github.com/grokify/govex/severity"
 )
 
 type Vulnerabilities []Vulnerability
@@ -25,9 +29,40 @@ func (vs *Vulnerabilities) IDs(unique bool) []string {
 	return ids
 }
 
-func (vs *Vulnerabilities) OrderdListMarkdownBytes(opts *ValueOpts) []byte {
+func (vs *Vulnerabilities) Len() int {
+	return len(*vs)
+}
+
+func (vs *Vulnerabilities) LenFunc(fnFilter func(v Vulnerability) (bool, error)) (int, error) {
+	var count int
+	for _, vn := range *vs {
+		if incl, err := fnFilter(vn); err != nil {
+			return -1, err
+		} else if incl {
+			count++
+		}
+	}
+	return count, nil
+}
+
+func (vs *Vulnerabilities) LenSeverities(severitiesIncl ...string) (int, error) {
+	severitiesIncl = stringsutil.SliceCondenseSpace(severitiesIncl, true, false)
+	if len(severitiesIncl) == 0 {
+		return 0, nil
+	}
+	sevMap, err := severity.NewSeverityMapSeveritiesOnly(severitiesIncl)
+	if err != nil {
+		return -1, err
+	}
+	return vs.LenFunc(func(vn Vulnerability) (bool, error) {
+		_, ok := sevMap[vn.Severity]
+		return ok, nil
+	})
+}
+
+func (vs *Vulnerabilities) OrderedListMarkdownBytes(opts *ValueOpts) []byte {
 	var out []byte
-	lines := vs.OrderdListMarkdownLines(opts)
+	lines := vs.OrderedListMarkdownLines(opts)
 	for i, line := range lines {
 		out = append(out, []byte(line)...)
 		if i < len(lines)-1 {
@@ -37,7 +72,7 @@ func (vs *Vulnerabilities) OrderdListMarkdownBytes(opts *ValueOpts) []byte {
 	return out
 }
 
-func (vs *Vulnerabilities) OrderdListMarkdownLines(opts *ValueOpts) []string {
+func (vs *Vulnerabilities) OrderedListMarkdownLines(opts *ValueOpts) []string {
 	var lines []string
 	for _, ji := range *vs {
 		parts := []string{
@@ -52,6 +87,21 @@ func (vs *Vulnerabilities) OrderdListMarkdownLines(opts *ValueOpts) []string {
 		lines = append(lines, strings.Join(parts, " "))
 	}
 	return lines
+}
+
+func (vs *Vulnerabilities) SeverityHistogram() histogram.Histogram {
+	h := histogram.NewHistogram("")
+	h.Order = severity.SeveritiesAll()
+	for _, vn := range *vs {
+		h.Add(vn.Severity, 1)
+	}
+	h.Order = severity.SeveritiesAll()
+	return *h
+}
+
+func (vs *Vulnerabilities) SeverityCounts() maputil.Records {
+	h := vs.SeverityHistogram()
+	return h.ItemValuesOrdered()
 }
 
 func (vs *Vulnerabilities) SortByID() {
