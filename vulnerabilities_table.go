@@ -49,6 +49,31 @@ func (vs *Vulnerabilities) TableSet(colDefs table.ColumnDefinitionSet, filters V
 	return ts, nil
 }
 
+func (vs *Vulnerabilities) WriteFileXLSX(filename, sheetname string, colDefs table.ColumnDefinitionSet, opts *ValueOpts) error {
+	if tbl, err := vs.Table(colDefs, opts); err != nil {
+		return err
+	} else {
+		return tbl.WriteXLSX(filename, sheetname)
+	}
+}
+
+func (vs *Vulnerabilities) WriteFileXLSXSplitSeverity(filename string, colDefs table.ColumnDefinitionSet, sevCutoff, name1, name2 string, opts *ValueOpts) error {
+	if sevCutoff != "" {
+		if ts, err := vs.TableSetSplitSeverity(
+			colDefs,
+			sevCutoff, true, name1, name2,
+			true, opts); err != nil {
+			return err
+		} else if err = ts.WriteXLSX(filename); err != nil {
+			return err
+		} else {
+			return nil
+		}
+	} else {
+		return vs.WriteFileXLSX(filename, name1, colDefs, opts)
+	}
+}
+
 func TableColumnDefinitionSetSAST() table.ColumnDefinitionSet {
 	return table.ColumnDefinitionSet{
 		DefaultFormat: table.FormatString,

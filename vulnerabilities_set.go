@@ -3,7 +3,6 @@ package govex
 import (
 	"os"
 
-	"github.com/grokify/gocharts/v2/data/table"
 	"github.com/grokify/mogo/encoding/jsonutil"
 )
 
@@ -14,14 +13,6 @@ type VulnerabilitiesSet struct {
 func NewVulnerabilitiesSet() VulnerabilitiesSet {
 	return VulnerabilitiesSet{
 		Vulnerabilities: Vulnerabilities{},
-	}
-}
-
-func (vs *VulnerabilitiesSet) WriteFileXLSX(filename, sheetname string, colDefs table.ColumnDefinitionSet, opts *ValueOpts) error {
-	if tbl, err := vs.Vulnerabilities.Table(colDefs, opts); err != nil {
-		return err
-	} else {
-		return tbl.WriteXLSX(filename, sheetname)
 	}
 }
 
