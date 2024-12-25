@@ -65,6 +65,22 @@ func (vs *Vulnerabilities) FilterSeverities(severitiesIncl []string) (Vulnerabil
 	})
 }
 
+func (vs *Vulnerabilities) FilterSeveritiesHigher(sev string, incl bool) (Vulnerabilities, error) {
+	if sevs, err := severity.SeveritiesHigher(severity.SeveritiesAll(), sev, incl); err != nil {
+		return Vulnerabilities{}, err
+	} else {
+		return vs.FilterSeverities(sevs)
+	}
+}
+
+func (vs *Vulnerabilities) FilterSeveritiesLower(sev string, incl bool) (Vulnerabilities, error) {
+	if sevs, err := severity.SeveritiesLower(severity.SeveritiesAll(), sev, incl); err != nil {
+		return Vulnerabilities{}, err
+	} else {
+		return vs.FilterSeverities(sevs)
+	}
+}
+
 // FilterFixedInVersion returns a filtered subset with a fix version match, including empty string.
 func (vs *Vulnerabilities) FilterFixedInVersionAge(fixVersion, baseSeverity string, slaDays uint, slaElapsed bool) Vulnerabilities {
 	fixVersion = strings.TrimSpace(fixVersion)
