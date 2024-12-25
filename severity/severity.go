@@ -1,7 +1,9 @@
 package severity
 
 import (
+	"errors"
 	"fmt"
+	"slices"
 	"strings"
 )
 
@@ -47,6 +49,35 @@ func SeveritiesAnalyzed() []string {
 
 func SeveritiesAll() []string {
 	return []string{SeverityCritical, SeverityHigh, SeverityMedium, SeverityLow, SeverityInformational, SeverityNone, SeverityUnknown}
+}
+
+func SeveritiesHigher(sevs []string, sev string, inclusive bool) ([]string, error) {
+	sev, err := ParseSeverity(sev)
+	if err != nil {
+		return []string{}, err
+	}
+	for i, si := range sevs {
+		si, err := ParseSeverity(si)
+		if err != nil {
+			return []string{}, err
+		}
+		sevs[i] = si
+	}
+	if slices.Index(sevs, sev) < 0 {
+		return []string{}, errors.New("severity not in slice")
+	}
+	var out []string
+	for _, si := range sevs {
+		if si == sev {
+			if inclusive {
+				out = append(out, si)
+			}
+			break
+		} else {
+			out = append(out, si)
+		}
+	}
+	return out, nil
 }
 
 type MapBool map[string]bool
