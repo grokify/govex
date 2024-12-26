@@ -39,6 +39,21 @@ func ParseSeverity(sev string) (string, error) {
 	}
 }
 
+func ParseSeverities(sevs []string) ([]string, error) {
+	var out []string
+	for _, sev := range sevs {
+		if sev, err := ParseSeverity(sev); err != nil {
+			return out, err
+		} else {
+			out = append(out, sev)
+		}
+	}
+	if len(out) != len(sevs) {
+		panic("internal error in severity.ParseSeverities - length mismatch")
+	}
+	return out, nil
+}
+
 func SeveritiesFinding() []string {
 	return []string{SeverityCritical, SeverityHigh, SeverityMedium, SeverityLow}
 }
