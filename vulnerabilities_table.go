@@ -131,6 +131,59 @@ func TableColumnDefinitionSetSAST() table.ColumnDefinitionSet {
 	}
 }
 
+func TableColumnDefinitionSetSASTSCAReport() table.ColumnDefinitionSet {
+	return table.ColumnDefinitionSet{
+		DefaultFormat: table.FormatString,
+		Definitions: []table.ColumnDefinition{
+			{
+				Name:         FieldSeverity,
+				SourceName:   FieldSeverity,
+				DefaultValue: severity.SeverityUnknown,
+			},
+			{
+				Name:         FieldCategory,
+				SourceName:   FieldCategory,
+				DefaultValue: CategorySAST,
+			},
+			{
+				Name:       FieldName,
+				SourceName: FieldNameWithURL,
+				Format:     table.FormatURL,
+			},
+			{
+				Name:       FieldDescription,
+				SourceName: FieldDescription,
+			},
+			{ // SAST
+				Name:       FieldLocationPath,
+				SourceName: FieldLocationPath,
+			},
+			{ // SAST
+				Name:       FieldLocationLineStart,
+				SourceName: FieldLocationLineStart,
+				Format:     table.FormatInt,
+			},
+			{ // SAST
+				Name:       FieldLocationLineEnd,
+				SourceName: FieldLocationLineEnd,
+				Format:     table.FormatInt,
+			},
+			{ // SCA
+				Name:       FieldLibraryName,
+				SourceName: FieldLibraryName,
+			},
+			{ // SCA
+				Name:       FieldLibraryVersion,
+				SourceName: FieldLibraryVersion,
+			},
+			{ // SCA
+				Name:       FieldLibraryVersionFixed,
+				SourceName: FieldLibraryVersionFixed,
+			},
+		},
+	}
+}
+
 func TableColumnDefinitionSetSCA() table.ColumnDefinitionSet {
 	return table.ColumnDefinitionSet{
 		DefaultFormat: table.FormatString,
