@@ -6,10 +6,10 @@ import (
 	"github.com/shopspring/decimal"
 )
 
-type SeverityMap map[string]decimal.Decimal
+type SeverityMapCVSS map[string]decimal.Decimal
 
-func NewSeverityMapFromFloat32(m map[string]float32) (SeverityMap, error) {
-	sm := SeverityMap{}
+func NewSeverityMapFromFloat32(m map[string]float32) (SeverityMapCVSS, error) {
+	sm := SeverityMapCVSS{}
 	for k, v := range m {
 		sev, err := ParseSeverity(k)
 		if err != nil {
@@ -21,8 +21,8 @@ func NewSeverityMapFromFloat32(m map[string]float32) (SeverityMap, error) {
 	return sm, nil
 }
 
-func NewSeverityMapSeveritiesOnly(severities []string) (SeverityMap, error) {
-	sm := SeverityMap{}
+func NewSeverityMapCVSSSeveritiesOnly(severities []string) (SeverityMapCVSS, error) {
+	sm := SeverityMapCVSS{}
 	for _, k := range severities {
 		if sev, err := ParseSeverity(k); err != nil {
 			return sm, err
@@ -33,7 +33,7 @@ func NewSeverityMapSeveritiesOnly(severities []string) (SeverityMap, error) {
 	return sm, nil
 }
 
-func SeverityMapScoreDefault() map[string]decimal.Decimal {
+func SeverityMapScoreDefault() SeverityMapCVSS {
 	return map[string]decimal.Decimal{
 		SeverityCritical:      decimal.NewFromInt(9),
 		SeverityHigh:          decimal.NewFromInt(7),
@@ -42,11 +42,11 @@ func SeverityMapScoreDefault() map[string]decimal.Decimal {
 		SeverityInformational: decimal.NewFromInt(0)}
 }
 
-func (sm SeverityMap) SeverityFromScoreFloat32(score float32) (string, error) {
+func (sm SeverityMapCVSS) SeverityFromScoreFloat32(score float32) (string, error) {
 	return sm.SeverityFromScore(decimal.NewFromFloat32(score))
 }
 
-func (sm SeverityMap) SeverityFromScore(score decimal.Decimal) (string, error) {
+func (sm SeverityMapCVSS) SeverityFromScore(score decimal.Decimal) (string, error) {
 	d10 := decimal.NewFromInt(10)
 	d0 := decimal.NewFromInt(0)
 	if score.Cmp(d10) > 0 || score.Cmp(d0) < 0 {
