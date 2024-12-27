@@ -1,6 +1,9 @@
 package govex
 
 import (
+	"time"
+
+	"github.com/grokify/mogo/pointer"
 	"github.com/jessevdk/go-flags"
 )
 
@@ -39,6 +42,12 @@ func CLIMergeJSONs2XLSXExec() (*CLIMergeJSONs2XLSXResponse, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	if opts.ProjectName != "" {
+		vs.Name = opts.ProjectName
+	}
+	vs.DateTime = pointer.Pointer(time.Now())
+
 	resp.SeverityCountsString = vs.Vulnerabilities.SeverityCountsString(" ")
 
 	if opts.OutputFileJSON != "" {
