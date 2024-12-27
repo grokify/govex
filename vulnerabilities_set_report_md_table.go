@@ -21,22 +21,25 @@ func (vs *VulnerabilitiesSet) WriteReportMarkdownTableToFile(filename string, pe
 }
 
 func (vs *VulnerabilitiesSet) WriteReportMarkdownTable(w io.Writer, colDefs table.ColumnDefinitionSet, addColLineNum bool, opts *ValueOpts) error {
-	if vs.Name != "" {
-		if _, err := fmt.Fprintln(w, fmt.Sprintf("# %s\n\n", vs.Name)); err != nil {
-			return err
-		}
+	name := vs.Name
+	if name == "" {
+		name = ReportName
 	}
+	if _, err := fmt.Fprintln(w, fmt.Sprintf("# %s\n\n", name)); err != nil {
+		return err
+	}
+
 	if vs.DateTime != nil && !vs.DateTime.IsZero() {
 		if _, err := fmt.Fprintln(w, fmt.Sprintf("* Report Time: %s\n\n", vs.DateTime.Format(time.RFC1123))); err != nil {
 			return err
 		}
 	}
-	h := vs.Vulnerabilities.SeverityHistogram()
-	sevs := severity.SeveritiesAll()
 
-	if _, err := fmt.Fprintln(w, fmt.Sprintf("\n## %s Counts\n", "Severity")); err != nil {
+	if _, err := fmt.Fprintln(w, fmt.Sprintf("\n## %s Summary Counts\n", "Severity")); err != nil {
 		return err
 	}
+	h := vs.Vulnerabilities.SeverityHistogram()
+	sevs := severity.SeveritiesAll()
 	for _, sev := range sevs {
 		count := h.GetOrDefault(sev, 0)
 		if _, err := fmt.Fprintln(w, fmt.Sprintf("* %s: %d", sev, count)); err != nil {
