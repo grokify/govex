@@ -25,7 +25,7 @@ func (vs *VulnerabilitiesSet) WriteReportMarkdownTable(w io.Writer, colDefs tabl
 	if name == "" {
 		name = ReportName
 	}
-	if _, err := fmt.Fprintln(w, fmt.Sprintf("# %s\n\n", name)); err != nil {
+	if _, err := fmt.Fprintf(w, "# %s\n\n", name); err != nil {
 		return err
 	}
 
