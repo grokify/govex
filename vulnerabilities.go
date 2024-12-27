@@ -104,6 +104,11 @@ func (vs *Vulnerabilities) SeverityCounts() maputil.Records {
 	return h.ItemValuesOrdered()
 }
 
+func (vs *Vulnerabilities) SeverityCountsString(sep string) string {
+	recs := vs.SeverityCounts()
+	return recs.String(sep)
+}
+
 func (vs *Vulnerabilities) SortByID() {
 	slices.SortFunc(*vs, func(a, b Vulnerability) int {
 		return cmp.Compare(a.ID, b.ID)
