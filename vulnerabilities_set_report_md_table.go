@@ -30,26 +30,26 @@ func (vs *VulnerabilitiesSet) WriteReportMarkdownTable(w io.Writer, colDefs tabl
 	}
 
 	if vs.DateTime != nil && !vs.DateTime.IsZero() {
-		if _, err := fmt.Fprintln(w, fmt.Sprintf("* Report Time: %s\n\n", vs.DateTime.Format(time.RFC1123))); err != nil {
+		if _, err := fmt.Fprintf(w, "* Report Time: %s\n\n", vs.DateTime.Format(time.RFC1123)); err != nil {
 			return err
 		}
 	}
 
-	if _, err := fmt.Fprintln(w, fmt.Sprintf("\n## %s Summary Counts\n", "Severity")); err != nil {
+	if _, err := fmt.Fprintf(w, "\n## %s Summary Counts\n\n", "Severity"); err != nil {
 		return err
 	}
 	h := vs.Vulnerabilities.SeverityHistogram()
 	sevs := severity.SeveritiesAll()
 	for _, sev := range sevs {
 		count := h.GetOrDefault(sev, 0)
-		if _, err := fmt.Fprintln(w, fmt.Sprintf("* %s: %d", sev, count)); err != nil {
+		if _, err := fmt.Fprintf(w, "* %s: %d\n", sev, count); err != nil {
 			return err
 		}
 	}
 
 	for _, sev := range sevs {
 		count := h.GetOrDefault(sev, 0)
-		if _, err := fmt.Fprintln(w, fmt.Sprintf("\n## %s (%d)\n\n", sev, count)); err != nil {
+		if _, err := fmt.Fprintf(w, "\n## %s (%d)\n\n", sev, count); err != nil {
 			return err
 		} else if count <= 0 {
 			continue
