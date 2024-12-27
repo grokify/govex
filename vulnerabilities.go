@@ -50,7 +50,7 @@ func (vs *Vulnerabilities) LenSeverities(severitiesIncl ...string) (int, error) 
 	if len(severitiesIncl) == 0 {
 		return 0, nil
 	}
-	sevMap, err := severity.NewSeverityMapSeveritiesOnly(severitiesIncl)
+	sevMap, err := severity.NewSeverityMapCVSSSeveritiesOnly(severitiesIncl)
 	if err != nil {
 		return -1, err
 	}
