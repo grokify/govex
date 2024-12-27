@@ -2,11 +2,14 @@ package govex
 
 import (
 	"os"
+	"time"
 
 	"github.com/grokify/mogo/encoding/jsonutil"
 )
 
 type VulnerabilitiesSet struct {
+	Name            string          `json:"name"`
+	DateTime        *time.Time      `json:"dateTime"`
 	Vulnerabilities Vulnerabilities `json:"vulnerabilities"`
 }
 
