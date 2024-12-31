@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/grokify/govex/severity"
+	"github.com/grokify/mogo/encoding/jsonutil"
 	"github.com/grokify/mogo/type/stringsutil"
 )
 
@@ -124,4 +125,20 @@ func (vs *Vulnerabilities) FilterFixedInVersionAge(fixVersion, baseSeverity stri
 		}
 	}
 	return out
+}
+
+func (vs *Vulnerabilities) Dedupe() (Vulnerabilities, error) {
+	var out Vulnerabilities
+	seen := map[string]int{}
+	for _, vn := range *vs {
+		if vnsha, err := jsonutil.SHA512d256Base32(vn, rune(0)); err != nil {
+			return out, err
+		} else if _, ok := seen[vnsha]; ok {
+			continue
+		} else {
+			out = append(out, vn)
+			seen[vnsha]++
+		}
+	}
+	return out, nil
 }
