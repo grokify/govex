@@ -43,6 +43,12 @@ func CLIMergeJSONs2XLSXExec() (*CLIMergeJSONs2XLSXResponse, error) {
 		return nil, err
 	}
 
+	if vlns, err := vs.Vulnerabilities.Dedupe(); err != nil {
+		return nil, err
+	} else {
+		vs.Vulnerabilities = vlns
+	}
+
 	if opts.ProjectName != "" {
 		vs.Name = opts.ProjectName
 	}
