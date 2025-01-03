@@ -28,7 +28,7 @@ func SLAMapFedRAMP() SLAMap {
 }
 
 func (slaMap SLAMap) SLAStatusOverdue(sev string, dur time.Duration) (bool, error) {
-	severityParsed, err := severity.ParseSeverity(sev)
+	severityParsed, _, err := severity.ParseSeverity(sev)
 	if err != nil {
 		return false, err
 	}
