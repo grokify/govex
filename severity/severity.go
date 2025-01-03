@@ -18,31 +18,47 @@ const (
 	SeverityUnknown       = "Unknown"
 )
 
-func ParseSeverity(sev string) (string, error) {
+type Severity int
+
+const (
+	Critical Severity = iota
+	High
+	Medium
+	Low
+	Informational
+	None
+	Unknown
+)
+
+func (s Severity) IsHigher(sev Severity) bool { return s < sev }
+func (s Severity) IsLower(sev Severity) bool  { return s > sev }
+func (s Severity) IsEqual(sev Severity) bool  { return s == sev }
+
+func ParseSeverity(sev string) (string, Severity, error) {
 	sev = strings.ToLower(strings.TrimSpace(sev))
 	if sev == strings.ToLower(SeverityCritical) {
-		return SeverityCritical, nil
+		return SeverityCritical, Critical, nil
 	} else if sev == strings.ToLower(SeverityHigh) {
-		return SeverityHigh, nil
+		return SeverityHigh, High, nil
 	} else if sev == strings.ToLower(SeverityMedium) {
-		return SeverityMedium, nil
+		return SeverityMedium, Medium, nil
 	} else if sev == strings.ToLower(SeverityLow) {
-		return SeverityLow, nil
+		return SeverityLow, Low, nil
 	} else if sev == strings.ToLower(SeverityInformational) {
-		return SeverityInformational, nil
+		return SeverityInformational, Informational, nil
 	} else if sev == strings.ToLower(SeverityNone) {
-		return SeverityNone, nil
+		return SeverityNone, None, nil
 	} else if sev == strings.ToLower(SeverityUnknown) {
-		return SeverityUnknown, nil
+		return SeverityUnknown, Unknown, nil
 	} else {
-		return "", fmt.Errorf("severity not found (%s)", sev)
+		return "", Unknown, fmt.Errorf("severity not found (%s)", sev)
 	}
 }
 
 func ParseSeverities(sevs []string) ([]string, error) {
 	var out []string
 	for _, sev := range sevs {
-		if sev, err := ParseSeverity(sev); err != nil {
+		if sev, _, err := ParseSeverity(sev); err != nil {
 			return out, err
 		} else {
 			out = append(out, sev)
@@ -112,12 +128,12 @@ func SeveritiesLower(sevs []string, sev string, inclusive bool) ([]string, error
 }
 
 func parseSeveritySliceIndexInfo(sevs []string, sev string) ([]string, string, error) {
-	sev, err := ParseSeverity(sev)
+	sev, _, err := ParseSeverity(sev)
 	if err != nil {
 		return sevs, sev, err
 	}
 	for i, si := range sevs {
-		si, err := ParseSeverity(si)
+		si, _, err := ParseSeverity(si)
 		if err != nil {
 			return sevs, sev, err
 		}
