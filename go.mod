@@ -3,8 +3,10 @@ module github.com/grokify/govex
 go 1.23.2
 
 require (
-	github.com/grokify/gocharts/v2 v2.21.8
-	github.com/grokify/mogo v0.67.0
+	github.com/essentialkaos/go-badge v1.4.1
+	github.com/grokify/gocharts/v2 v2.21.9
+	github.com/grokify/google-fonts v0.1.1
+	github.com/grokify/mogo v0.67.1
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/pandatix/go-cvss v0.6.2
 	github.com/relvacode/iso8601 v1.6.0
@@ -12,6 +14,7 @@ require (
 )
 
 require (
+	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/grokify/base36 v1.0.5 // indirect
 	github.com/huandu/xstrings v1.5.0 // indirect
 	github.com/mattn/go-runewidth v0.0.16 // indirect
