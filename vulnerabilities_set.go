@@ -40,7 +40,7 @@ func (vs *VulnerabilitiesSet) RepoPathFile() string {
 	rp := vs.RepoPath
 	rp = strings.TrimPrefix(rp, "git://")
 	rp = strings.TrimPrefix(rp, "https://")
-	return strings.TrimSuffix(vs.RepoPath, "/.git")
+	return strings.TrimSuffix(rp, "/.git")
 }
 
 func (vs *VulnerabilitiesSet) WriteFileJSON(filename string, prefix, indent string, perm os.FileMode) error {
