@@ -276,7 +276,7 @@ func (sw SiteWriter) writeRootIndexWithTable(w io.Writer, dirsWithIndexes []stri
 	tbl := sw.reposListTableSeverities(dirsWithIndexes)
 	mkdn := tbl.Markdown("\n", true)
 
-	_, err := fmt.Fprintf(w, mkdn)
+	_, err := fmt.Fprint(w, mkdn)
 	return err
 }
 
