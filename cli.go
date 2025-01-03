@@ -7,7 +7,7 @@ import (
 	"github.com/jessevdk/go-flags"
 )
 
-type CLIMergeJSONs2XLSXOptions struct {
+type CLIMergeJSONsOptions struct {
 	InputFilename     []string `short:"i" long:"inputFiles" description:"Filenames to merge" required:"true"`
 	ProjectName       string   `short:"p" long:"projectName" description:"Project name to use" required:"false"`
 	OutputFileJSON    string   `short:"o" long:"outputFile" description:"Outputfile in JSON format" required:"false"`
@@ -16,29 +16,29 @@ type CLIMergeJSONs2XLSXOptions struct {
 	SeveritySplitXLSX string   `short:"s" long:"severityfiltercutoff" description:"Outputfile" required:"false"`
 }
 
-type CLIMergeJSONs2XLSXResponse struct {
-	RequestOptions       *CLIMergeJSONs2XLSXOptions
+type CLIMergeJSONsResponse struct {
+	RequestOptions       *CLIMergeJSONsOptions
 	Sheet1Len            int
 	Sheet2Len            int
 	FilesWritten         []string
 	SeverityCountsString string
 }
 
-func CLIMergeJSONs2XLSXExec() (*CLIMergeJSONs2XLSXResponse, error) {
-	opts := CLIMergeJSONs2XLSXOptions{}
+func CLIMergeJSONsExec() (*CLIMergeJSONsResponse, error) {
+	opts := CLIMergeJSONsOptions{}
 
 	_, err := flags.Parse(&opts)
 	if err != nil {
 		return nil, err
 	}
-	resp := CLIMergeJSONs2XLSXResponse{
+	resp := CLIMergeJSONsResponse{
 		RequestOptions: &opts,
 		Sheet1Len:      -1,
 		Sheet2Len:      -1}
 
 	// TODO: len1/len2/split are only implemented with XLSX.
 
-	vs, err := ReadFilesVulnerabilitiesSet(opts.InputFilename)
+	vs, err := ReadFilesVulnerabilitiesSet(opts.InputFilename...)
 	if err != nil {
 		return nil, err
 	}
@@ -66,8 +66,8 @@ func CLIMergeJSONs2XLSXExec() (*CLIMergeJSONs2XLSXResponse, error) {
 	}
 
 	if opts.OutputFileMKDN != "" {
-		err := vs.WriteReportMarkdownTableToFile(opts.OutputFileMKDN, 0600,
-			TableColumnDefinitionSetSASTSCA(), true, nil)
+		err := vs.WriteReportMarkdownTablesToFile(opts.OutputFileMKDN, 0600,
+			"", TableColumnDefinitionSetSASTSCA(), true, nil)
 		if err != nil {
 			return nil, err
 		} else {
