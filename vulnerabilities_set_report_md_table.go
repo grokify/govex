@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/grokify/gocharts/v2/data/table"
@@ -11,16 +12,16 @@ import (
 	"github.com/grokify/govex/severity"
 )
 
-func (vs *VulnerabilitiesSet) WriteReportMarkdownTableToFile(filename string, perm os.FileMode, colDefs table.ColumnDefinitionSet, addColLineNum bool, opts *ValueOpts) error {
+func (vs *VulnerabilitiesSet) WriteReportMarkdownTablesToFile(filename string, perm os.FileMode, shieldsMkdn string, colDefs table.ColumnDefinitionSet, addColLineNum bool, opts *ValueOpts) error {
 	if file, err := os.OpenFile(filename, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, perm); err != nil {
 		return err
 	} else {
 		defer file.Close()
-		return vs.WriteReportMarkdownTable(file, colDefs, addColLineNum, opts)
+		return vs.WriteReportMarkdownTables(file, shieldsMkdn, colDefs, addColLineNum, opts)
 	}
 }
 
-func (vs *VulnerabilitiesSet) WriteReportMarkdownTable(w io.Writer, colDefs table.ColumnDefinitionSet, addColLineNum bool, opts *ValueOpts) error {
+func (vs *VulnerabilitiesSet) WriteReportMarkdownTables(w io.Writer, shieldsMkdn string, colDefs table.ColumnDefinitionSet, addColLineNum bool, opts *ValueOpts) error {
 	name := vs.Name
 	if name == "" {
 		name = ReportName
@@ -29,29 +30,67 @@ func (vs *VulnerabilitiesSet) WriteReportMarkdownTable(w io.Writer, colDefs tabl
 		return err
 	}
 
-	if vs.DateTime != nil && !vs.DateTime.IsZero() {
-		if _, err := fmt.Fprintf(w, "* Report Time: %s\n\n", vs.DateTime.Format(time.RFC1123)); err != nil {
+	if shieldsMkdn != "" {
+		if _, err := fmt.Fprintf(w, "%s\n\n", shieldsMkdn); err != nil {
 			return err
 		}
 	}
 
-	if _, err := fmt.Fprintf(w, "\n## %s Summary Counts\n\n", "Severity"); err != nil {
-		return err
+	haveBullets := false
+	vs.RepoPath = strings.TrimSpace(vs.RepoPath)
+	vs.RepoURL = strings.TrimSpace(vs.RepoURL)
+
+	if vs.RepoPath != "" {
+		if vs.RepoURL != "" {
+			if _, err := fmt.Fprintf(w, "* Repo Path: [%s](%s)\n", vs.RepoPath, vs.RepoURL); err != nil {
+				return err
+			} else {
+				haveBullets = true
+			}
+		} else {
+			if _, err := fmt.Fprintf(w, "* Repo Path: %s\n", vs.RepoPath); err != nil {
+				return err
+			} else {
+				haveBullets = true
+			}
+		}
 	}
+
+	if vs.DateTime != nil && !vs.DateTime.IsZero() {
+		if _, err := fmt.Fprintf(w, "* Report Time: %s\n", vs.DateTime.Format(time.RFC1123)); err != nil {
+			return err
+		} else {
+			haveBullets = true
+		}
+	}
+	if haveBullets {
+		if _, err := fmt.Fprintln(w, ""); err != nil {
+			return err
+		}
+	}
+
 	h := vs.Vulnerabilities.SeverityHistogram()
 	sevs := severity.SeveritiesAll()
-	for _, sev := range sevs {
-		count := h.GetOrDefault(sev, 0)
-		if _, err := fmt.Fprintf(w, "* %s: %d\n", sev, count); err != nil {
+
+	if 1 == 0 {
+		if _, err := fmt.Fprintf(w, "\n## %s Summary Counts\n\n", "Severity"); err != nil {
 			return err
+		}
+		for _, sev := range sevs {
+			count := h.GetOrDefault(sev, 0)
+			if _, err := fmt.Fprintf(w, "* %s: %d\n", sev, count); err != nil {
+				return err
+			}
 		}
 	}
 
 	for _, sev := range sevs {
 		count := h.GetOrDefault(sev, 0)
-		if _, err := fmt.Fprintf(w, "\n## %s (%d)\n\n", sev, count); err != nil {
+		if count < 0 {
+			panic("severity count should not be negative")
+		} else if _, err := fmt.Fprintf(w, "\n## %s (%d)\n\n", sev, count); err != nil {
 			return err
-		} else if count <= 0 {
+		} else if count == 0 {
 			continue
 		} else if vsSev, err := vs.Vulnerabilities.FilterSeverities([]string{sev}); err != nil {
 			return err
