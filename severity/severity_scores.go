@@ -11,7 +11,7 @@ type SeverityMapCVSS map[string]decimal.Decimal
 func NewSeverityMapFromFloat32(m map[string]float32) (SeverityMapCVSS, error) {
 	sm := SeverityMapCVSS{}
 	for k, v := range m {
-		sev, err := ParseSeverity(k)
+		sev, _, err := ParseSeverity(k)
 		if err != nil {
 			return sm, err
 		} else {
@@ -24,7 +24,7 @@ func NewSeverityMapFromFloat32(m map[string]float32) (SeverityMapCVSS, error) {
 func NewSeverityMapCVSSSeveritiesOnly(severities []string) (SeverityMapCVSS, error) {
 	sm := SeverityMapCVSS{}
 	for _, k := range severities {
-		if sev, err := ParseSeverity(k); err != nil {
+		if sev, _, err := ParseSeverity(k); err != nil {
 			return sm, err
 		} else {
 			sm[sev] = decimal.NewFromInt(0)
