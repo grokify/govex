@@ -8,7 +8,7 @@ on:
       - main
   workflow_dispatch:
 jobs:
-  visualize:
+  visualize: # https://githubnext.com/projects/repo-visualization
     strategy:
       matrix:
         go-version: [1.23.x]
