@@ -3,7 +3,7 @@
 [![Build Status][build-status-svg]][build-status-url]
 [![Go Report Card][goreport-svg]][goreport-url]
 [![Docs][docs-godoc-svg]][docs-godoc-url]
-[![LOC][loc-svg]][repo-url]
+[![Visualization][viz-svg]][viz-url]
 [![License][license-svg]][license-url]
 
 ## Overview
@@ -27,6 +27,8 @@
  [goreport-url]: https://goreportcard.com/report/github.com/grokify/govex
  [docs-godoc-svg]: https://pkg.go.dev/badge/github.com/grokify/govex
  [docs-godoc-url]: https://pkg.go.dev/github.com/grokify/govex
+ [viz-svg]: https://img.shields.io/badge/visualizaton-Go-blue.svg
+ [viz-url]: https://mango-dune-07a8b7110.1.azurestaticapps.net/?repo=grokify%2Fgovex
  [loc-svg]: https://tokei.rs/b1/github/grokify/govex
  [repo-url]: https://github.com/grokify/govex
  [license-svg]: https://img.shields.io/badge/license-MIT-blue.svg
