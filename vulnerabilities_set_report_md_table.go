@@ -5,7 +5,6 @@ import (
 	"io"
 	"os"
 	"strings"
-	"time"
 
 	"github.com/grokify/gocharts/v2/data/table"
 
@@ -56,13 +55,12 @@ func (vs *VulnerabilitiesSet) WriteReportMarkdownTables(w io.Writer, shieldsMkdn
 		}
 	}
 
-	if vs.DateTime != nil && !vs.DateTime.IsZero() {
-		if _, err := fmt.Fprintf(w, "* Report Time: %s\n", vs.DateTime.Format(time.RFC1123)); err != nil {
-			return err
-		} else {
-			haveBullets = true
-		}
+	if wrote, err := writeReportTime(w, vs.DateTime); err != nil {
+		return err
+	} else if wrote {
+		haveBullets = true
 	}
+
 	if haveBullets {
 		if _, err := fmt.Fprintln(w, ""); err != nil {
 			return err
