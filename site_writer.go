@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
+	"time"
 
 	"github.com/grokify/gocharts/v2/data/histogram"
 	"github.com/grokify/gocharts/v2/data/table"
@@ -46,6 +47,7 @@ type SiteWriter struct {
 	RootFilePath               string
 	FilesPerm                  os.FileMode
 	SeverityCutoff             string
+	RootIndexWrite             bool
 	RootIndexFileTable         bool
 	RootIndexName              string
 	ShieldsWrite               bool
@@ -65,14 +67,15 @@ type SiteWriter struct {
 	XLSXColDefsSet             table.ColumnDefinitionSet
 }
 
-// DefaultSiteWriter returns a `SiteWriter{}`. Typically, `RootFilePath` still
+// DefaultSiteWriterRepo returns a `SiteWriter{}`. Typically, `RootFilePath` still
 // needs to be set.
-func DefaultSiteWriter() SiteWriter {
+func DefaultSiteWriterRepo() SiteWriter {
 	return SiteWriter{
 		IndexFilename:              FilenameReadmeMd,
 		RootFilePath:               ".",
 		SeverityCutoff:             severity.SeverityHigh,
 		FilesPerm:                  0600,
+		RootIndexWrite:             false,
 		RootIndexFileTable:         true,
 		RootIndexName:              ReportsRepoTitle,
 		ShieldsWrite:               true,
@@ -93,6 +96,21 @@ func DefaultSiteWriter() SiteWriter {
 	}
 }
 
+func DefaultSiteWriterHome(rootIndexPath string) SiteWriter {
+	if rootIndexPath == "" {
+		rootIndexPath = "."
+	}
+	return SiteWriter{
+		IndexFilename:      FilenameReadmeMd,
+		RootFilePath:       rootIndexPath,
+		SeverityCutoff:     severity.SeverityHigh,
+		FilesPerm:          0600,
+		RootIndexWrite:     true,
+		RootIndexFileTable: true,
+		RootIndexName:      ReportsRepoTitle,
+	}
+}
+
 func WriteFilesSiteForRepo(rootFilePath string, vs *VulnerabilitiesSet) error {
 	if vs == nil {
 		return ErrVulnerabilitySetCannotBeNil
@@ -102,7 +120,7 @@ func WriteFilesSiteForRepo(rootFilePath string, vs *VulnerabilitiesSet) error {
 	if len(missingFields) > 0 {
 		return fmt.Errorf("missing meta fields: [%s]", strings.Join(missingFields, ", "))
 	}
-	sw := DefaultSiteWriter()
+	sw := DefaultSiteWriterRepo()
 	sw.RootFilePath = rootFilePath
 	return sw.WriteFiles(vs)
 }
@@ -110,6 +128,14 @@ func WriteFilesSiteForRepo(rootFilePath string, vs *VulnerabilitiesSet) error {
 func (sw SiteWriter) WriteFiles(vs *VulnerabilitiesSet) error {
 	if err := sw.writeFilesVulns(vs); err != nil {
 		return err
+	} else {
+		return sw.WriteFileHome()
+	}
+}
+
+func (sw SiteWriter) WriteFileHome() error {
+	if !sw.RootIndexWrite {
+		return nil
 	}
 	dirsWithIndexes, err := sw.getRepoDirsWithIndexes("", []string{})
 	if err != nil {
@@ -293,6 +319,8 @@ func (sw SiteWriter) writeRootIndexWithTableFile(rootIndexName string, dirsWithI
 
 func (sw SiteWriter) writeRootIndexWithTable(w io.Writer, rootIndexName string, dirsWithIndexes []string) error {
 	if _, err := fmt.Fprintf(w, "# %s\n\n", rootIndexName); err != nil {
+		return err
+	} else if _, err := writeReportTime(w, pointer.Pointer(time.Now().UTC())); err != nil {
 		return err
 	}
 
