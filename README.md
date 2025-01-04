@@ -6,11 +6,15 @@
 [![LOC][loc-svg]][repo-url]
 [![License][license-svg]][license-url]
 
-`govex` is a Go package with various VEX helpers, including the following:
+## Overview
 
-1. Definition of `govex` structs for vulnerabilities. There is no standard format for "VEX", and there are many standards well-developed for specific purposes, so this package defines its own format. The format used here is prioritized for use cases supported by this package, currently writing tabular and text reports.
-1. Conversion of `Vulnerabilities` slice to a [GoCharts `Table`](https://pkg.go.dev/github.com/grokify/gocharts/v2/data/table#Table) via [`Vulnerabilities.Table()`](https://pkg.go.dev/github.com/grokify/govex#Vulnerabilities.Table) with customizable columns. This can then be exported easily as CSV, XLSX, or Markdown.
-1. Creation of a Markdown website for repo-based projects using `SiteWriter`. This intended to be used with a git UI, but may support eventual use with a Docs-as-Code documentation generator such as [MkDocs](https://www.mkdocs.org/).
+`govex` is a Go package with various VEX helpers, with the primary goal being to share vulnerability reports via a variety of formats including CVS, XLSX, Markdown, and a git repository. It uses its own VEX vulnerability format that other data sources can be converted to.
+
+## Features
+
+1. **Generic Vulnerability Structs:** There is no widely adopted general format for vulnerabilty information across many database and scanning tools. To facilitate interoperability across different data sources, GoVEX provides its own definition of `govex` structs for vulnerabilities. The format used here is prioritized for use cases supported by this package, currently writing tabular and text reports.
+1. **Vulnerability Reports:** Reports in CSV, XLSX, or Markdown is supported via conversion of `Vulnerabilities` slice to a [GoCharts `Table`](https://pkg.go.dev/github.com/grokify/gocharts/v2/data/table#Table) via [`Vulnerabilities.Table()`](https://pkg.go.dev/github.com/grokify/govex#Vulnerabilities.Table) with customizable columns.
+1. **Vulnerability Reports Website:** Creation of a Markdown website for managing reports across multiple git-based projects with history is available using `SiteWriter`. This currently intended to be used with a git UI, but may have future support for a Docs-as-Code documentation generator such as [MkDocs](https://www.mkdocs.org/).
 
 ## Contributing
 
