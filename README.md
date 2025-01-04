@@ -16,6 +16,10 @@
 1. **Vulnerability Reports:** Reports in CSV, XLSX, or Markdown is supported via conversion of `Vulnerabilities` slice to a [GoCharts `Table`](https://pkg.go.dev/github.com/grokify/gocharts/v2/data/table#Table) via [`Vulnerabilities.Table()`](https://pkg.go.dev/github.com/grokify/govex#Vulnerabilities.Table) with customizable columns.
 1. **Vulnerability Reports Website:** Creation of a Markdown website for managing reports across multiple git-based projects with history is available using `SiteWriter`. This currently intended to be used with a git UI, but may have future support for a Docs-as-Code documentation generator such as [MkDocs](https://www.mkdocs.org/).
 
+## Code Visualization
+
+1. [GitHub Next Visualization](https://mango-dune-07a8b7110.1.azurestaticapps.net/?repo=grokify%2Fgovex) ([Article](https://githubnext.com/projects/repo-visualization))
+
 ## Contributing
 
 1. By contributing to this repository, you agree that your contributions will be licensed under the MIT License.
