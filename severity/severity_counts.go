@@ -9,7 +9,6 @@ import (
 	badge "github.com/essentialkaos/go-badge"
 	"github.com/grokify/gocharts/v2/data/histogram"
 	"github.com/grokify/google-fonts/roboto"
-	"github.com/grokify/mogo/image/colors"
 )
 
 type SeverityCountsSet struct {
@@ -18,6 +17,9 @@ type SeverityCountsSet struct {
 
 func FuncShieldNameSeverity() func(sev string) (string, error) {
 	return func(sev string) (string, error) {
+		if sev == SeverityPlusNeedsRemediation {
+			return SeverityPlusNeedsRemediation + " Vulns", nil
+		}
 		sev2, _, err := ParseSeverity(sev)
 		if err != nil {
 			return sev2, nil
@@ -40,8 +42,21 @@ func (sc SeverityCountsSet) WriteShields(sevs []string,
 	if err != nil {
 		return err
 	}
+	_, sevCutoffInt, err := ParseSeverity(sevCutoff)
+	if err != nil {
+		return err
+	}
 
-	for _, sev := range sevs {
+	needsRemediationCount := 0
+	cutoffCount := 0
+
+	sevInts, err := ParseSeverities(sevs)
+	if err != nil {
+		return err
+	}
+
+	for i, sev := range sevs {
+		sevInt := sevInts[i]
 		fp, err := fnFilepath(sev)
 		if err != nil {
 			return err
@@ -50,17 +65,47 @@ func (sc SeverityCountsSet) WriteShields(sevs []string,
 		if err != nil {
 			return err
 		}
-		clr, err := SeverityCountColorHex(sev, sevCutoff, sc.Histogram.BinValueOrDefault(sev, 0))
+		sevCount := sc.Histogram.BinValueOrDefault(sev, 0)
+		clr, err := SeverityCountColorHex(sev, sevCutoff, sevCount)
 		if err != nil {
 			return err
 		}
 		b := g.GeneratePlastic(
 			sevShieldName,
-			strconv.Itoa(sc.Histogram.BinValueOrDefault(sev, 0)),
-			"#"+clr)
+			strconv.Itoa(sevCount),
+			clr)
 		if err = os.WriteFile(fp, b, perm); err != nil {
 			return err
 		}
+		if sevInt.NeedsRemediation() {
+			needsRemediationCount += sevCount
+		}
+		if strings.TrimSpace(sevCutoff) != "" {
+			if sevInt <= sevCutoffInt {
+				cutoffCount += sevCount
+			}
+		} else {
+			cutoffCount += sevCount
+		}
+	}
+
+	clr := badge.COLOR_BRIGHTGREEN
+	if cutoffCount > 0 {
+		clr = badge.COLOR_RED
+	} else if needsRemediationCount > 0 {
+		clr = badge.COLOR_YELLOW
+	}
+
+	b := g.GeneratePlastic(
+		SeverityPlusNeedsRemediation+" Vulns",
+		strconv.Itoa(needsRemediationCount),
+		clr)
+	fp, err := fnFilepath(SeverityPlusNeedsRemediation)
+	if err != nil {
+		return err
+	}
+	if err = os.WriteFile(fp, b, perm); err != nil {
+		return err
 	}
 
 	return nil
@@ -68,7 +113,7 @@ func (sc SeverityCountsSet) WriteShields(sevs []string,
 
 func SeverityCountColorHex(sev, sevCutoffIncl string, count int) (string, error) {
 	if count <= 0 {
-		return colors.ShieldBrightGreenHex, nil
+		return badge.COLOR_BRIGHTGREEN, nil
 	}
 	_, sevInt, err := ParseSeverity(sev)
 	if err != nil {
@@ -76,12 +121,12 @@ func SeverityCountColorHex(sev, sevCutoffIncl string, count int) (string, error)
 	}
 	sevCutoffIncl = strings.TrimSpace(sevCutoffIncl)
 	if sevCutoffIncl == "" {
-		return colors.ShieldRedHex, nil
+		return badge.COLOR_RED, nil
 	} else if _, sevCutoffInclInt, err := ParseSeverity(sevCutoffIncl); err != nil {
 		return "", err
 	} else if sevInt <= sevCutoffInclInt {
-		return colors.ShieldRedHex, nil
+		return badge.COLOR_RED, nil
 	} else {
-		return colors.ShieldYellowHex, nil
+		return badge.COLOR_YELLOW, nil
 	}
 }
