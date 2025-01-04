@@ -1,0 +1,23 @@
+name: docs
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  test:
+    strategy:
+      matrix:
+        go-version: [1.23.x]
+        platform: [ubuntu-latest]
+    runs-on: ${{ matrix.platform }}
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@master
+    - name: Update diagram
+      uses: githubocto/repo-visualizer@0.7.1
+      with:
+        output_file: "docs/diagram.svg"
