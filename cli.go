@@ -1,6 +1,7 @@
 package govex
 
 import (
+	"strings"
 	"time"
 
 	"github.com/grokify/mogo/pointer"
@@ -9,11 +10,14 @@ import (
 
 type CLIMergeJSONsOptions struct {
 	InputFilename     []string `short:"i" long:"inputFiles" description:"Filenames to merge" required:"true"`
-	ProjectName       string   `short:"p" long:"projectName" description:"Project name to use" required:"false"`
 	OutputFileJSON    string   `short:"o" long:"outputFile" description:"Outputfile in JSON format" required:"false"`
 	OutputFileXLSX    string   `short:"x" long:"xlsxoOutputFile" description:"Outputfile in XLSX format" required:"false"`
 	OutputFileMKDN    string   `short:"m" long:"markdownOutputFile" description:"Outputfile in Markdown format" required:"true"`
 	SeveritySplitXLSX string   `short:"s" long:"severityfiltercutoff" description:"Outputfile" required:"false"`
+	ReportRepoURL     string   `short:"r" long:"reportRepoURL" description:"Outputfile" required:"false"`
+	ProjectName       string   `short:"p" long:"projectName" description:"Project name to use" required:"false"`
+	ProjectRepoPath   string   `long:"repoPath" description:"Project: Repo Path" required:"false"`
+	ProjectRepoURL    string   `long:"repoURL" description:"Project repoURL" required:"false"`
 }
 
 type CLIMergeJSONsResponse struct {
@@ -22,6 +26,7 @@ type CLIMergeJSONsResponse struct {
 	Sheet2Len            int
 	FilesWritten         []string
 	SeverityCountsString string
+	ReportRepoUpdated    bool
 }
 
 func CLIMergeJSONsExec() (*CLIMergeJSONsResponse, error) {
@@ -41,6 +46,16 @@ func CLIMergeJSONsExec() (*CLIMergeJSONsResponse, error) {
 	vs, err := ReadFilesVulnerabilitiesSet(opts.InputFilename...)
 	if err != nil {
 		return nil, err
+	}
+	// Add Merged Info.
+	if strings.TrimSpace(opts.ProjectRepoURL) != "" {
+		vs.SetRepoURL(opts.ProjectRepoURL)
+	}
+	if strings.TrimSpace(opts.ProjectRepoPath) != "" {
+		vs.RepoPath = opts.ProjectRepoPath
+	}
+	if strings.TrimSpace(opts.ProjectName) != "" {
+		vs.Name = opts.ProjectName
 	}
 
 	if vlns, err := vs.Vulnerabilities.Dedupe(); err != nil {
@@ -89,6 +104,14 @@ func CLIMergeJSONsExec() (*CLIMergeJSONsResponse, error) {
 		resp.FilesWritten = append(resp.FilesWritten, opts.OutputFileMKDN)
 	} else {
 		resp.Sheet1Len = len(vs.Vulnerabilities)
+	}
+
+	if strings.TrimSpace(opts.ReportRepoURL) != "" {
+		if err := WriteFilesSiteForRepo(opts.ReportRepoURL, vs); err != nil {
+			return &resp, err
+		} else {
+			resp.ReportRepoUpdated = true
+		}
 	}
 
 	return &resp, nil
