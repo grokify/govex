@@ -3,10 +3,35 @@ package govex
 import (
 	"fmt"
 	"io"
+	"strings"
 	"time"
 )
 
-func writeReportTime(w io.Writer, dt *time.Time) (bool, error) {
+func writeReportMkdnShields(w io.Writer, shieldsMkdn string) error {
+	out := ""
+	if strings.TrimSpace(shieldsMkdn) != "" {
+		out = `
+<div align="center">
+
+` + shieldsMkdn + `
+
+</div>
+
+	`
+	}
+
+	if out != "" {
+		if _, err := fmt.Fprintf(w, out); err != nil {
+			return err
+		} else {
+			return nil
+		}
+	} else {
+		return nil
+	}
+}
+
+func writeReportMkdnTime(w io.Writer, dt *time.Time) (bool, error) {
 	if dt != nil && !dt.IsZero() {
 		if _, err := fmt.Fprintf(w, "* Report Time: %s\n\n", dt.Format(time.RFC1123)); err != nil {
 			return false, err
