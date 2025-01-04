@@ -21,7 +21,7 @@ func writeReportMkdnShields(w io.Writer, shieldsMkdn string) error {
 	}
 
 	if out != "" {
-		if _, err := fmt.Fprintf(w, out); err != nil {
+		if _, err := fmt.Fprintln(w, out); err != nil {
 			return err
 		} else {
 			return nil
