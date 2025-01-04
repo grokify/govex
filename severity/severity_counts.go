@@ -27,6 +27,7 @@ func FuncShieldNameSeverity() func(sev string) (string, error) {
 }
 
 func (sc SeverityCountsSet) WriteShields(sevs []string,
+	fontSize int,
 	sevCutoff string,
 	fnFilepath func(sev string) (string, error),
 	fnShieldName func(sev string) (string, error),
@@ -35,7 +36,7 @@ func (sc SeverityCountsSet) WriteShields(sevs []string,
 	if sc.Histogram == nil {
 		return errors.New("field SeverityCounts.Histogram cannot be nil")
 	}
-	g, err := badge.NewGeneratorFromBytes(roboto.RobotoRegular(), 11)
+	g, err := badge.NewGeneratorFromBytes(roboto.RobotoRegular(), fontSize)
 	if err != nil {
 		return err
 	}
