@@ -88,6 +88,20 @@ func DefaultSiteWriter() SiteWriter {
 	}
 }
 
+func WriteFilesSiteForRepo(rootFilePath string, vs *VulnerabilitiesSet) error {
+	if vs == nil {
+		return ErrVulnerabilitySetCannotBeNil
+	}
+	meta := vs.Meta()
+	missingFields := meta.MissingFields()
+	if len(missingFields) > 0 {
+		return fmt.Errorf("missing meta fields: [%s]", strings.Join(missingFields, ", "))
+	}
+	sw := DefaultSiteWriter()
+	sw.RootFilePath = rootFilePath
+	return sw.WriteFiles(vs)
+}
+
 func (sw SiteWriter) WriteFiles(vs *VulnerabilitiesSet) error {
 	if err := sw.writeFilesVulns(vs); err != nil {
 		return err
@@ -117,8 +131,8 @@ func (sw SiteWriter) writeFilesVulns(vs *VulnerabilitiesSet) error {
 	}
 	dt := vs.DateTime.UTC()
 	filenameBase := fmt.Sprintf("vulns_%s.", dt.Format(timeutil.ISO8601CompactZ))
-	dir := sw.buildVulnsRepoDir(sw.RootFilePath, vs.RepoPathFile())
-	if err := os.MkdirAll(dir, osutil.ModeDir0755); err != nil {
+	repoDir := sw.buildVulnsRepoDir(sw.RootFilePath, vs.RepoPath)
+	if err := os.MkdirAll(repoDir, osutil.ModeDir0755); err != nil {
 		return err
 	}
 	shieldsMkdn := ""
@@ -137,7 +151,7 @@ func (sw SiteWriter) writeFilesVulns(vs *VulnerabilitiesSet) error {
 	// Markdown Historical
 	if sw.MkdnWriteFileVulns {
 		if err := vs.WriteReportMarkdownTablesToFile(
-			filepath.Join(dir, filenameBase+fileext.ExtMarkdown),
+			filepath.Join(repoDir, filenameBase+fileext.ExtMarkdown),
 			sw.FilesPerm, shieldsMkdn, sw.MkdnColDefsSet, sw.MkdnAddColLinNum, vs.VulnValueOpts); err != nil {
 			return errorsutil.NewErrorWithLocation(err.Error())
 		}
@@ -145,7 +159,7 @@ func (sw SiteWriter) writeFilesVulns(vs *VulnerabilitiesSet) error {
 	// Markdown Index
 	if sw.MkdnWriteFileVulnsAsIndex {
 		if err := vs.WriteReportMarkdownTablesToFile(
-			filepath.Join(dir, sw.IndexFilename),
+			filepath.Join(repoDir, sw.IndexFilename),
 			sw.FilesPerm, shieldsMkdn, sw.MkdnColDefsSet, sw.MkdnAddColLinNum, vs.VulnValueOpts); err != nil {
 			return err
 		}
@@ -153,7 +167,7 @@ func (sw SiteWriter) writeFilesVulns(vs *VulnerabilitiesSet) error {
 	// JSON Historical
 	if sw.JSONWriteFileVulns {
 		if err := vs.WriteFileJSON(
-			filepath.Join(dir, filenameBase+fileext.ExtJSON),
+			filepath.Join(repoDir, filenameBase+fileext.ExtJSON),
 			sw.JSONPrefix, sw.JSONIndent, sw.FilesPerm); err != nil {
 			return err
 		}
@@ -161,7 +175,7 @@ func (sw SiteWriter) writeFilesVulns(vs *VulnerabilitiesSet) error {
 	// JSON Latest
 	if sw.JSONWriteFileVulnsAsLatest {
 		if err := vs.WriteFileJSON(
-			filepath.Join(dir, FilenameVulnsJSON),
+			filepath.Join(repoDir, FilenameVulnsJSON),
 			sw.JSONPrefix, sw.JSONIndent, sw.FilesPerm); err != nil {
 			return err
 		}
@@ -170,30 +184,29 @@ func (sw SiteWriter) writeFilesVulns(vs *VulnerabilitiesSet) error {
 	if sw.XLSXWriteFileVulns {
 		if sw.SeverityCutoff == "" {
 			if err := vs.Vulnerabilities.WriteFileXLSX(
-				filepath.Join(dir, filenameBase+fileext.ExtXLSX),
+				filepath.Join(repoDir, filenameBase+fileext.ExtXLSX),
 				sw.XLSXSheetName1, sw.XLSXColDefsSet, vs.VulnValueOpts); err != nil {
 				return err
 			}
 		} else if _, _, err := vs.Vulnerabilities.WriteFileXLSXSplitSeverity(
-			filepath.Join(dir, filenameBase+fileext.ExtXLSX),
+			filepath.Join(repoDir, filenameBase+fileext.ExtXLSX),
 			sw.XLSXColDefsSet, sw.SeverityCutoff,
 			sw.XLSXSheetName1, sw.XLSXSheetName2, vs.VulnValueOpts); err != nil {
 			return err
 		}
 	}
 	if sw.ShieldsWrite {
-		if err := sw.writeSeverityShieldsSVG(dir,
+		if err := sw.writeSeverityShieldsSVG(repoDir,
 			pointer.Pointer(vs.Vulnerabilities.SeverityHistogram()),
 		); err != nil {
 			return err
 		}
 	}
 	if sw.MetaWrite {
-		if err := vs.WriteFileMeta(filepath.Join(dir, FilenameMetaJSON), 0600); err != nil {
+		if err := vs.WriteFileMeta(filepath.Join(repoDir, FilenameMetaJSON), 0600); err != nil {
 			return err
 		}
 	}
-
 	return nil
 }
 
