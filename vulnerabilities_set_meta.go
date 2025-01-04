@@ -3,6 +3,7 @@ package govex
 import (
 	"encoding/json"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -23,6 +24,23 @@ func ReadFileVulnerabilitiesSetMeta(filename string) (VulnerabilitiesSetMeta, er
 	} else {
 		return meta, nil
 	}
+}
+
+func (meta VulnerabilitiesSetMeta) MissingFields() []string {
+	var fields []string
+	if strings.TrimSpace(meta.Name) == "" {
+		fields = append(fields, "name")
+	}
+	if strings.TrimSpace(meta.RepoPath) == "" {
+		fields = append(fields, "repoPath")
+	}
+	if strings.TrimSpace(meta.RepoURL) == "" {
+		fields = append(fields, "repoURL")
+	}
+	if meta.DateTime == nil || meta.DateTime.IsZero() {
+		fields = append(fields, "dateTime")
+	}
+	return fields
 }
 
 func (meta VulnerabilitiesSetMeta) WriteFile(filename string, perm os.FileMode) error {
