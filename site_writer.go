@@ -49,6 +49,7 @@ type SiteWriter struct {
 	RootIndexFileTable         bool
 	RootIndexName              string
 	ShieldsWrite               bool
+	ShieldFontSize             int
 	MetaWrite                  bool
 	MkdnWriteFileVulns         bool
 	MkdnWriteFileVulnsAsIndex  bool
@@ -75,6 +76,7 @@ func DefaultSiteWriter() SiteWriter {
 		RootIndexFileTable:         true,
 		RootIndexName:              ReportsRepoTitle,
 		ShieldsWrite:               true,
+		ShieldFontSize:             12,
 		MetaWrite:                  true,
 		MkdnWriteFileVulns:         true,
 		MkdnWriteFileVulnsAsIndex:  true,
@@ -298,11 +300,12 @@ func (sw SiteWriter) writeRootIndexWithTable(w io.Writer, rootIndexName string, 
 func (sw SiteWriter) reposListTableSeverities(dirsWithIndex []string) *table.Table {
 	tbl := table.NewTable("Repo Severities")
 	sevs := severity.SeveritiesAll()
-	tbl.Columns = []string{"Repo"}
+	tbl.Columns = []string{"Repo", "Last Updated"}
 	tbl.Columns = append(tbl.Columns, sevs...)
 	tbl.FormatMap = map[int]string{
 		-1: table.FormatInt,
-		0:  table.FormatURL}
+		0:  table.FormatURL,
+		1:  table.FormatDate}
 	sort.Strings(dirsWithIndex)
 	for _, dir := range dirsWithIndex {
 		row := []string{
@@ -310,9 +313,15 @@ func (sw SiteWriter) reposListTableSeverities(dirsWithIndex []string) *table.Tab
 		}
 		fpMeta := sw.buildFilePath(dir, FilenameMetaJSON)
 		if meta, err := ReadFileVulnerabilitiesSetMeta(fpMeta); err != nil {
+			row = append(row, "")
 			counts := slicesutil.MakeRepeatingElement(len(sevs), "?")
 			row = append(row, counts...)
 		} else {
+			if meta.DateTime == nil || meta.DateTime.IsZero() {
+				row = append(row, "")
+			} else {
+				row = append(row, meta.DateTime.Format(timeutil.RFC3339FullDate))
+			}
 			counts := strconvutil.SliceItoa(maputil.ValuesByKeys(meta.SeverityCounts, sevs, 0))
 			row = append(row, counts...)
 		}
@@ -368,6 +377,7 @@ func (sw SiteWriter) writeSeverityShieldsSVG(dir string, h *histogram.Histogram)
 
 	return sc.WriteShields(
 		severity.SeveritiesAll(),
+		sw.ShieldFontSize,
 		sw.SeverityCutoff,
 		fnFilepath,
 		severity.FuncShieldNameSeverity(),
