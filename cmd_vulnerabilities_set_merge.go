@@ -8,7 +8,7 @@ import (
 	"github.com/jessevdk/go-flags"
 )
 
-type CLIMergeJSONsOptions struct {
+type CmdMergeJSONsOptions struct {
 	InputFilename     []string `short:"i" long:"inputFiles" description:"Filenames to merge" required:"true"`
 	OutputFileJSON    string   `short:"o" long:"outputFile" description:"Outputfile in JSON format" required:"false"`
 	OutputFileXLSX    string   `short:"x" long:"xlsxoOutputFile" description:"Outputfile in XLSX format" required:"false"`
@@ -20,8 +20,8 @@ type CLIMergeJSONsOptions struct {
 	ProjectRepoURL    string   `long:"repoURL" description:"Project repoURL" required:"false"`
 }
 
-type CLIMergeJSONsResponse struct {
-	RequestOptions       *CLIMergeJSONsOptions
+type CmdMergeJSONsResponse struct {
+	RequestOptions       *CmdMergeJSONsOptions
 	Sheet1Len            int
 	Sheet2Len            int
 	FilesWritten         []string
@@ -29,14 +29,14 @@ type CLIMergeJSONsResponse struct {
 	ReportRepoUpdated    bool
 }
 
-func CLIMergeJSONsExec() (*CLIMergeJSONsResponse, error) {
-	opts := CLIMergeJSONsOptions{}
+func CmdMergeJSONsExec() (*CmdMergeJSONsResponse, error) {
+	opts := CmdMergeJSONsOptions{}
 
 	_, err := flags.Parse(&opts)
 	if err != nil {
 		return nil, err
 	}
-	resp := CLIMergeJSONsResponse{
+	resp := CmdMergeJSONsResponse{
 		RequestOptions: &opts,
 		Sheet1Len:      -1,
 		Sheet2Len:      -1}
