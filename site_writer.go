@@ -50,6 +50,7 @@ type SiteWriter struct {
 	RootIndexWrite             bool
 	RootIndexFileTable         bool
 	RootIndexName              string
+	RootIndexShieldsMarkdown   string
 	ShieldsWrite               bool
 	ShieldFontSize             int
 	MetaWrite                  bool
@@ -96,18 +97,19 @@ func DefaultSiteWriterRepo() SiteWriter {
 	}
 }
 
-func DefaultSiteWriterHome(rootIndexPath string) SiteWriter {
+func DefaultSiteWriterHome(rootIndexPath, rootIndexShieldsMarkdown string) SiteWriter {
 	if rootIndexPath == "" {
 		rootIndexPath = "."
 	}
 	return SiteWriter{
-		IndexFilename:      FilenameReadmeMd,
-		RootFilePath:       rootIndexPath,
-		SeverityCutoff:     severity.SeverityHigh,
-		FilesPerm:          0600,
-		RootIndexWrite:     true,
-		RootIndexFileTable: true,
-		RootIndexName:      ReportsRepoTitle,
+		IndexFilename:            FilenameReadmeMd,
+		RootFilePath:             rootIndexPath,
+		RootIndexShieldsMarkdown: rootIndexShieldsMarkdown,
+		SeverityCutoff:           severity.SeverityHigh,
+		FilesPerm:                0600,
+		RootIndexWrite:           true,
+		RootIndexFileTable:       true,
+		RootIndexName:            ReportsRepoTitle,
 	}
 }
 
@@ -285,6 +287,10 @@ func (sw SiteWriter) writeRootIndexFile(rootIndexName string, dirsWithIndexes []
 func (sw SiteWriter) writeRootIndex(w io.Writer, rootIndexName string, dirsWithIndexes []string) error {
 	if _, err := fmt.Fprintf(w, "# %s\n\n", rootIndexName); err != nil {
 		return err
+	} else if err := writeReportMkdnShields(w, sw.RootIndexShieldsMarkdown); err != nil {
+		return err
+	} else if _, err := writeReportMkdnTime(w, pointer.Pointer(time.Now().UTC())); err != nil {
+		return err
 	}
 	sort.Strings(dirsWithIndexes)
 	for _, sdir := range dirsWithIndexes {
@@ -320,7 +326,9 @@ func (sw SiteWriter) writeRootIndexWithTableFile(rootIndexName string, dirsWithI
 func (sw SiteWriter) writeRootIndexWithTable(w io.Writer, rootIndexName string, dirsWithIndexes []string) error {
 	if _, err := fmt.Fprintf(w, "# %s\n\n", rootIndexName); err != nil {
 		return err
-	} else if _, err := writeReportTime(w, pointer.Pointer(time.Now().UTC())); err != nil {
+	} else if err := writeReportMkdnShields(w, sw.RootIndexShieldsMarkdown); err != nil {
+		return err
+	} else if _, err := writeReportMkdnTime(w, pointer.Pointer(time.Now().UTC())); err != nil {
 		return err
 	}
 
@@ -418,7 +426,7 @@ func (sw SiteWriter) writeSeverityShieldsSVG(dir string, h *histogram.Histogram)
 		sw.SeverityCutoff,
 		fnFilepath,
 		severity.FuncShieldNameSeverity(),
-		0644,
+		osutil.ModeFile0600,
 	)
 }
 

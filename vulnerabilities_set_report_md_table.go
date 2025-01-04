@@ -55,7 +55,7 @@ func (vs *VulnerabilitiesSet) WriteReportMarkdownTables(w io.Writer, shieldsMkdn
 		}
 	}
 
-	if wrote, err := writeReportTime(w, vs.DateTime); err != nil {
+	if wrote, err := writeReportMkdnTime(w, vs.DateTime); err != nil {
 		return err
 	} else if wrote {
 		haveBullets = true
