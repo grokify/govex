@@ -143,6 +143,9 @@ func (sw SiteWriter) writeFilesVulns(vs *VulnerabilitiesSet) error {
 	shieldsMkdn := ""
 	if sw.ShieldsWrite {
 		shieldsMkdn = `
+<div align="center">
+
+![](latest-needsremediation.svg)
 ![](latest-critical.svg)
 ![](latest-high.svg)
 ![](latest-medium.svg)
@@ -150,6 +153,9 @@ func (sw SiteWriter) writeFilesVulns(vs *VulnerabilitiesSet) error {
 ![](latest-informational.svg)
 ![](latest-none.svg)
 ![](latest-unknown.svg)
+
+</div>
+
 	`
 	}
 
@@ -364,9 +370,11 @@ func (sw SiteWriter) writeSeverityShieldsSVG(dir string, h *histogram.Histogram)
 	if dir == "" {
 		dir = "."
 	}
-	sc := severity.SeverityCountsSet{Histogram: h}
 
 	fnFilepath := func(sev string) (string, error) {
+		if sev == severity.SeverityPlusNeedsRemediation {
+			return filepath.Join(dir, "latest-needsremediation.svg"), nil
+		}
 		sev2, _, err := severity.ParseSeverity(sev)
 		if err != nil {
 			return "", err
@@ -375,6 +383,7 @@ func (sw SiteWriter) writeSeverityShieldsSVG(dir string, h *histogram.Histogram)
 		return filepath.Join(dir, fn), nil
 	}
 
+	sc := severity.SeverityCountsSet{Histogram: h}
 	return sc.WriteShields(
 		severity.SeveritiesAll(),
 		sw.ShieldFontSize,
