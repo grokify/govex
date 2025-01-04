@@ -32,6 +32,7 @@ const (
 	Unknown
 )
 
+/*
 var sevMap = map[string]int{
 	SeverityCritical:      0,
 	SeverityHigh:          1,
@@ -41,6 +42,7 @@ var sevMap = map[string]int{
 	SeverityNone:          5,
 	SeverityUnknown:       6,
 }
+*/
 
 func (s Severity) IsHigher(sev Severity) bool { return s < sev }
 func (s Severity) IsLower(sev Severity) bool  { return s > sev }
