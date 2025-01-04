@@ -30,6 +30,7 @@ const (
 	FilenameVulnsJSON = "vulns.json"
 	FilenameVulnsXLSX = "vulns.json"
 	FilenameMetaJSON  = "meta.json"
+	ReportsRepoTitle  = "AppSec Reports"
 )
 
 var (
@@ -46,6 +47,7 @@ type SiteWriter struct {
 	FilesPerm                  os.FileMode
 	SeverityCutoff             string
 	RootIndexFileTable         bool
+	RootIndexName              string
 	ShieldsWrite               bool
 	MetaWrite                  bool
 	MkdnWriteFileVulns         bool
@@ -71,6 +73,7 @@ func DefaultSiteWriter() SiteWriter {
 		SeverityCutoff:             severity.SeverityHigh,
 		FilesPerm:                  0600,
 		RootIndexFileTable:         true,
+		RootIndexName:              ReportsRepoTitle,
 		ShieldsWrite:               true,
 		MetaWrite:                  true,
 		MkdnWriteFileVulns:         true,
@@ -111,10 +114,10 @@ func (sw SiteWriter) WriteFiles(vs *VulnerabilitiesSet) error {
 		return errorsutil.NewErrorWithLocation(err.Error())
 	}
 	if sw.RootIndexFileTable {
-		if err := sw.writeRootIndexWithTableFile(dirsWithIndexes); err != nil {
+		if err := sw.writeRootIndexWithTableFile(sw.RootIndexName, dirsWithIndexes); err != nil {
 			return errorsutil.NewErrorWithLocation(err.Error())
 		}
-	} else if err := sw.writeRootIndexFile(dirsWithIndexes); err != nil {
+	} else if err := sw.writeRootIndexFile(sw.RootIndexName, dirsWithIndexes); err != nil {
 		return errorsutil.NewErrorWithLocation(err.Error())
 	}
 	return nil
@@ -224,7 +227,7 @@ func (sw SiteWriter) buildVulnsRepoDir(rootFilePath, repoFilePath string) string
 	return strings.Join(dirParts, string(filepath.Separator))
 }
 
-func (sw SiteWriter) writeRootIndexFile(dirsWithIndexes []string) error {
+func (sw SiteWriter) writeRootIndexFile(rootIndexName string, dirsWithIndexes []string) error {
 	if strings.TrimSpace(sw.IndexFilename) == "" {
 		return errorsutil.NewErrorWithLocation(ErrFieldIndexFileCannotBeUndefined.Error())
 	}
@@ -232,7 +235,7 @@ func (sw SiteWriter) writeRootIndexFile(dirsWithIndexes []string) error {
 	if file, err := os.OpenFile(fp, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, sw.FilesPerm); err != nil {
 		return errorsutil.NewErrorWithLocation(err.Error())
 	} else {
-		if err := sw.writeRootIndex(file, dirsWithIndexes); err != nil {
+		if err := sw.writeRootIndex(file, rootIndexName, dirsWithIndexes); err != nil {
 			err2 := file.Close()
 			if err2 != nil {
 				return errorsutil.Wrap(err, err2.Error())
@@ -245,8 +248,8 @@ func (sw SiteWriter) writeRootIndexFile(dirsWithIndexes []string) error {
 	}
 }
 
-func (sw SiteWriter) writeRootIndex(w io.Writer, dirsWithIndexes []string) error {
-	if _, err := fmt.Fprintf(w, "# %s\n\n", "Vulnerability Reports"); err != nil {
+func (sw SiteWriter) writeRootIndex(w io.Writer, rootIndexName string, dirsWithIndexes []string) error {
+	if _, err := fmt.Fprintf(w, "# %s\n\n", rootIndexName); err != nil {
 		return err
 	}
 	sort.Strings(dirsWithIndexes)
@@ -259,7 +262,7 @@ func (sw SiteWriter) writeRootIndex(w io.Writer, dirsWithIndexes []string) error
 	return nil
 }
 
-func (sw SiteWriter) writeRootIndexWithTableFile(dirsWithIndexes []string) error {
+func (sw SiteWriter) writeRootIndexWithTableFile(rootIndexName string, dirsWithIndexes []string) error {
 	if strings.TrimSpace(sw.IndexFilename) == "" {
 		return errorsutil.NewErrorWithLocation(ErrFieldIndexFileCannotBeUndefined.Error())
 	}
@@ -267,7 +270,7 @@ func (sw SiteWriter) writeRootIndexWithTableFile(dirsWithIndexes []string) error
 	if file, err := os.OpenFile(fp, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, sw.FilesPerm); err != nil {
 		return errorsutil.NewErrorWithLocation(err.Error())
 	} else {
-		if err := sw.writeRootIndexWithTable(file, dirsWithIndexes); err != nil {
+		if err := sw.writeRootIndexWithTable(file, rootIndexName, dirsWithIndexes); err != nil {
 			err2 := file.Close()
 			if err2 != nil {
 				return errorsutil.Wrap(err, err2.Error())
@@ -280,8 +283,8 @@ func (sw SiteWriter) writeRootIndexWithTableFile(dirsWithIndexes []string) error
 	}
 }
 
-func (sw SiteWriter) writeRootIndexWithTable(w io.Writer, dirsWithIndexes []string) error {
-	if _, err := fmt.Fprintf(w, "# %s\n\n", "Vulnerability Reports"); err != nil {
+func (sw SiteWriter) writeRootIndexWithTable(w io.Writer, rootIndexName string, dirsWithIndexes []string) error {
+	if _, err := fmt.Fprintf(w, "# %s\n\n", rootIndexName); err != nil {
 		return err
 	}
 
