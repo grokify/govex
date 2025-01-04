@@ -16,6 +16,8 @@ const (
 	SeverityInformational = "Informational"
 	SeverityNone          = "None"
 	SeverityUnknown       = "Unknown"
+
+	SeverityPlusNeedsRemediation = "Needs Remediation"
 )
 
 type Severity int
@@ -30,9 +32,47 @@ const (
 	Unknown
 )
 
+var sevMap = map[string]int{
+	SeverityCritical:      0,
+	SeverityHigh:          1,
+	SeverityMedium:        2,
+	SeverityLow:           3,
+	SeverityInformational: 4,
+	SeverityNone:          5,
+	SeverityUnknown:       6,
+}
+
 func (s Severity) IsHigher(sev Severity) bool { return s < sev }
 func (s Severity) IsLower(sev Severity) bool  { return s > sev }
 func (s Severity) IsEqual(sev Severity) bool  { return s == sev }
+func (s Severity) NeedsRemediation() bool     { return s <= 3 }
+
+// IsHigherString tests if `sev` is of higher severity than the refererence severity `refSev`.
+func IsHigherString(sev, compSev string) (bool, error) {
+	if sevInts, err := ParseSeverities([]string{sev, compSev}); err != nil {
+		return false, err
+	} else {
+		return sevInts[0].IsHigher(sevInts[1]), nil
+	}
+}
+
+// IsEqualString tests if `sev` is of equal severity to the refererence severity `refSev`.
+func IsEqualString(sev, compSev string) (bool, error) {
+	if sevInts, err := ParseSeverities([]string{sev, compSev}); err != nil {
+		return false, err
+	} else {
+		return sevInts[0].IsEqual(sevInts[1]), nil
+	}
+}
+
+// IsLowerString tests if `sev` is of lower severity than the refererence severity `refSev`.
+func IsLowerString(sev, compSev string) (bool, error) {
+	if sevInts, err := ParseSeverities([]string{sev, compSev}); err != nil {
+		return false, err
+	} else {
+		return sevInts[0].IsLower(sevInts[1]), nil
+	}
+}
 
 func ParseSeverity(sev string) (string, Severity, error) {
 	sev = strings.ToLower(strings.TrimSpace(sev))
@@ -55,7 +95,22 @@ func ParseSeverity(sev string) (string, Severity, error) {
 	}
 }
 
-func ParseSeverities(sevs []string) ([]string, error) {
+func ParseSeverities(sevs []string) ([]Severity, error) {
+	var out []Severity
+	for _, sev := range sevs {
+		if _, sevInt, err := ParseSeverity(sev); err != nil {
+			return out, err
+		} else {
+			out = append(out, sevInt)
+		}
+	}
+	if len(out) != len(sevs) {
+		panic("internal error in severity.ParseSeverities - length mismatch")
+	}
+	return out, nil
+}
+
+func ParseSeveritiesString(sevs []string) ([]string, error) {
 	var out []string
 	for _, sev := range sevs {
 		if sev, _, err := ParseSeverity(sev); err != nil {
@@ -172,6 +227,27 @@ func (mb MapBool) AllTrue(strict bool) bool {
 		}
 	}
 	return true
+}
+
+var mapSevNeedsRemediation = map[string]bool{
+	SeverityCritical: true,
+	SeverityHigh:     true,
+	SeverityMedium:   true,
+	SeverityLow:      true,
+}
+
+func NeedsRemediation(sev string) bool {
+	sevConst, _, err := ParseSeverity(sev)
+	sevTry := sevConst
+	if err != nil {
+		sevTry = sev
+	}
+	needs, ok := mapSevNeedsRemediation[sevTry]
+	if !ok || ok && needs {
+		return true
+	} else {
+		return false
+	}
 }
 
 /*
