@@ -1,3 +1,5 @@
+<div align="center">
+
 # GoVEX
 
 [![Build Status][build-status-svg]][build-status-url]
@@ -5,6 +7,8 @@
 [![Docs][docs-godoc-svg]][docs-godoc-url]
 [![Visualization][viz-svg]][viz-url]
 [![License][license-svg]][license-url]
+
+</div>
 
 ## Overview
 
