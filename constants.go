@@ -29,7 +29,8 @@ const (
 	ReportName = "AppSec Scan Report"
 )
 
-func CategoriesSorted() []string {
+// CategoriesOrdered returns a set of categories ordered by SDLC position.
+func CategoriesOrdered() []string {
 	return []string{
 		CategoryCICD,
 		CategoryDevProcess,
