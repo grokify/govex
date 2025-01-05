@@ -2,7 +2,7 @@
 
 # GoVEX
 
-![](docs/logo_govex.svg)
+[![](docs/logo_govex.svg)](https://github.com/grokify/govex)
 
 [![Build Status][build-status-svg]][build-status-url]
 [![Lint Status][lint-status-svg]][lint-status-url]
