@@ -13,8 +13,8 @@ github.com/grokify/gocharts/v2 v2.21.10 h1:kBZ1LzoDivodG+vl76HL1ICaWHcqwKOgINOUG
 github.com/grokify/gocharts/v2 v2.21.10/go.mod h1:9lSWiRDER6nBRnF0WFJzKLpsyUbAgpkr5KSG3L8h5SI=
 github.com/grokify/google-fonts v0.1.1 h1:dLU3TLuYVkD9/zbLyngAtvNwRG4K2X+ytjBSOF2aTtg=
 github.com/grokify/google-fonts v0.1.1/go.mod h1:bNYZ1YRctJ81DLbh06AzO7EBGFddcAjMWshgSz1pBWU=
-github.com/grokify/mogo v0.67.1 h1:Leq/4MpnqATaaMIgxDnAtDvbkyVx1JNN4bT/lPskYCU=
-github.com/grokify/mogo v0.67.1/go.mod h1:t+30q3dGDeTzPvcL6/SQ52Dp/rmtsZ2mXgIVHruOeek=
+github.com/grokify/mogo v0.67.4 h1:k0Vt1SZlNyd8S4rxccegU/wvkmX9652lnwrf/JDSqWA=
+github.com/grokify/mogo v0.67.4/go.mod h1:Hlk3Vk3w59qaHls9VANUchW8FdfWQCqrs2pI4IFtpqA=
 github.com/huandu/xstrings v1.5.0 h1:2ag3IFq9ZDANvthTwTiqSSZLjDc+BedvHPAp5tJy2TI=
 github.com/huandu/xstrings v1.5.0/go.mod h1:y5/lhBue+AyNmUVz9RLU9xbLR0o4KIIExikq4ovT0aE=
 github.com/jessevdk/go-flags v1.6.1 h1:Cvu5U8UGrLay1rZfv/zP7iLpSHGUZ/Ou68T0iX1bBK4=
