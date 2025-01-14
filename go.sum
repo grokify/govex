@@ -9,12 +9,12 @@ github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 h1:DACJavvAHhabrF0
 github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0/go.mod h1:E/TSTwGwJL78qG/PmXZO1EjYhfJinVAhrmmHX6Z8B9k=
 github.com/grokify/base36 v1.0.5 h1:iUgnt40hrPtn3M2gjU4Darow5ikf8xWXrTuMWTLziCk=
 github.com/grokify/base36 v1.0.5/go.mod h1:L+1aaUBGfp5Ctar7KCS5G9uPABo1Ccu1Ct2iQAuhOJ4=
-github.com/grokify/gocharts/v2 v2.21.11 h1:bBGDwcWez2y/D94VzBFBQ1aEUk2n8KlgaDpXBFDi4dI=
-github.com/grokify/gocharts/v2 v2.21.11/go.mod h1:PmJJNTyPxCSOfuL/aVqm0dnHwU9go9AsCB/PKvtGBOA=
+github.com/grokify/gocharts/v2 v2.21.12 h1:Bf5AohyIiNOs0gktrp83FKuINewK5RPQSdA1kAsC5A8=
+github.com/grokify/gocharts/v2 v2.21.12/go.mod h1:ljLhyM605Zwzk+Ysa5hY/MrtCCHEVaRmy8CttOx6GM0=
 github.com/grokify/google-fonts v0.1.1 h1:dLU3TLuYVkD9/zbLyngAtvNwRG4K2X+ytjBSOF2aTtg=
 github.com/grokify/google-fonts v0.1.1/go.mod h1:bNYZ1YRctJ81DLbh06AzO7EBGFddcAjMWshgSz1pBWU=
-github.com/grokify/mogo v0.67.4 h1:k0Vt1SZlNyd8S4rxccegU/wvkmX9652lnwrf/JDSqWA=
-github.com/grokify/mogo v0.67.4/go.mod h1:Hlk3Vk3w59qaHls9VANUchW8FdfWQCqrs2pI4IFtpqA=
+github.com/grokify/mogo v0.67.5 h1:6tkvJIFQ7/d7IsREjpfC+8aNcxRzH7kv3Dy+55VF/mk=
+github.com/grokify/mogo v0.67.5/go.mod h1:Hlk3Vk3w59qaHls9VANUchW8FdfWQCqrs2pI4IFtpqA=
 github.com/huandu/xstrings v1.5.0 h1:2ag3IFq9ZDANvthTwTiqSSZLjDc+BedvHPAp5tJy2TI=
 github.com/huandu/xstrings v1.5.0/go.mod h1:y5/lhBue+AyNmUVz9RLU9xbLR0o4KIIExikq4ovT0aE=
 github.com/jessevdk/go-flags v1.6.1 h1:Cvu5U8UGrLay1rZfv/zP7iLpSHGUZ/Ou68T0iX1bBK4=
