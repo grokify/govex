@@ -37,9 +37,9 @@
 1. By contributing to this repository, you agree that your contributions will be licensed under the MIT License.
 1. Commits style uses Conventional Commits conventions available here: [https://www.conventionalcommits.org/](https://www.conventionalcommits.org/)
 
- [build-status-svg]: https://github.com/grokify/govex/workflows/test/badge.svg
- [build-status-url]: https://github.com/grokify/govex/actions/workflows/test.yaml
- [lint-status-svg]: https://github.com/grokify/govex/workflows/lint/badge.svg
+ [build-status-svg]: https://github.com/grokify/govex/actions/workflows/ci.yaml/badge.svg?branch=main
+ [build-status-url]: https://github.com/grokify/govex/actions/workflows/ci.yaml
+ [lint-status-svg]: https://github.com/grokify/govex/actions/workflows/lint.yaml/badge.svg?branch=main
  [lint-status-url]: https://github.com/grokify/govex/actions/workflows/lint.yaml
  [goreport-svg]: https://goreportcard.com/badge/github.com/grokify/govex
  [goreport-url]: https://goreportcard.com/report/github.com/grokify/govex
