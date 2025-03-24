@@ -123,3 +123,11 @@ func (vs *Vulnerabilities) CVE20Vulnerabilities() cve20.Vulnerabilities {
 	}
 	return v
 }
+
+func (vs *Vulnerabilities) FieldValues(fieldName, def string, opts *ValueOpts) []string {
+	var out []string
+	for _, vn := range *vs {
+		out = append(out, vn.Value(fieldName, def, opts))
+	}
+	return stringsutil.SliceCondenseSpace(out, true, true)
+}
