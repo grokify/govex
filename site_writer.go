@@ -141,14 +141,14 @@ func (sw SiteWriter) WriteFileHome() error {
 	}
 	dirsWithIndexes, err := sw.getRepoDirsWithIndexes("", []string{})
 	if err != nil {
-		return errorsutil.NewErrorWithLocation(err.Error())
+		return errorsutil.NewWithLocation(err.Error())
 	}
 	if sw.RootIndexFileTable {
 		if err := sw.writeRootIndexWithTableFile(sw.RootIndexName, dirsWithIndexes); err != nil {
-			return errorsutil.NewErrorWithLocation(err.Error())
+			return errorsutil.NewWithLocation(err.Error())
 		}
 	} else if err := sw.writeRootIndexFile(sw.RootIndexName, dirsWithIndexes); err != nil {
-		return errorsutil.NewErrorWithLocation(err.Error())
+		return errorsutil.NewWithLocation(err.Error())
 	}
 	return nil
 }
@@ -192,7 +192,7 @@ func (sw SiteWriter) writeFilesVulns(vs *VulnerabilitiesSet) error {
 		if err := vs.WriteReportMarkdownTablesToFile(
 			filepath.Join(repoDir, filenameBase+fileext.ExtMarkdown),
 			sw.FilesPerm, shieldsMkdn, sw.MkdnColDefsSet, sw.MkdnAddColLinNum, vs.VulnValueOpts); err != nil {
-			return errorsutil.NewErrorWithLocation(err.Error())
+			return errorsutil.NewWithLocation(err.Error())
 		}
 	}
 	// Markdown Index
@@ -265,11 +265,11 @@ func (sw SiteWriter) buildVulnsRepoDir(rootFilePath, repoFilePath string) string
 
 func (sw SiteWriter) writeRootIndexFile(rootIndexName string, dirsWithIndexes []string) error {
 	if strings.TrimSpace(sw.IndexFilename) == "" {
-		return errorsutil.NewErrorWithLocation(ErrFieldIndexFileCannotBeUndefined.Error())
+		return errorsutil.NewWithLocation(ErrFieldIndexFileCannotBeUndefined.Error())
 	}
 	fp := filepath.Join(sw.RootFilePath, sw.IndexFilename)
 	if file, err := os.OpenFile(fp, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, sw.FilesPerm); err != nil {
-		return errorsutil.NewErrorWithLocation(err.Error())
+		return errorsutil.NewWithLocation(err.Error())
 	} else {
 		if err := sw.writeRootIndex(file, rootIndexName, dirsWithIndexes); err != nil {
 			err2 := file.Close()
@@ -304,11 +304,11 @@ func (sw SiteWriter) writeRootIndex(w io.Writer, rootIndexName string, dirsWithI
 
 func (sw SiteWriter) writeRootIndexWithTableFile(rootIndexName string, dirsWithIndexes []string) error {
 	if strings.TrimSpace(sw.IndexFilename) == "" {
-		return errorsutil.NewErrorWithLocation(ErrFieldIndexFileCannotBeUndefined.Error())
+		return errorsutil.NewWithLocation(ErrFieldIndexFileCannotBeUndefined.Error())
 	}
 	fp := filepath.Join(sw.RootFilePath, sw.IndexFilename)
 	if file, err := os.OpenFile(fp, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, sw.FilesPerm); err != nil {
-		return errorsutil.NewErrorWithLocation(err.Error())
+		return errorsutil.NewWithLocation(err.Error())
 	} else {
 		if err := sw.writeRootIndexWithTable(file, rootIndexName, dirsWithIndexes); err != nil {
 			err2 := file.Close()
@@ -388,12 +388,12 @@ func (sw SiteWriter) getRepoDirsWithIndexes(subDir string, dirsWithIndex []strin
 	sdirs, err := osutil.ReadDirMore(procDir, nil, true, false, false)
 	if err != nil {
 		err2 := errorsutil.Wrapf(err, "procDir  (%s)", procDir)
-		return dirsWithIndex, errorsutil.NewErrorWithLocation(err2.Error())
+		return dirsWithIndex, errorsutil.NewWithLocation(err2.Error())
 	}
 	for _, sdir := range sdirs {
 		dirsWithIndex, err = sw.getRepoDirsWithIndexes(filepath.Join(subDir, sdir.Name()), dirsWithIndex)
 		if err != nil {
-			return dirsWithIndex, errorsutil.NewErrorWithLocation(err.Error())
+			return dirsWithIndex, errorsutil.NewWithLocation(err.Error())
 		}
 	}
 	return dirsWithIndex, nil
