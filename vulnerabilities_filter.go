@@ -3,6 +3,7 @@ package govex
 import (
 	"slices"
 	"strings"
+	"time"
 
 	"github.com/grokify/govex/severity"
 	"github.com/grokify/mogo/encoding/jsonutil"
@@ -108,6 +109,26 @@ func (vs *Vulnerabilities) FilterSeveritiesLower(sev string, incl bool) (Vulnera
 	} else {
 		return vs.FilterSeverities(sevs)
 	}
+}
+
+func (vs *Vulnerabilities) FilterSLAElapsed(slaMap SLAMap, compTime time.Time) Vulnerabilities {
+	var out Vulnerabilities
+	for _, vn := range *vs {
+		if vn.SLAElapsed(slaMap, compTime) {
+			out = append(out, vn)
+		}
+	}
+	return out
+}
+
+func (vs *Vulnerabilities) FilterSLACompliant(slaMap SLAMap, compTime time.Time) Vulnerabilities {
+	var out Vulnerabilities
+	for _, vn := range *vs {
+		if vn.SLACompliant(slaMap, compTime) {
+			out = append(out, vn)
+		}
+	}
+	return out
 }
 
 // FilterFixedInVersion returns a filtered subset with a fix version match, including empty string.
