@@ -9,6 +9,7 @@ require (
 	github.com/grokify/mogo v0.68.4
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/pandatix/go-cvss v0.6.2
+	github.com/quay/claircore/toolkit v1.2.4
 	github.com/relvacode/iso8601 v1.6.0
 	github.com/shopspring/decimal v1.4.0
 )
@@ -34,7 +35,7 @@ require (
 	golang.org/x/exp v0.0.0-20250305212735-054e65f0b394 // indirect
 	golang.org/x/image v0.25.0 // indirect
 	golang.org/x/net v0.38.0 // indirect
-	golang.org/x/sys v0.31.0 // indirect
+	golang.org/x/sys v0.32.0 // indirect
 	golang.org/x/text v0.23.0 // indirect
 	gonum.org/v1/gonum v0.16.0 // indirect
 )
