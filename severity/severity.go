@@ -11,7 +11,9 @@ const (
 	// Common severities
 	SeverityCritical      = "Critical"
 	SeverityHigh          = "High"
+	severityImportant     = "Important" // used by MS, aligned with High
 	SeverityMedium        = "Medium"
+	severityModerate      = "Moderate"
 	SeverityLow           = "Low"
 	SeverityInformational = "Informational"
 	SeverityNone          = "None"
@@ -31,18 +33,6 @@ const (
 	None
 	Unknown
 )
-
-/*
-var sevMap = map[string]int{
-	SeverityCritical:      0,
-	SeverityHigh:          1,
-	SeverityMedium:        2,
-	SeverityLow:           3,
-	SeverityInformational: 4,
-	SeverityNone:          5,
-	SeverityUnknown:       6,
-}
-*/
 
 func (s Severity) IsHigher(sev Severity) bool { return s < sev }
 func (s Severity) IsLower(sev Severity) bool  { return s > sev }
@@ -76,13 +66,18 @@ func IsLowerString(sev, compSev string) (bool, error) {
 	}
 }
 
+// ParseSeverity returns a canonical severity.
 func ParseSeverity(sev string) (string, Severity, error) {
 	sev = strings.ToLower(strings.TrimSpace(sev))
 	if sev == strings.ToLower(SeverityCritical) {
 		return SeverityCritical, Critical, nil
 	} else if sev == strings.ToLower(SeverityHigh) {
 		return SeverityHigh, High, nil
+	} else if sev == strings.ToLower(severityImportant) {
+		return SeverityHigh, High, nil
 	} else if sev == strings.ToLower(SeverityMedium) {
+		return SeverityMedium, Medium, nil
+	} else if sev == strings.ToLower(severityModerate) {
 		return SeverityMedium, Medium, nil
 	} else if sev == strings.ToLower(SeverityLow) {
 		return SeverityLow, Low, nil
