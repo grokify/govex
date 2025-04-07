@@ -4,9 +4,9 @@ go 1.24
 
 require (
 	github.com/essentialkaos/go-badge v1.4.1
-	github.com/grokify/gocharts/v2 v2.22.6
+	github.com/grokify/gocharts/v2 v2.23.1
 	github.com/grokify/google-fonts v0.1.1
-	github.com/grokify/mogo v0.68.4
+	github.com/grokify/mogo v0.68.5
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/pandatix/go-cvss v0.6.2
 	github.com/quay/claircore/toolkit v1.2.4
@@ -31,9 +31,9 @@ require (
 	github.com/xuri/efp v0.0.0-20250227110027-3491fafc2b79 // indirect
 	github.com/xuri/excelize/v2 v2.9.0 // indirect
 	github.com/xuri/nfp v0.0.0-20250226145837-86d5fc24b2ba // indirect
-	golang.org/x/crypto v0.36.0 // indirect
+	golang.org/x/crypto v0.37.0 // indirect
 	golang.org/x/exp v0.0.0-20250305212735-054e65f0b394 // indirect
-	golang.org/x/image v0.25.0 // indirect
+	golang.org/x/image v0.26.0 // indirect
 	golang.org/x/net v0.38.0 // indirect
 	golang.org/x/sys v0.32.0 // indirect
 	golang.org/x/text v0.24.0 // indirect
