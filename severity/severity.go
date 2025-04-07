@@ -9,16 +9,16 @@ import (
 
 const (
 	// Common severities
-	SeverityCritical      = "Critical"
-	SeverityHigh          = "High"
-	severityImportant     = "Important" // used by MS, aligned with High
-	SeverityMedium        = "Medium"
-	severityModerate      = "Moderate"
-	SeverityLow           = "Low"
-	SeverityInformational = "Informational"
-	SeverityNone          = "None"
-	SeverityUnknown       = "Unknown"
-
+	SeverityCritical             = "Critical"
+	SeverityHigh                 = "High"
+	severityImportant            = "Important" // used by MS, aligned with High
+	SeverityMedium               = "Medium"
+	severityModerate             = "Moderate"
+	SeverityLow                  = "Low"
+	SeverityInformational        = "Informational"
+	SeverityNone                 = "None"
+	SeverityUnknown              = "Unknown"
+	severityUntriaged            = "Untriaged" // https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/inspector2/types#Severity
 	SeverityPlusNeedsRemediation = "Needs Remediation"
 )
 
@@ -86,6 +86,8 @@ func ParseSeverity(sev string) (string, Severity, error) {
 	} else if sev == strings.ToLower(SeverityNone) {
 		return SeverityNone, None, nil
 	} else if sev == strings.ToLower(SeverityUnknown) {
+		return SeverityUnknown, Unknown, nil
+	} else if sev == strings.ToLower(severityUntriaged) {
 		return SeverityUnknown, Unknown, nil
 	} else {
 		return "", Unknown, fmt.Errorf("severity not found (%s)", sev)
