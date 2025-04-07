@@ -11,15 +11,17 @@ const (
 	// Common severities
 	SeverityCritical             = "Critical"
 	SeverityHigh                 = "High"
-	severityImportant            = "Important" // used by MS, aligned with High
 	SeverityMedium               = "Medium"
-	severityModerate             = "Moderate"
 	SeverityLow                  = "Low"
 	SeverityInformational        = "Informational"
 	SeverityNone                 = "None"
 	SeverityUnknown              = "Unknown"
-	severityUntriaged            = "Untriaged" // https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/inspector2/types#Severity
 	SeverityPlusNeedsRemediation = "Needs Remediation"
+
+	// Additional severities for parsing
+	severityImportant = "Important" // > High: used by MS, aligned with High
+	severityModerate  = "Moderate"  // > Medium: used by FedRAMP: https://www.fedramp.gov/assets/resources/documents/CSP_POAM_Template_Completion_Guide.pdf
+	severityUntriaged = "Untriaged" // > Unknown: used by AWS Inspector: https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/inspector2/types#Severity
 )
 
 type Severity int
