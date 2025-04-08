@@ -33,6 +33,18 @@ func (slaMap SLAMap) SLAStatusOverdue(sev string, dur time.Duration) (bool, erro
 	}
 }
 
+// DueDate returns the due date for the severity given the SLA.
+func (slaMap SLAMap) DueDate(sev string, startTime time.Time) (*time.Time, error) {
+	if severityParsed, _, err := ParseSeverity(sev); err != nil {
+		return nil, err
+	} else if days, ok := slaMap[severityParsed]; !ok {
+		return nil, err
+	} else {
+		due := startTime.Add(time.Duration(days) * timeutil.Day)
+		return &due, nil
+	}
+}
+
 func (slaMap SLAMap) slaStatusOverdueTimes(severity string, startTime, evalTime time.Time) (bool, error) {
 	return slaMap.SLAStatusOverdue(severity, evalTime.Sub(startTime))
 }
