@@ -1,5 +1,6 @@
 package govex
 
+/*
 import (
 	"fmt"
 	"time"
@@ -18,15 +19,6 @@ const (
 // SLAMap provides a commen representation of SLAs by severity and day.
 type SLAMap map[string]int64
 
-func SLAMapFedRAMP() SLAMap {
-	return map[string]int64{
-		severity.SeverityCritical: 30,
-		severity.SeverityHigh:     30,
-		severity.SeverityMedium:   90,
-		severity.SeverityLow:      180,
-	}
-}
-
 func (slaMap SLAMap) SLAStatusOverdue(sev string, dur time.Duration) (bool, error) {
 	severityParsed, _, err := severity.ParseSeverity(sev)
 	if err != nil {
@@ -40,6 +32,18 @@ func (slaMap SLAMap) SLAStatusOverdue(sev string, dur time.Duration) (bool, erro
 	} else {
 		ageDays := timeutil.DurationDaysInt64(dur)
 		return ageDays > slaDays, nil
+	}
+}
+
+// DueDate returns the due date for the severity given the SLA.
+func (slaMap SLAMap) DueDate(sev string, startTime time.Time) (*time.Time, error) {
+	if severityParsed, _, err := severity.ParseSeverity(sev); err != nil {
+		return nil, err
+	} else if days, ok := slaMap[severityParsed]; !ok {
+		return nil, err
+	} else {
+		due := startTime.Add(time.Duration(days) * timeutil.Day)
+		return &due, nil
 	}
 }
 
@@ -66,3 +70,4 @@ func (slaMap SLAMap) MustSLAStatusTimesString(severity string, startTime *time.T
 		return status
 	}
 }
+*/
