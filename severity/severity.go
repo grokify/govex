@@ -71,27 +71,28 @@ func IsLowerString(sev, compSev string) (bool, error) {
 // ParseSeverity returns a canonical severity.
 func ParseSeverity(sev string) (string, Severity, error) {
 	sev = strings.ToLower(strings.TrimSpace(sev))
-	if sev == strings.ToLower(SeverityCritical) {
+	switch sev {
+	case strings.ToLower(SeverityCritical):
 		return SeverityCritical, Critical, nil
-	} else if sev == strings.ToLower(SeverityHigh) {
+	case strings.ToLower(SeverityHigh):
 		return SeverityHigh, High, nil
-	} else if sev == strings.ToLower(severityImportant) {
+	case strings.ToLower(severityImportant):
 		return SeverityHigh, High, nil
-	} else if sev == strings.ToLower(SeverityMedium) {
+	case strings.ToLower(SeverityMedium):
 		return SeverityMedium, Medium, nil
-	} else if sev == strings.ToLower(severityModerate) {
+	case strings.ToLower(severityModerate):
 		return SeverityMedium, Medium, nil
-	} else if sev == strings.ToLower(SeverityLow) {
+	case strings.ToLower(SeverityLow):
 		return SeverityLow, Low, nil
-	} else if sev == strings.ToLower(SeverityInformational) {
+	case strings.ToLower(SeverityInformational):
 		return SeverityInformational, Informational, nil
-	} else if sev == strings.ToLower(SeverityNone) {
+	case strings.ToLower(SeverityNone):
 		return SeverityNone, None, nil
-	} else if sev == strings.ToLower(SeverityUnknown) {
+	case strings.ToLower(SeverityUnknown):
 		return SeverityUnknown, Unknown, nil
-	} else if sev == strings.ToLower(severityUntriaged) {
+	case strings.ToLower(severityUntriaged):
 		return SeverityUnknown, Unknown, nil
-	} else {
+	default:
 		return "", Unknown, fmt.Errorf("severity not found (%s)", sev)
 	}
 }
