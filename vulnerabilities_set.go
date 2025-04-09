@@ -13,7 +13,7 @@ type VulnerabilitiesSet struct {
 	RepoPath        string          `json:"repoPath"`
 	RepoURL         string          `json:"repoURL"`
 	DateTime        *time.Time      `json:"dateTime"`
-	VulnValueOpts   *ValueOpts      `json:"vulnValueOpts"`
+	VulnValueOpts   *ValueOptions   `json:"vulnValueOpts"`
 	Vulnerabilities Vulnerabilities `json:"vulnerabilities"`
 }
 
