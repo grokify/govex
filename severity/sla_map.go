@@ -17,6 +17,14 @@ const (
 // SLAMap provides a commen representation of SLAs by severity and day.
 type SLAMap map[string]int64
 
+func (slaMap SLAMap) SeverityDuration(severity string) time.Duration {
+	if days, ok := slaMap[severity]; ok {
+		return time.Duration(days) * timeutil.Day
+	} else {
+		return 0
+	}
+}
+
 func (slaMap SLAMap) SLAStatusOverdue(sev string, dur time.Duration) (bool, error) {
 	severityParsed, _, err := ParseSeverity(sev)
 	if err != nil {
