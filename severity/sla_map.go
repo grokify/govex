@@ -25,18 +25,13 @@ func (slaMap SLAMap) SeverityDuration(severity string) time.Duration {
 	}
 }
 
-func (slaMap SLAMap) SLAStatusOverdue(sev string, dur time.Duration) (bool, error) {
-	severityParsed, _, err := ParseSeverity(sev)
-	if err != nil {
+func (slaMap SLAMap) SLAStatusOverdue(sev string, age time.Duration) (bool, error) {
+	if severityParsed, _, err := ParseSeverity(sev); err != nil {
 		return false, err
-	}
-	if len(slaMap) == 0 {
-		slaMap = SLAMapFedRAMP()
-	}
-	if slaDays, ok := slaMap[severityParsed]; !ok {
+	} else if slaDays, ok := slaMap[severityParsed]; !ok {
 		return false, fmt.Errorf("severity not found in SLA map (%s)", sev)
 	} else {
-		ageDays := timeutil.DurationDaysInt64(dur)
+		ageDays := timeutil.DurationDaysInt64(age)
 		return ageDays > slaDays, nil
 	}
 }

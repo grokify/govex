@@ -70,17 +70,12 @@ func IsLowerString(sev, compSev string) (bool, error) {
 
 // ParseSeverity returns a canonical severity.
 func ParseSeverity(sev string) (string, Severity, error) {
-	sev = strings.ToLower(strings.TrimSpace(sev))
-	switch sev {
+	switch strings.ToLower(strings.TrimSpace(sev)) {
 	case strings.ToLower(SeverityCritical):
 		return SeverityCritical, Critical, nil
-	case strings.ToLower(SeverityHigh):
+	case strings.ToLower(SeverityHigh), strings.ToLower(severityImportant):
 		return SeverityHigh, High, nil
-	case strings.ToLower(severityImportant):
-		return SeverityHigh, High, nil
-	case strings.ToLower(SeverityMedium):
-		return SeverityMedium, Medium, nil
-	case strings.ToLower(severityModerate):
+	case strings.ToLower(SeverityMedium), strings.ToLower(severityModerate):
 		return SeverityMedium, Medium, nil
 	case strings.ToLower(SeverityLow):
 		return SeverityLow, Low, nil
@@ -88,9 +83,7 @@ func ParseSeverity(sev string) (string, Severity, error) {
 		return SeverityInformational, Informational, nil
 	case strings.ToLower(SeverityNone):
 		return SeverityNone, None, nil
-	case strings.ToLower(SeverityUnknown):
-		return SeverityUnknown, Unknown, nil
-	case strings.ToLower(severityUntriaged):
+	case strings.ToLower(SeverityUnknown), strings.ToLower(severityUntriaged):
 		return SeverityUnknown, Unknown, nil
 	default:
 		return "", Unknown, fmt.Errorf("severity not found (%s)", sev)
