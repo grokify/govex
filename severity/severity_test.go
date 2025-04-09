@@ -6,6 +6,35 @@ import (
 	"testing"
 )
 
+var parseSeverityTests = []struct {
+	v        string
+	want     string
+	wantIota Severity
+}{
+	{v: "CRITICAL", want: SeverityCritical, wantIota: Critical},
+	{v: "important", want: SeverityHigh, wantIota: High},
+	{v: "  moderate  ", want: SeverityMedium, wantIota: Medium},
+}
+
+func TestParseSeverity(t *testing.T) {
+	for _, tt := range parseSeverityTests {
+		sevStr, sevInt, err := ParseSeverity(tt.v)
+		if err != nil {
+			t.Errorf("severity.ParseSeverity(\"%s\") error (%s)", tt.v, err.Error())
+		} else if sevStr != tt.want {
+			t.Errorf("severity.ParseSeverity(\"%s\") Mismatch Error: want (%s), got (%s)",
+				tt.v,
+				tt.want,
+				sevStr)
+		} else if sevInt != tt.wantIota {
+			t.Errorf("severity.ParseSeverity(\"%s\") Mismatch Error: want (%v), got (%v)",
+				tt.v,
+				tt.wantIota,
+				sevInt)
+		}
+	}
+}
+
 var severitiesHigherLowerTests = []struct {
 	sevs            []string
 	sev             string
