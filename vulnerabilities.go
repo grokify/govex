@@ -60,7 +60,7 @@ func (vs *Vulnerabilities) LenSeverities(severitiesIncl ...string) (int, error) 
 	})
 }
 
-func (vs *Vulnerabilities) OrderedListMarkdownBytes(opts *ValueOpts) []byte {
+func (vs *Vulnerabilities) OrderedListMarkdownBytes(opts *ValueOptions) []byte {
 	var out []byte
 	lines := vs.OrderedListMarkdownLines(opts)
 	for i, line := range lines {
@@ -72,7 +72,7 @@ func (vs *Vulnerabilities) OrderedListMarkdownBytes(opts *ValueOpts) []byte {
 	return out
 }
 
-func (vs *Vulnerabilities) OrderedListMarkdownLines(opts *ValueOpts) []string {
+func (vs *Vulnerabilities) OrderedListMarkdownLines(opts *ValueOptions) []string {
 	var lines []string
 	for _, ji := range *vs {
 		parts := []string{
@@ -124,7 +124,7 @@ func (vs *Vulnerabilities) CVE20Vulnerabilities() cve20.Vulnerabilities {
 	return v
 }
 
-func (vs *Vulnerabilities) FieldValues(fieldName, def string, opts *ValueOpts) []string {
+func (vs *Vulnerabilities) FieldValues(fieldName, def string, opts *ValueOptions) []string {
 	var out []string
 	for _, vn := range *vs {
 		out = append(out, vn.Value(fieldName, def, opts))

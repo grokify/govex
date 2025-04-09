@@ -9,7 +9,7 @@ import (
 	"github.com/grokify/govex/severity"
 )
 
-func (vs *Vulnerabilities) Table(colDefs table.ColumnDefinitionSet, opts *ValueOpts) (*table.Table, error) {
+func (vs *Vulnerabilities) Table(colDefs table.ColumnDefinitionSet, opts *ValueOptions) (*table.Table, error) {
 	t := table.NewTable("")
 	t.LoadColumnDefinitionSet(colDefs)
 	for _, v := range *vs {
@@ -18,7 +18,7 @@ func (vs *Vulnerabilities) Table(colDefs table.ColumnDefinitionSet, opts *ValueO
 	return &t, nil
 }
 
-func (vs *Vulnerabilities) TableSetSplitSeverity(colDefs table.ColumnDefinitionSet, sevCutoff string, sevInclWithHigher bool, name1, name2 string, addCountsToNames bool, opts *ValueOpts) (*table.TableSet, error) {
+func (vs *Vulnerabilities) TableSetSplitSeverity(colDefs table.ColumnDefinitionSet, sevCutoff string, sevInclWithHigher bool, name1, name2 string, addCountsToNames bool, opts *ValueOptions) (*table.TableSet, error) {
 	if vfs, err := BuildVulnerabilitiesFiltersSplit(sevCutoff, sevInclWithHigher, name1, name2); err != nil {
 		return nil, err
 	} else {
@@ -26,7 +26,7 @@ func (vs *Vulnerabilities) TableSetSplitSeverity(colDefs table.ColumnDefinitionS
 	}
 }
 
-func (vs *Vulnerabilities) TableSet(colDefs table.ColumnDefinitionSet, filters VulnerabilitiesFilters, addCountsToNames bool, opts *ValueOpts) (*table.TableSet, error) {
+func (vs *Vulnerabilities) TableSet(colDefs table.ColumnDefinitionSet, filters VulnerabilitiesFilters, addCountsToNames bool, opts *ValueOptions) (*table.TableSet, error) {
 	ts := table.NewTableSet("")
 	for i, fil := range filters {
 		if vsFiltered, err := vs.FilterSeverities(fil.SeveritiesIncl); err != nil {
@@ -50,7 +50,7 @@ func (vs *Vulnerabilities) TableSet(colDefs table.ColumnDefinitionSet, filters V
 	return ts, nil
 }
 
-func (vs *Vulnerabilities) WriteFileXLSX(filename, sheetname string, colDefs table.ColumnDefinitionSet, opts *ValueOpts) error {
+func (vs *Vulnerabilities) WriteFileXLSX(filename, sheetname string, colDefs table.ColumnDefinitionSet, opts *ValueOptions) error {
 	if tbl, err := vs.Table(colDefs, opts); err != nil {
 		return err
 	} else {
@@ -58,7 +58,7 @@ func (vs *Vulnerabilities) WriteFileXLSX(filename, sheetname string, colDefs tab
 	}
 }
 
-func (vs *Vulnerabilities) WriteFileXLSXSplitSeverity(filename string, colDefs table.ColumnDefinitionSet, sevCutoff, name1, name2 string, opts *ValueOpts) (int, int, error) {
+func (vs *Vulnerabilities) WriteFileXLSXSplitSeverity(filename string, colDefs table.ColumnDefinitionSet, sevCutoff, name1, name2 string, opts *ValueOptions) (int, int, error) {
 	if sevCutoff != "" {
 		ts, err := vs.TableSetSplitSeverity(
 			colDefs,

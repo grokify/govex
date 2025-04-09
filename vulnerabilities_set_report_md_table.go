@@ -11,7 +11,7 @@ import (
 	"github.com/grokify/govex/severity"
 )
 
-func (vs *VulnerabilitiesSet) WriteReportMarkdownTablesToFile(filename string, perm os.FileMode, shieldsMkdn string, colDefs table.ColumnDefinitionSet, addColLineNum bool, opts *ValueOpts) error {
+func (vs *VulnerabilitiesSet) WriteReportMarkdownTablesToFile(filename string, perm os.FileMode, shieldsMkdn string, colDefs table.ColumnDefinitionSet, addColLineNum bool, opts *ValueOptions) error {
 	if file, err := os.OpenFile(filename, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, perm); err != nil {
 		return err
 	} else {
@@ -20,7 +20,7 @@ func (vs *VulnerabilitiesSet) WriteReportMarkdownTablesToFile(filename string, p
 	}
 }
 
-func (vs *VulnerabilitiesSet) WriteReportMarkdownTables(w io.Writer, shieldsMkdn string, colDefs table.ColumnDefinitionSet, addColLineNum bool, opts *ValueOpts) error {
+func (vs *VulnerabilitiesSet) WriteReportMarkdownTables(w io.Writer, shieldsMkdn string, colDefs table.ColumnDefinitionSet, addColLineNum bool, opts *ValueOptions) error {
 	name := vs.Name
 	if name == "" {
 		name = ReportName
