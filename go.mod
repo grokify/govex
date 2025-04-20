@@ -4,9 +4,9 @@ go 1.24
 
 require (
 	github.com/essentialkaos/go-badge v1.4.1
-	github.com/grokify/gocharts/v2 v2.23.2
-	github.com/grokify/google-fonts v0.1.2
-	github.com/grokify/mogo v0.68.7
+	github.com/grokify/gocharts/v2 v2.23.3
+	github.com/grokify/google-fonts v0.1.3
+	github.com/grokify/mogo v0.68.9
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/pandatix/go-cvss v0.6.2
 	github.com/quay/claircore/toolkit v1.2.4
