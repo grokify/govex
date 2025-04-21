@@ -36,17 +36,22 @@ const (
 	Unknown
 )
 
-func (s Severity) IsHigher(sev Severity) bool { return s < sev }
-func (s Severity) IsLower(sev Severity) bool  { return s > sev }
-func (s Severity) IsEqual(sev Severity) bool  { return s == sev }
-func (s Severity) NeedsRemediation() bool     { return s <= 3 }
+// Higher reports whether the severity instant `s“ is higher severity than `sev“.
+// Higher serverity means lower int value, e.g. `Critical` is a higher
+// severity than `Medium`.
+func (s Severity) Higher(sev Severity) bool { return s < sev }
 
-// IsHigherString tests if `sev` is of higher severity than the refererence severity `refSev`.
+// Lower reports whether the severity instant `s“ is lower severity than `sev“.
+func (s Severity) Lower(sev Severity) bool { return s > sev }
+func (s Severity) Equal(sev Severity) bool { return s == sev }
+func (s Severity) NeedsRemediation() bool  { return s <= 3 }
+
+// HigherString tests if `sev` is of higher severity than the refererence severity `refSev`.
 func IsHigherString(sev, compSev string) (bool, error) {
 	if sevInts, err := ParseSeverities([]string{sev, compSev}); err != nil {
 		return false, err
 	} else {
-		return sevInts[0].IsHigher(sevInts[1]), nil
+		return sevInts[0].Higher(sevInts[1]), nil
 	}
 }
 
@@ -55,7 +60,7 @@ func IsEqualString(sev, compSev string) (bool, error) {
 	if sevInts, err := ParseSeverities([]string{sev, compSev}); err != nil {
 		return false, err
 	} else {
-		return sevInts[0].IsEqual(sevInts[1]), nil
+		return sevInts[0].Equal(sevInts[1]), nil
 	}
 }
 
@@ -64,7 +69,7 @@ func IsLowerString(sev, compSev string) (bool, error) {
 	if sevInts, err := ParseSeverities([]string{sev, compSev}); err != nil {
 		return false, err
 	} else {
-		return sevInts[0].IsLower(sevInts[1]), nil
+		return sevInts[0].Lower(sevInts[1]), nil
 	}
 }
 
