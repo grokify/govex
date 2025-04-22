@@ -16,7 +16,6 @@ type CKEV struct {
 }
 
 func main() {
-	fmtutil.PrintJSON(os.Args)
 	if len(os.Args) < 2 {
 		fmt.Println("must supply JSON filename, exiting...")
 		os.Exit(1)
@@ -33,7 +32,7 @@ func main() {
 		os.Exit(3)
 	}
 	keys := ckev.Vulnerabilities.UniqueKeys()
-	fmtutil.PrintJSON(keys)
+	fmtutil.MustPrintJSON(keys)
 
 	cat, err := cisakevc.ReadFile(os.Args[1])
 	if err != nil {
