@@ -3,10 +3,23 @@ package poam
 import (
 	"fmt"
 	"slices"
+	"time"
 
 	"github.com/grokify/gocharts/v2/data/table"
 	"github.com/grokify/govex"
 )
+
+type Options struct {
+	DateFormat string
+}
+
+func (opts Options) DateFormatOrDefault() string {
+	if opts.DateFormat != "" {
+		return opts.DateFormat
+	} else {
+		return time.DateOnly
+	}
+}
 
 type POAMItem interface {
 	POAMItemOpen() bool
