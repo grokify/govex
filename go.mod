@@ -3,7 +3,7 @@ module github.com/grokify/govex
 go 1.24
 
 require (
-	github.com/essentialkaos/go-badge v1.4.1
+	github.com/essentialkaos/go-badge v1.4.2
 	github.com/grokify/gocharts/v2 v2.24.1
 	github.com/grokify/google-fonts v0.1.4
 	github.com/grokify/mogo v0.68.15
@@ -24,7 +24,6 @@ require (
 	github.com/richardlehane/mscfb v1.0.4 // indirect
 	github.com/richardlehane/msoleps v1.0.4 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
-	github.com/rogpeppe/go-internal v1.12.0 // indirect
 	github.com/stretchr/testify v1.10.0 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/quicktemplate v1.8.0 // indirect
@@ -33,9 +32,9 @@ require (
 	github.com/xuri/nfp v0.0.1 // indirect
 	golang.org/x/crypto v0.37.0 // indirect
 	golang.org/x/exp v0.0.0-20250408133849-7e4ce0ab07d0 // indirect
-	golang.org/x/image v0.26.0 // indirect
+	golang.org/x/image v0.27.0 // indirect
 	golang.org/x/net v0.39.0 // indirect
 	golang.org/x/sys v0.32.0 // indirect
-	golang.org/x/text v0.24.0 // indirect
+	golang.org/x/text v0.25.0 // indirect
 	gonum.org/v1/gonum v0.16.0 // indirect
 )
