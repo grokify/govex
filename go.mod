@@ -4,9 +4,9 @@ go 1.24
 
 require (
 	github.com/essentialkaos/go-badge v1.4.2
-	github.com/grokify/gocharts/v2 v2.24.6
+	github.com/grokify/gocharts/v2 v2.24.7
 	github.com/grokify/google-fonts v0.1.4
-	github.com/grokify/mogo v0.69.1
+	github.com/grokify/mogo v0.69.3
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/pandatix/go-cvss v0.6.2
 	github.com/quay/claircore/toolkit v1.2.4
@@ -24,7 +24,8 @@ require (
 	github.com/mattn/go-runewidth v0.0.16 // indirect
 	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 // indirect
 	github.com/olekukonko/errors v1.1.0 // indirect
-	github.com/olekukonko/tablewriter v1.0.0 // indirect
+	github.com/olekukonko/ll v0.0.6-0.20250511102614-9564773e9d27 // indirect
+	github.com/olekukonko/tablewriter v1.0.2 // indirect
 	github.com/richardlehane/mscfb v1.0.4 // indirect
 	github.com/richardlehane/msoleps v1.0.4 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
