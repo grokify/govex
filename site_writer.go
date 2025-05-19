@@ -120,7 +120,7 @@ func WriteFilesSiteForRepo(rootFilePath string, vs *VulnerabilitiesSet) error {
 	meta := vs.Meta()
 	missingFields := meta.MissingFields()
 	if len(missingFields) > 0 {
-		return fmt.Errorf("missing meta fields: [%s]", strings.Join(missingFields, ", "))
+		return fmt.Errorf("vs.meta() missing meta fields: [%s]", strings.Join(missingFields, ", "))
 	}
 	sw := DefaultSiteWriterRepo()
 	sw.RootFilePath = rootFilePath
