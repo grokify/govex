@@ -1,23 +1,29 @@
 package govex
 
 import (
+	"errors"
+	"log/slog"
+	"os"
 	"strings"
 	"time"
 
+	"github.com/grokify/mogo/fmt/fmtutil"
 	"github.com/grokify/mogo/pointer"
+	"github.com/grokify/sogo/flag/cobrautil"
 	"github.com/jessevdk/go-flags"
+	"github.com/spf13/cobra"
 )
 
 type CmdMergeJSONsOptions struct {
-	InputFilename     []string `short:"i" long:"inputFiles" description:"Filenames to merge" required:"true"`
+	InputFilename     []string `short:"i" long:"inputFiles" description:"Input filenames to merge" required:"true"`
 	OutputFileJSON    string   `short:"o" long:"outputFile" description:"Outputfile in JSON format" required:"false"`
-	OutputFileXLSX    string   `short:"x" long:"xlsxoOutputFile" description:"Outputfile in XLSX format" required:"false"`
+	OutputFileXLSX    string   `short:"x" long:"xlsxOutputFile" description:"Outputfile in XLSX format" required:"false"`
 	OutputFileMKDN    string   `short:"m" long:"markdownOutputFile" description:"Outputfile in Markdown format" required:"true"`
-	SeveritySplitXLSX string   `short:"s" long:"severityfiltercutoff" description:"Outputfile" required:"false"`
+	SeveritySplitXLSX string   `short:"s" long:"severityFilterCutoff" description:"Outputfile" required:"false"`
 	ReportRepoURL     string   `short:"r" long:"reportRepoURL" description:"Outputfile" required:"false"`
 	ProjectName       string   `short:"p" long:"projectName" description:"Project name to use" required:"false"`
 	ProjectRepoPath   string   `long:"repoPath" description:"Project: Repo Path" required:"false"`
-	ProjectRepoURL    string   `long:"repoURL" description:"Project repoURL" required:"false"`
+	ProjectRepoURL    string   `long:"repoURL" description:"Project: repoURL" required:"false"`
 }
 
 type CmdMergeJSONsResponse struct {
@@ -29,6 +35,10 @@ type CmdMergeJSONsResponse struct {
 	ReportRepoUpdated    bool
 }
 
+func NewCmdMergeJSONsOptions() *CmdMergeJSONsOptions {
+	return &CmdMergeJSONsOptions{}
+}
+
 func CmdMergeJSONsExec() (*CmdMergeJSONsResponse, error) {
 	opts := CmdMergeJSONsOptions{}
 
@@ -36,8 +46,78 @@ func CmdMergeJSONsExec() (*CmdMergeJSONsResponse, error) {
 	if err != nil {
 		return nil, err
 	}
+	return opts.Exec()
+}
+
+func (opts *CmdMergeJSONsOptions) ParseCLI() error {
+	_, err := flags.Parse(&opts)
+	return err
+}
+
+func (opts *CmdMergeJSONsOptions) RunCobra(cmd *cobra.Command, args []string) {
+	if err := opts.RunCobraError(cmd, args); err != nil {
+		slog.Error("error running cobra command", "errorMessage", err.Error())
+		os.Exit(1)
+	}
+}
+
+func (opts *CmdMergeJSONsOptions) RunCobraError(cmd *cobra.Command, args []string) error {
+	if cmd == nil {
+		return errors.New("cobra.Command cannot be nil")
+	}
+	if vals, err := cmd.Flags().GetStringSlice("inputFiles"); err != nil {
+		return err
+	} else {
+		opts.InputFilename = vals
+	}
+	if val, err := cmd.Flags().GetString("outputFile"); err != nil {
+		return err
+	} else {
+		opts.OutputFileJSON = val
+	}
+	if val, err := cmd.Flags().GetString("xlsxOutputFile"); err != nil {
+		return err
+	} else {
+		opts.OutputFileXLSX = val
+	}
+	if val, err := cmd.Flags().GetString("markdownOutputFile"); err != nil {
+		return err
+	} else {
+		opts.OutputFileMKDN = val
+	}
+	if val, err := cmd.Flags().GetString("severityFilterCutoff"); err != nil {
+		return err
+	} else {
+		opts.SeveritySplitXLSX = val
+	}
+	if val, err := cmd.Flags().GetString("reportRepoURL"); err != nil {
+		return err
+	} else {
+		opts.ReportRepoURL = val
+	}
+	if val, err := cmd.Flags().GetString("projectName"); err != nil {
+		return err
+	} else {
+		opts.ProjectName = val
+	}
+	if val, err := cmd.Flags().GetString("repoPath"); err != nil {
+		return err
+	} else {
+		opts.ProjectRepoPath = val
+	}
+	if val, err := cmd.Flags().GetString("repoURL"); err != nil {
+		return err
+	} else {
+		opts.ProjectRepoURL = val
+	}
+	fmtutil.PrintJSON(opts)
+	_, err := opts.Exec()
+	return err
+}
+
+func (opts *CmdMergeJSONsOptions) Exec() (*CmdMergeJSONsResponse, error) {
 	resp := CmdMergeJSONsResponse{
-		RequestOptions: &opts,
+		RequestOptions: opts,
 		Sheet1Len:      -1,
 		Sheet2Len:      -1}
 
@@ -115,4 +195,20 @@ func CmdMergeJSONsExec() (*CmdMergeJSONsResponse, error) {
 	}
 
 	return &resp, nil
+}
+
+func CmdMergeJSONsCobra() (*cobra.Command, error) {
+	opts := NewCmdMergeJSONsOptions()
+	var mergeCmd = &cobra.Command{
+		Use:   "merge",
+		Short: "Merge GoVex files",
+		Long:  `Merge GoVex JSON data files.`,
+		Run:   opts.RunCobra,
+	}
+
+	if err := cobrautil.AddFlags(mergeCmd, opts); err != nil {
+		return nil, err
+	} else {
+		return mergeCmd, nil
+	}
 }
