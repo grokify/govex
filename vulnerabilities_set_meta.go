@@ -31,12 +31,14 @@ func (meta VulnerabilitiesSetMeta) MissingFields() []string {
 	if strings.TrimSpace(meta.Name) == "" {
 		fields = append(fields, "name")
 	}
-	if strings.TrimSpace(meta.RepoPath) == "" {
-		fields = append(fields, "repoPath")
-	}
-	if strings.TrimSpace(meta.RepoURL) == "" {
-		fields = append(fields, "repoURL")
-	}
+	/*
+		if strings.TrimSpace(meta.RepoPath) == "" {
+			fields = append(fields, "repoPath")
+		}
+		if strings.TrimSpace(meta.RepoURL) == "" {
+			fields = append(fields, "repoURL")
+		}
+	*/
 	if meta.DateTime == nil || meta.DateTime.IsZero() {
 		fields = append(fields, "dateTime")
 	}
