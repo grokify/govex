@@ -21,8 +21,8 @@ type CmdMergeJSONsOptions struct {
 	SeveritySplitXLSX string   `short:"s" long:"severityFilterCutoff" description:"Outputfile" required:"false"`
 	ReportRepoURL     string   `short:"r" long:"reportRepoURL" description:"Outputfile" required:"false"`
 	ProjectName       string   `short:"p" long:"projectName" description:"Project name to use" required:"false"`
-	ProjectRepoPath   string   `long:"repoPath" description:"Project: Repo Path" required:"false"`
-	ProjectRepoURL    string   `long:"repoURL" description:"Project: repoURL" required:"false"`
+	ProjectRepoPath   string   `long:"repoPath" description:"Project repo path" required:"false"`
+	ProjectRepoURL    string   `long:"repoURL" description:"Project repo URL" required:"false"`
 }
 
 type CmdMergeJSONsResponse struct {
