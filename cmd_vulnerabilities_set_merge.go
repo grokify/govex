@@ -7,7 +7,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/grokify/mogo/fmt/fmtutil"
 	"github.com/grokify/mogo/pointer"
 	"github.com/grokify/sogo/flag/cobrautil"
 	"github.com/jessevdk/go-flags"
@@ -33,10 +32,6 @@ type CmdMergeJSONsResponse struct {
 	FilesWritten         []string
 	SeverityCountsString string
 	ReportRepoUpdated    bool
-}
-
-func NewCmdMergeJSONsOptions() *CmdMergeJSONsOptions {
-	return &CmdMergeJSONsOptions{}
 }
 
 func CmdMergeJSONsExec() (*CmdMergeJSONsResponse, error) {
@@ -110,7 +105,7 @@ func (opts *CmdMergeJSONsOptions) RunCobraError(cmd *cobra.Command, args []strin
 	} else {
 		opts.ProjectRepoURL = val
 	}
-	fmtutil.PrintJSON(opts)
+
 	_, err := opts.Exec()
 	return err
 }
@@ -197,10 +192,14 @@ func (opts *CmdMergeJSONsOptions) Exec() (*CmdMergeJSONsResponse, error) {
 	return &resp, nil
 }
 
-func CmdMergeJSONsCobra() (*cobra.Command, error) {
-	opts := NewCmdMergeJSONsOptions()
+func CmdMergeJSONsCobra(cmdName string) (*cobra.Command, error) {
+	cmdName = strings.TrimSpace(cmdName)
+	if cmdName == "" {
+		cmdName = "merge"
+	}
+	opts := &CmdMergeJSONsOptions{}
 	var mergeCmd = &cobra.Command{
-		Use:   "merge",
+		Use:   cmdName,
 		Short: "Merge GoVex files",
 		Long:  `Merge GoVex JSON data files.`,
 		Run:   opts.RunCobra,
