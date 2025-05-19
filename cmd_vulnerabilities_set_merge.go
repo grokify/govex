@@ -20,9 +20,9 @@ type CmdMergeJSONsOptions struct {
 	OutputFileMKDN    string   `short:"m" long:"markdownOutputFile" description:"Outputfile in Markdown format" required:"true"`
 	SeveritySplitXLSX string   `short:"s" long:"severityFilterCutoff" description:"Outputfile" required:"false"`
 	ReportRepoURL     string   `short:"r" long:"reportRepoURL" description:"Outputfile" required:"false"`
-	ProjectName       string   `short:"p" long:"projectName" description:"Project name to use" required:"false"`
-	ProjectRepoPath   string   `long:"repoPath" description:"Project repo path" required:"false"`
-	ProjectRepoURL    string   `long:"repoURL" description:"Project repo URL" required:"false"`
+	ProjectName       string   `short:"n" long:"projectName" description:"Project name to use" required:"false"`
+	ProjectRepoPath   string   `short:"p" long:"repoPath" description:"Project repo path" required:"false"`
+	ProjectRepoURL    string   `short:"u" long:"repoURL" description:"Project repo URL" required:"false"`
 }
 
 type CmdMergeJSONsResponse struct {
