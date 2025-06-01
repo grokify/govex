@@ -14,14 +14,15 @@ import (
 type CmdSiteWriteHomeOptions struct {
 	ReportRepoURL            string `short:"r" long:"reportRepoURL" description:"Outputfile" required:"true"`
 	RootIndexShieldsMarkdown string `short:"s" long:"shieldsMarkdown" description:"Shields Markdown" required:"false"`
+	RootIndexXLSX            string `short:"x" long:"xlsxOutputFile" description:"Excel output file" required:"false"`
 }
 
-func CmdSiteWriteHomeExec() error {
+func CmdSiteWriteHomeRun() error {
 	opts := CmdSiteWriteHomeOptions{}
 	if _, err := flags.Parse(&opts); err != nil {
 		return err
 	} else {
-		return opts.Exec()
+		return opts.Run()
 	}
 }
 
@@ -30,19 +31,19 @@ func (opts *CmdSiteWriteHomeOptions) ParseCLI() error {
 	return err
 }
 
-func (opts *CmdSiteWriteHomeOptions) Exec() error {
+func (opts *CmdSiteWriteHomeOptions) Run() error {
 	sw := DefaultSiteWriterHome(opts.ReportRepoURL, opts.RootIndexShieldsMarkdown)
 	return sw.WriteFileHome()
 }
 
-func (opts *CmdSiteWriteHomeOptions) RunCobra(cmd *cobra.Command, args []string) {
-	if err := opts.RunCobraError(cmd, args); err != nil {
+func (opts *CmdSiteWriteHomeOptions) RunCobraFunc(cmd *cobra.Command, args []string) {
+	if err := opts.RunCobra(cmd, args); err != nil {
 		slog.Error("error running cobra command", "errorMessage", err.Error())
 		os.Exit(1)
 	}
 }
 
-func (opts *CmdSiteWriteHomeOptions) RunCobraError(cmd *cobra.Command, args []string) error {
+func (opts *CmdSiteWriteHomeOptions) RunCobra(cmd *cobra.Command, args []string) error {
 	if cmd == nil {
 		return errors.New("cobra.Command cannot be nil")
 	}
@@ -56,8 +57,7 @@ func (opts *CmdSiteWriteHomeOptions) RunCobraError(cmd *cobra.Command, args []st
 	} else {
 		opts.RootIndexShieldsMarkdown = val
 	}
-
-	return opts.Exec()
+	return opts.Run()
 }
 
 func CmdSiteWriteHomeCobra(cmdName string) (*cobra.Command, error) {
@@ -70,7 +70,7 @@ func CmdSiteWriteHomeCobra(cmdName string) (*cobra.Command, error) {
 		Use:   cmdName,
 		Short: "Write status site homepage",
 		Long:  `Updates the site homepage by walking the folder structure for report updates.`,
-		Run:   opts.RunCobra,
+		Run:   opts.RunCobraFunc,
 	}
 
 	if err := cobrautil.AddFlags(homepageCmd, opts); err != nil {

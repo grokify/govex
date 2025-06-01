@@ -34,14 +34,14 @@ type CmdMergeJSONsResponse struct {
 	ReportRepoUpdated    bool
 }
 
-func CmdMergeJSONsExec() (*CmdMergeJSONsResponse, error) {
+func CmdMergeJSONsRun() (*CmdMergeJSONsResponse, error) {
 	opts := CmdMergeJSONsOptions{}
 
 	_, err := flags.Parse(&opts)
 	if err != nil {
 		return nil, err
 	}
-	return opts.Exec()
+	return opts.Run()
 }
 
 func (opts *CmdMergeJSONsOptions) ParseCLI() error {
@@ -49,14 +49,14 @@ func (opts *CmdMergeJSONsOptions) ParseCLI() error {
 	return err
 }
 
-func (opts *CmdMergeJSONsOptions) RunCobra(cmd *cobra.Command, args []string) {
-	if err := opts.RunCobraError(cmd, args); err != nil {
+func (opts *CmdMergeJSONsOptions) RunCobraFunc(cmd *cobra.Command, args []string) {
+	if err := opts.RunCobra(cmd, args); err != nil {
 		slog.Error("error running cobra command", "errorMessage", err.Error())
 		os.Exit(1)
 	}
 }
 
-func (opts *CmdMergeJSONsOptions) RunCobraError(cmd *cobra.Command, args []string) error {
+func (opts *CmdMergeJSONsOptions) RunCobra(cmd *cobra.Command, args []string) error {
 	if cmd == nil {
 		return errors.New("cobra.Command cannot be nil")
 	}
@@ -105,12 +105,11 @@ func (opts *CmdMergeJSONsOptions) RunCobraError(cmd *cobra.Command, args []strin
 	} else {
 		opts.ProjectRepoURL = val
 	}
-
-	_, err := opts.Exec()
+	_, err := opts.Run()
 	return err
 }
 
-func (opts *CmdMergeJSONsOptions) Exec() (*CmdMergeJSONsResponse, error) {
+func (opts *CmdMergeJSONsOptions) Run() (*CmdMergeJSONsResponse, error) {
 	resp := CmdMergeJSONsResponse{
 		RequestOptions: opts,
 		Sheet1Len:      -1,
@@ -202,7 +201,7 @@ func CmdMergeJSONsCobra(cmdName string) (*cobra.Command, error) {
 		Use:   cmdName,
 		Short: "Merge GoVex files",
 		Long:  `Merge GoVex JSON data files.`,
-		Run:   opts.RunCobra,
+		Run:   opts.RunCobraFunc,
 	}
 
 	if err := cobrautil.AddFlags(mergeCmd, opts); err != nil {
