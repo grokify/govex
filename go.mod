@@ -4,10 +4,10 @@ go 1.24
 
 require (
 	github.com/essentialkaos/go-badge v1.4.2
-	github.com/grokify/gocharts/v2 v2.24.8
-	github.com/grokify/google-fonts v0.1.4
-	github.com/grokify/mogo v0.70.0
-	github.com/grokify/sogo v0.11.1
+	github.com/grokify/gocharts/v2 v2.24.9
+	github.com/grokify/google-fonts v0.1.5
+	github.com/grokify/mogo v0.70.1
+	github.com/grokify/sogo v0.11.2
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/pandatix/go-cvss v0.6.2
 	github.com/quay/claircore/toolkit v1.2.4
@@ -27,7 +27,7 @@ require (
 	github.com/mattn/go-runewidth v0.0.16 // indirect
 	github.com/olekukonko/errors v1.1.0 // indirect
 	github.com/olekukonko/ll v0.0.8 // indirect
-	github.com/olekukonko/tablewriter v1.0.6 // indirect
+	github.com/olekukonko/tablewriter v1.0.7 // indirect
 	github.com/richardlehane/mscfb v1.0.4 // indirect
 	github.com/richardlehane/msoleps v1.0.4 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
@@ -39,7 +39,7 @@ require (
 	github.com/xuri/excelize/v2 v2.9.1 // indirect
 	github.com/xuri/nfp v0.0.1 // indirect
 	golang.org/x/crypto v0.38.0 // indirect
-	golang.org/x/exp v0.0.0-20250506013437-ce4c2cf36ca6 // indirect
+	golang.org/x/exp v0.0.0-20250531010427-b6e5de432a8b // indirect
 	golang.org/x/image v0.27.0 // indirect
 	golang.org/x/net v0.40.0 // indirect
 	golang.org/x/sys v0.33.0 // indirect
