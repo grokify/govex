@@ -6,7 +6,7 @@ require (
 	github.com/essentialkaos/go-badge v1.4.2
 	github.com/grokify/gocharts/v2 v2.24.8
 	github.com/grokify/google-fonts v0.1.4
-	github.com/grokify/mogo v0.69.3
+	github.com/grokify/mogo v0.70.0
 	github.com/grokify/sogo v0.11.1
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/pandatix/go-cvss v0.6.2
@@ -25,7 +25,6 @@ require (
 	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mattn/go-runewidth v0.0.16 // indirect
-	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 // indirect
 	github.com/olekukonko/errors v1.1.0 // indirect
 	github.com/olekukonko/ll v0.0.8 // indirect
 	github.com/olekukonko/tablewriter v1.0.6 // indirect
@@ -33,7 +32,6 @@ require (
 	github.com/richardlehane/msoleps v1.0.4 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/spf13/pflag v1.0.6 // indirect
-	github.com/stretchr/testify v1.10.0 // indirect
 	github.com/tiendc/go-deepcopy v1.6.0 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/quicktemplate v1.8.0 // indirect
