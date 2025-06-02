@@ -7,7 +7,7 @@ require (
 	github.com/grokify/gocharts/v2 v2.24.9
 	github.com/grokify/google-fonts v0.1.5
 	github.com/grokify/mogo v0.70.1
-	github.com/grokify/sogo v0.11.3
+	github.com/grokify/sogo v0.11.4
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/pandatix/go-cvss v0.6.2
 	github.com/quay/claircore/toolkit v1.2.4
