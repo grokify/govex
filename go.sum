@@ -14,8 +14,8 @@ github.com/grokify/google-fonts v0.1.5 h1:jaDvqwkUkM8psJNak7bWfqPELV2fOYSpfpSfj7
 github.com/grokify/google-fonts v0.1.5/go.mod h1:kh9Qb2rN4r6ayC4l8id64HqsXpWxy0I/c4+YSUzt4Jg=
 github.com/grokify/mogo v0.70.1 h1:Ri0hZtS+y7JIw2s1kLSarPsq+yrVFR+LSU/dE0GbIJg=
 github.com/grokify/mogo v0.70.1/go.mod h1:GAYJEvaF1PgdCTZ9/G0/vC7N4J117+DoB+xnSX1faYw=
-github.com/grokify/sogo v0.11.2 h1:eOJAxDslZO3yz9tvQ90PPoBnWkbhpcLpXllnacq/pf4=
-github.com/grokify/sogo v0.11.2/go.mod h1:0v4eoHmMS7aH1FtIqSXdfN1iC8HEpWfdp+bStqV6xpo=
+github.com/grokify/sogo v0.11.3 h1:xTUujclzEMdl1baYGqClteS460dF7EdxS2aeNhWqByo=
+github.com/grokify/sogo v0.11.3/go.mod h1:AZmmnRNDGRSANgzAsr4LUWXYtT0FR3R+ui/MUs1bXLg=
 github.com/huandu/xstrings v1.5.0 h1:2ag3IFq9ZDANvthTwTiqSSZLjDc+BedvHPAp5tJy2TI=
 github.com/huandu/xstrings v1.5.0/go.mod h1:y5/lhBue+AyNmUVz9RLU9xbLR0o4KIIExikq4ovT0aE=
 github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=

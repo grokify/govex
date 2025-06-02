@@ -73,7 +73,7 @@ func CmdSiteWriteHomeCobra(cmdName string) (*cobra.Command, error) {
 		Run:   opts.RunCobraFunc,
 	}
 
-	if err := cobrautil.AddFlags(homepageCmd, opts); err != nil {
+	if err := cobrautil.GoflagsToCobraConfig(homepageCmd, opts); err != nil {
 		return nil, err
 	} else {
 		return homepageCmd, nil

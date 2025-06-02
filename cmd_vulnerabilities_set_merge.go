@@ -204,7 +204,7 @@ func CmdMergeJSONsCobra(cmdName string) (*cobra.Command, error) {
 		Run:   opts.RunCobraFunc,
 	}
 
-	if err := cobrautil.AddFlags(mergeCmd, opts); err != nil {
+	if err := cobrautil.GoflagsToCobraConfig(mergeCmd, opts); err != nil {
 		return nil, err
 	} else {
 		return mergeCmd, nil
