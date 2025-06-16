@@ -6,7 +6,7 @@ require (
 	github.com/essentialkaos/go-badge v1.4.2
 	github.com/grokify/gocharts/v2 v2.24.11
 	github.com/grokify/google-fonts v0.1.6
-	github.com/grokify/mogo v0.70.5
+	github.com/grokify/mogo v0.70.8
 	github.com/grokify/sogo v0.11.5
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/pandatix/go-cvss v0.6.2
@@ -32,7 +32,7 @@ require (
 	github.com/richardlehane/msoleps v1.0.4 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/spf13/pflag v1.0.6 // indirect
-	github.com/tiendc/go-deepcopy v1.6.0 // indirect
+	github.com/tiendc/go-deepcopy v1.6.1 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/quicktemplate v1.8.0 // indirect
 	github.com/xuri/efp v0.0.1 // indirect
