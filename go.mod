@@ -7,7 +7,7 @@ require (
 	github.com/grokify/gocharts/v2 v2.24.15
 	github.com/grokify/google-fonts v0.1.6
 	github.com/grokify/mogo v0.70.13
-	github.com/grokify/sogo v0.11.7
+	github.com/grokify/sogo v0.11.8
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/pandatix/go-cvss v0.6.2
 	github.com/quay/claircore/toolkit v1.2.4
@@ -31,7 +31,7 @@ require (
 	github.com/richardlehane/mscfb v1.0.4 // indirect
 	github.com/richardlehane/msoleps v1.0.4 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
-	github.com/spf13/pflag v1.0.6 // indirect
+	github.com/spf13/pflag v1.0.7 // indirect
 	github.com/tiendc/go-deepcopy v1.6.1 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/quicktemplate v1.8.0 // indirect
