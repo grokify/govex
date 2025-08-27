@@ -8,7 +8,7 @@ require (
 	github.com/essentialkaos/go-badge v1.4.2
 	github.com/grokify/gocharts/v2 v2.24.18
 	github.com/grokify/google-fonts v0.1.7
-	github.com/grokify/mogo v0.70.18
+	github.com/grokify/mogo v0.70.19
 	github.com/grokify/sogo v0.12.0
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/pandatix/go-cvss v0.6.2
