@@ -13,6 +13,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
+const (
+	paramOutputFileJSON = "outputFile"
+	paramOutputFileXLSX = "xlsxOutputFile"
+	paramOutputFileMKDN = "markdownOutputFile"
+)
+
 type CmdMergeJSONsOptions struct {
 	InputFilename     []string `short:"i" long:"inputFiles" description:"Input filenames to merge" required:"true"`
 	OutputFileJSON    string   `short:"o" long:"outputFile" description:"Outputfile in JSON format" required:"false"`
@@ -23,6 +29,7 @@ type CmdMergeJSONsOptions struct {
 	ProjectName       string   `short:"n" long:"projectName" description:"Project name to use" required:"false"`
 	ProjectRepoPath   string   `short:"p" long:"repoPath" description:"Project repo path" required:"false"`
 	ProjectRepoURL    string   `short:"u" long:"repoURL" description:"Project repo URL" required:"false"`
+	FuncUpdateVulns   func(v Vulnerability) Vulnerability
 }
 
 type CmdMergeJSONsResponse struct {
@@ -65,17 +72,17 @@ func (opts *CmdMergeJSONsOptions) RunCobra(cmd *cobra.Command, args []string) er
 	} else {
 		opts.InputFilename = vals
 	}
-	if val, err := cmd.Flags().GetString("outputFile"); err != nil {
+	if val, err := cmd.Flags().GetString(paramOutputFileJSON); err != nil {
 		return err
 	} else {
 		opts.OutputFileJSON = val
 	}
-	if val, err := cmd.Flags().GetString("xlsxOutputFile"); err != nil {
+	if val, err := cmd.Flags().GetString(paramOutputFileXLSX); err != nil {
 		return err
 	} else {
 		opts.OutputFileXLSX = val
 	}
-	if val, err := cmd.Flags().GetString("markdownOutputFile"); err != nil {
+	if val, err := cmd.Flags().GetString(paramOutputFileMKDN); err != nil {
 		return err
 	} else {
 		opts.OutputFileMKDN = val
@@ -131,6 +138,7 @@ func (opts *CmdMergeJSONsOptions) Run() (*CmdMergeJSONsResponse, error) {
 	if strings.TrimSpace(opts.ProjectName) != "" {
 		vs.Name = opts.ProjectName
 	}
+	vs.DateTime = pointer.Pointer(time.Now())
 
 	if vlns, err := vs.Vulnerabilities.Dedupe(); err != nil {
 		return nil, err
@@ -138,12 +146,13 @@ func (opts *CmdMergeJSONsOptions) Run() (*CmdMergeJSONsResponse, error) {
 		vs.Vulnerabilities = vlns
 	}
 
-	if opts.ProjectName != "" {
-		vs.Name = opts.ProjectName
-	}
-	vs.DateTime = pointer.Pointer(time.Now())
-
 	resp.SeverityCountsString = vs.Vulnerabilities.SeverityCountsString(" ")
+
+	if opts.FuncUpdateVulns != nil {
+		for i, v := range vs.Vulnerabilities {
+			vs.Vulnerabilities[i] = opts.FuncUpdateVulns(v)
+		}
+	}
 
 	if opts.OutputFileJSON != "" {
 		err := vs.WriteFileJSON(opts.OutputFileJSON, "", "  ", 0600)
@@ -209,4 +218,35 @@ func CmdMergeJSONsCobra(cmdName string) (*cobra.Command, error) {
 	} else {
 		return mergeCmd, nil
 	}
+}
+
+func UpdateFilesVulnerabilitiesSetCobraCmd(cmd *cobra.Command, updateFunc func(v Vulnerability) Vulnerability) (*CmdMergeJSONsResponse, error) {
+	if cmd == nil {
+		return nil, errors.New("cobra.Command cannot be nil")
+	}
+	flgs := cmd.Flags()
+	fJSON, err := flgs.GetString(paramOutputFileJSON)
+	if err != nil {
+		return nil, err
+	}
+	fXLSX, err := flgs.GetString(paramOutputFileXLSX)
+	if err != nil {
+		fXLSX = ""
+	}
+	fMKDN, err := flgs.GetString(paramOutputFileMKDN)
+	if err != nil {
+		fXLSX = ""
+	}
+	return UpdateFilesVulnerabilitiesSet(fJSON, fXLSX, fMKDN, updateFunc)
+}
+
+// UpdateFilesVulnerabilitiesSet updates the fuile using the supplied `modFn` func.
+func UpdateFilesVulnerabilitiesSet(vsetFileJSON, vsetFileXLSX, vsetFileMKDN string, updateFunc func(v Vulnerability) Vulnerability) (*CmdMergeJSONsResponse, error) {
+	opts := CmdMergeJSONsOptions{
+		InputFilename:   []string{vsetFileJSON},
+		OutputFileJSON:  vsetFileJSON,
+		OutputFileXLSX:  vsetFileXLSX,
+		OutputFileMKDN:  vsetFileMKDN,
+		FuncUpdateVulns: updateFunc}
+	return opts.Run()
 }
