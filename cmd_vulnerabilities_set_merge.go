@@ -20,16 +20,16 @@ const (
 )
 
 type CmdMergeJSONsOptions struct {
-	InputFilename     []string `short:"i" long:"inputFiles" description:"Input filenames to merge" required:"true"`
-	OutputFileJSON    string   `short:"o" long:"outputFile" description:"Outputfile in JSON format" required:"false"`
-	OutputFileXLSX    string   `short:"x" long:"xlsxOutputFile" description:"Outputfile in XLSX format" required:"false"`
-	OutputFileMKDN    string   `short:"m" long:"markdownOutputFile" description:"Outputfile in Markdown format" required:"true"`
-	SeveritySplitXLSX string   `short:"s" long:"severityFilterCutoff" description:"Outputfile" required:"false"`
-	ReportRepoURL     string   `short:"r" long:"reportRepoURL" description:"Outputfile" required:"false"`
-	ProjectName       string   `short:"n" long:"projectName" description:"Project name to use" required:"false"`
-	ProjectRepoPath   string   `short:"p" long:"repoPath" description:"Project repo path" required:"false"`
-	ProjectRepoURL    string   `short:"u" long:"repoURL" description:"Project repo URL" required:"false"`
-	FuncUpdateVulns   func(v Vulnerability) Vulnerability
+	InputFilename     []string                            `short:"i" long:"inputFiles" description:"Input filenames to merge" required:"true"`
+	OutputFileJSON    string                              `short:"o" long:"outputFile" description:"Outputfile in JSON format" required:"false"`
+	OutputFileXLSX    string                              `short:"x" long:"xlsxOutputFile" description:"Outputfile in XLSX format" required:"false"`
+	OutputFileMKDN    string                              `short:"m" long:"markdownOutputFile" description:"Outputfile in Markdown format" required:"true"`
+	SeveritySplitXLSX string                              `short:"s" long:"severityFilterCutoff" description:"Outputfile" required:"false"`
+	ReportRepoURL     string                              `short:"r" long:"reportRepoURL" description:"Outputfile" required:"false"`
+	ProjectName       string                              `short:"n" long:"projectName" description:"Project name to use" required:"false"`
+	ProjectRepoPath   string                              `short:"p" long:"repoPath" description:"Project repo path" required:"false"`
+	ProjectRepoURL    string                              `short:"u" long:"repoURL" description:"Project repo URL" required:"false"`
+	FuncUpdateVulns   func(v Vulnerability) Vulnerability `json:"-"`
 }
 
 type CmdMergeJSONsResponse struct {
@@ -52,7 +52,7 @@ func CmdMergeJSONsRun() (*CmdMergeJSONsResponse, error) {
 }
 
 func (opts *CmdMergeJSONsOptions) ParseCLI() error {
-	_, err := flags.Parse(&opts)
+	_, err := flags.Parse(opts)
 	return err
 }
 
@@ -146,13 +146,15 @@ func (opts *CmdMergeJSONsOptions) Run() (*CmdMergeJSONsResponse, error) {
 		vs.Vulnerabilities = vlns
 	}
 
-	resp.SeverityCountsString = vs.Vulnerabilities.SeverityCountsString(" ")
-
+	// modify vulns before writing if func provided.
 	if opts.FuncUpdateVulns != nil {
 		for i, v := range vs.Vulnerabilities {
 			vs.Vulnerabilities[i] = opts.FuncUpdateVulns(v)
 		}
 	}
+
+	// cache severities string: Must be done after modifiations.
+	resp.SeverityCountsString = vs.Vulnerabilities.SeverityCountsString(" ")
 
 	if opts.OutputFileJSON != "" {
 		err := vs.WriteFileJSON(opts.OutputFileJSON, "", "  ", 0600)
