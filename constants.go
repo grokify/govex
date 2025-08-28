@@ -27,6 +27,9 @@ const (
 	P3DoLater = "P3 - Do Later"
 
 	ReportName = "AppSec Scan Report"
+
+	CmdMerge             = "merge"
+	CmdWriteSiteHomepage = "writesitehomepage"
 )
 
 // CategoriesOrdered returns a set of categories ordered by SDLC position.
