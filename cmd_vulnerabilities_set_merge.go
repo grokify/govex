@@ -205,7 +205,7 @@ func (opts *CmdMergeJSONsOptions) Run() (*CmdMergeJSONsResponse, error) {
 func CmdMergeJSONsCobra(cmdName string) (*cobra.Command, error) {
 	cmdName = strings.TrimSpace(cmdName)
 	if cmdName == "" {
-		cmdName = "merge"
+		cmdName = CmdMerge
 	}
 	opts := &CmdMergeJSONsOptions{}
 	var mergeCmd = &cobra.Command{

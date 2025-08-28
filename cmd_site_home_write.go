@@ -63,7 +63,7 @@ func (opts *CmdSiteWriteHomeOptions) RunCobra(cmd *cobra.Command, args []string)
 func CmdSiteWriteHomeCobra(cmdName string) (*cobra.Command, error) {
 	cmdName = strings.TrimSpace(cmdName)
 	if cmdName == "" {
-		cmdName = "writesitehomepage"
+		cmdName = CmdWriteSiteHomepage
 	}
 	opts := &CmdSiteWriteHomeOptions{}
 	var homepageCmd = &cobra.Command{
