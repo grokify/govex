@@ -6,10 +6,10 @@ toolchain go1.24.5
 
 require (
 	github.com/essentialkaos/go-badge v1.4.2
-	github.com/grokify/gocharts/v2 v2.24.19
+	github.com/grokify/gocharts/v2 v2.24.20
 	github.com/grokify/google-fonts v0.1.7
-	github.com/grokify/mogo v0.70.20
-	github.com/grokify/sogo v0.12.1
+	github.com/grokify/mogo v0.70.21
+	github.com/grokify/sogo v0.12.2
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/pandatix/go-cvss v0.6.2
 	github.com/quay/claircore/toolkit v1.2.4
@@ -33,7 +33,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/olekukonko/cat v0.0.0-20250817074551-3280053e4e00 // indirect
 	github.com/olekukonko/errors v1.1.0 // indirect
-	github.com/olekukonko/ll v0.1.0 // indirect
+	github.com/olekukonko/ll v0.1.1 // indirect
 	github.com/olekukonko/tablewriter v1.0.9 // indirect
 	github.com/richardlehane/mscfb v1.0.4 // indirect
 	github.com/richardlehane/msoleps v1.0.4 // indirect
