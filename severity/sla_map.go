@@ -25,14 +25,18 @@ func (slaMap SLAMap) SeverityDuration(severity string) time.Duration {
 	}
 }
 
-func (slaMap SLAMap) SLAStatusOverdue(sev string, age time.Duration) (bool, error) {
+func (slaMap SLAMap) IsOverdue(sev string, age time.Duration) (overdueDuration time.Duration, isOverdue bool, err error) {
 	if severityParsed, _, err := ParseSeverity(sev); err != nil {
-		return false, err
+		return 0, false, err
 	} else if slaDays, ok := slaMap[severityParsed]; !ok {
-		return false, fmt.Errorf("severity not found in SLA map (%s)", sev)
+		return 0, false, fmt.Errorf("severity not found in SLA map (%s)", sev)
 	} else {
-		ageDays := timeutil.DurationDaysInt64(age)
-		return ageDays > slaDays, nil
+		slaDuration := timeutil.Day * time.Duration(slaDays)
+		if age > slaDuration {
+			return age - slaDuration, true, nil
+		} else {
+			return 0, false, nil
+		}
 	}
 }
 
@@ -48,8 +52,23 @@ func (slaMap SLAMap) DueDate(sev string, startTime time.Time) (*time.Time, error
 	}
 }
 
+/*
+func (slaMap SLAMap) SLAStatusOverdue(sev string, age time.Duration) (bool, error) {
+	if severityParsed, _, err := ParseSeverity(sev); err != nil {
+		return false, err
+	} else if slaDays, ok := slaMap[severityParsed]; !ok {
+		return false, fmt.Errorf("severity not found in SLA map (%s)", sev)
+	} else {
+		ageDays := timeutil.DurationDaysInt64(age)
+		return ageDays > slaDays, nil
+	}
+}
+*/
+
 func (slaMap SLAMap) slaStatusOverdueTimes(severity string, startTime, evalTime time.Time) (bool, error) {
-	return slaMap.SLAStatusOverdue(severity, evalTime.Sub(startTime))
+	// return slaMap.SLAStatusOverdue(severity, evalTime.Sub(startTime))
+	_, isOverdue, err := slaMap.IsOverdue(severity, evalTime.Sub(startTime))
+	return isOverdue, err
 }
 
 func (slaMap SLAMap) SLAStatusTimesString(severity string, startTime *time.Time, evalTime time.Time, unknownString string) (string, error) {
