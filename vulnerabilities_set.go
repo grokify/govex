@@ -60,6 +60,36 @@ func (vs *VulnerabilitiesSet) SetRepoURL(s string) {
 	}
 }
 
+func (vs *VulnerabilitiesSet) SeverityStatusSetsByCategory(slaRefTime time.Time) (*SeverityStatusSets, error) {
+	out := NewSeverityStatusSets()
+	if vs.VulnValueOpts != nil && vs.VulnValueOpts.SLAOptions != nil {
+		out.SLAMap = vs.VulnValueOpts.SLAOptions.SLAMap
+	}
+	for _, v := range vs.Vulnerabilities {
+		ageDur := v.Age(slaRefTime, 0)
+		if err := out.Add(v.Category, v.Severity, ageDur); err != nil {
+			return nil, err
+		}
+	}
+	return out, nil
+}
+
+func (vs *VulnerabilitiesSet) SeverityStatusSetsByTag(slaRefTime time.Time) (*SeverityStatusSets, error) {
+	out := NewSeverityStatusSets()
+	if vs.VulnValueOpts != nil && vs.VulnValueOpts.SLAOptions != nil {
+		out.SLAMap = vs.VulnValueOpts.SLAOptions.SLAMap
+	}
+	for _, v := range vs.Vulnerabilities {
+		ageDur := v.Age(slaRefTime, 0)
+		for _, tag := range v.Tags {
+			if err := out.Add(tag, v.Severity, ageDur); err != nil {
+				return nil, err
+			}
+		}
+	}
+	return out, nil
+}
+
 func (vs *VulnerabilitiesSet) WriteFileJSON(filename string, prefix, indent string, perm os.FileMode) error {
 	return jsonutil.MarshalFile(filename, vs, prefix, indent, perm)
 }
