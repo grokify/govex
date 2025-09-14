@@ -5,6 +5,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/grokify/govex/severity"
 	"github.com/grokify/mogo/encoding/jsonutil"
 )
 
@@ -60,8 +61,8 @@ func (vs *VulnerabilitiesSet) SetRepoURL(s string) {
 	}
 }
 
-func (vs *VulnerabilitiesSet) SeverityStatusSetsByCategory(slaRefTime time.Time) (*SeverityStatusSets, error) {
-	out := NewSeverityStatusSets()
+func (vs *VulnerabilitiesSet) SeverityStatusSetsByCategory(slaRefTime time.Time) (*severity.SeverityStatusSets, error) {
+	out := severity.NewSeverityStatusSets()
 	if vs.VulnValueOpts != nil && vs.VulnValueOpts.SLAOptions != nil {
 		out.SLAMap = vs.VulnValueOpts.SLAOptions.SLAMap
 	}
@@ -74,8 +75,8 @@ func (vs *VulnerabilitiesSet) SeverityStatusSetsByCategory(slaRefTime time.Time)
 	return out, nil
 }
 
-func (vs *VulnerabilitiesSet) SeverityStatusSetsByTag(slaRefTime time.Time) (*SeverityStatusSets, error) {
-	out := NewSeverityStatusSets()
+func (vs *VulnerabilitiesSet) SeverityStatusSetsByTag(slaRefTime time.Time) (*severity.SeverityStatusSets, error) {
+	out := severity.NewSeverityStatusSets()
 	if vs.VulnValueOpts != nil && vs.VulnValueOpts.SLAOptions != nil {
 		out.SLAMap = vs.VulnValueOpts.SLAOptions.SLAMap
 	}
