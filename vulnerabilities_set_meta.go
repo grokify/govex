@@ -68,6 +68,6 @@ func (vs *VulnerabilitiesSet) Meta() VulnerabilitiesSetMeta {
 		DateTime: vs.DateTime,
 	}
 	sCounts := vs.Vulnerabilities.SeverityHistogram()
-	meta.SeverityCounts = sCounts.Bins
+	meta.SeverityCounts = sCounts.Items
 	return meta
 }
