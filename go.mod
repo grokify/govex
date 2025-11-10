@@ -6,9 +6,9 @@ toolchain go1.24.5
 
 require (
 	github.com/essentialkaos/go-badge v1.4.2
-	github.com/grokify/gocharts/v2 v2.26.1
+	github.com/grokify/gocharts/v2 v2.26.2
 	github.com/grokify/google-fonts v0.1.7
-	github.com/grokify/mogo v0.71.7
+	github.com/grokify/mogo v0.71.8
 	github.com/grokify/sogo v0.12.9
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/pandatix/go-cvss v0.6.2
@@ -50,7 +50,7 @@ require (
 	golang.org/x/exp v0.0.0-20251023183803-a4bb9ffd2546 // indirect
 	golang.org/x/image v0.32.0 // indirect
 	golang.org/x/net v0.46.0 // indirect
-	golang.org/x/sys v0.37.0 // indirect
+	golang.org/x/sys v0.38.0 // indirect
 	golang.org/x/text v0.30.0 // indirect
 	gonum.org/v1/gonum v0.16.0 // indirect
 )
