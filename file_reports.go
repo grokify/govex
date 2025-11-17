@@ -17,10 +17,10 @@ func NewFileInfoSetReports(set *FileInfoSet) FileInfoSetReports {
 }
 
 func (rpts *FileInfoSetReports) TableSet() (*table.TableSet, error) {
-	tbl1 := rpts.FindingCountFileDistribution("Distribution")
-	tbl2 := rpts.TableFilepathCounts("Files")
 	ts := table.NewTableSet("Vex File Info")
-	err := ts.Add(tbl1, tbl2)
+	err := ts.Add(
+		rpts.FindingCountFileDistribution("Distribution"),
+		rpts.TableFilepathCounts("Files"))
 	return ts, err
 }
 
