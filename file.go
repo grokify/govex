@@ -16,11 +16,14 @@ import (
 )
 
 type FileInfoSet struct {
-	Items map[string]FileInfo `json:"items,omitempty"` // key is full filepath (directory + filename)
+	Items   map[string]FileInfo `json:"items,omitempty"` // key is full filepath (directory + filename)
+	Reports FileInfoSetReports
 }
 
 func NewFileInfoset() FileInfoSet {
-	return FileInfoSet{Items: map[string]FileInfo{}}
+	set := FileInfoSet{Items: map[string]FileInfo{}}
+	set.Reports = NewFileInfoSetReports(&set)
+	return set
 }
 
 func NewFileInfosetFromFilepathStats(filename string) (FileInfoSet, error) {
@@ -256,6 +259,7 @@ type FileInfo struct {
 	Filename     *string `json:"filename,omitempty"`
 	FindingCount *int    `json:"findingCount"`
 	WorkItemID   *string `json:"workItemID,omitempty"`
+	WorkItemURL  *string `json:"workItemURL,omitempty"`
 }
 
 func (fi FileInfo) Filepath() string {
