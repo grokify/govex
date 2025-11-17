@@ -171,8 +171,7 @@ func (set *FileInfoSet) FilepathStats() FilepathStats {
 }
 
 func (set *FileInfoSet) FindingCountForFilename(filename string) (*int, error) {
-	fi, err := set.FileInfoForFilename(filename)
-	if err != nil {
+	if fi, err := set.FileInfoForFilename(filename); err != nil {
 		return nil, err
 	} else if fi == nil || fi.FindingCount == nil {
 		return nil, nil
@@ -182,8 +181,7 @@ func (set *FileInfoSet) FindingCountForFilename(filename string) (*int, error) {
 }
 
 func (set *FileInfoSet) FileInfoForFilename(filename string) (*FileInfo, error) {
-	fps := set.FilepathsForFilename(filename)
-	if len(fps) == 0 {
+	if fps := set.FilepathsForFilename(filename); len(fps) == 0 {
 		return nil, nil
 	} else if len(fps) == 1 {
 		if fi, ok := set.Items[fps[0]]; ok {
