@@ -9,13 +9,13 @@ import (
 type SLAOptions struct {
 	// SLAStartDateFixed is used if there is a fixed starting date for severity findings.
 	SLAStartDateFixed *time.Time
-	SLAMap            *SLAMap
+	SLAPolicy         *SLAPolicy
 }
 
 func (opts SLAOptions) DueDate(sev string, startTimeSoft, startTimeHard *time.Time) (*time.Time, error) {
-	if opts.SLAMap == nil {
+	if opts.SLAPolicy == nil {
 		return nil, nil
-	} else if slaDur := opts.SLAMap.SeverityDuration(sev); slaDur == 0 {
+	} else if slaDur := opts.SLAPolicy.SeveritySLADuration(sev); slaDur == 0 {
 		return nil, nil
 	} else if startTimeHard != nil {
 		return pointer.Pointer(startTimeHard.Add(slaDur)), nil

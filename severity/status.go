@@ -17,7 +17,7 @@ const (
 
 type SeverityStatusSets struct {
 	AllProperty string
-	SLAMap      *SLAMap
+	SLAPolicy   *SLAPolicy
 	Data        map[string]SeverityStatusSet
 }
 
@@ -29,10 +29,10 @@ func NewSeverityStatusSets() *SeverityStatusSets {
 }
 
 func (sets *SeverityStatusSets) Add(category, sev string, age time.Duration) error {
-	if sets.SLAMap == nil {
+	if sets.SLAPolicy == nil {
 		return errors.New("slaMap cannot be nil")
 	}
-	overdueDuration, _, err := sets.SLAMap.IsOverdue(sev, age)
+	overdueDuration, _, err := sets.SLAPolicy.IsOverdue(sev, age)
 	if err != nil {
 		return err
 	}
