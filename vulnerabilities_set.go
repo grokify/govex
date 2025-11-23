@@ -2,20 +2,23 @@ package govex
 
 import (
 	"os"
+	"slices"
 	"strings"
 	"time"
 
 	"github.com/grokify/govex/severity"
 	"github.com/grokify/mogo/encoding/jsonutil"
+	"github.com/grokify/mogo/pointer"
 )
 
 type VulnerabilitiesSet struct {
-	Name            string          `json:"name"`
-	RepoPath        string          `json:"repoPath"`
-	RepoURL         string          `json:"repoURL"`
-	DateTime        *time.Time      `json:"dateTime"`
-	VulnValueOpts   *ValueOptions   `json:"vulnValueOpts"`
-	Vulnerabilities Vulnerabilities `json:"vulnerabilities"`
+	Name            string              `json:"name"`
+	RepoPath        string              `json:"repoPath"`
+	RepoURL         string              `json:"repoURL"`
+	DateTime        *time.Time          `json:"dateTime"`
+	SLAPolicy       *severity.SLAPolicy `json:"slaPolicy"`
+	VulnValueOpts   *ValueOptions       `json:"vulnValueOpts"`
+	Vulnerabilities Vulnerabilities     `json:"vulnerabilities"`
 }
 
 func NewVulnerabilitiesSet() *VulnerabilitiesSet {
@@ -52,6 +55,50 @@ func ReadFilesVulnerabilitiesSet(filenames ...string) (*VulnerabilitiesSet, erro
 	return &set, nil
 }
 
+func (vs *VulnerabilitiesSet) FilterModule(modulesIncl []string) *VulnerabilitiesSet {
+	out := NewVulnerabilitiesSet()
+	out.Name = vs.Name
+	out.RepoPath = vs.RepoPath
+	out.RepoURL = vs.RepoURL
+	if vs.DateTime != nil {
+		out.DateTime = pointer.Clone(vs.DateTime)
+	}
+	if vs.SLAPolicy != nil {
+		out.SLAPolicy = pointer.Clone(vs.SLAPolicy)
+	}
+	if vs.VulnValueOpts != nil {
+		out.VulnValueOpts = pointer.Clone(vs.VulnValueOpts)
+	}
+	for _, vn := range vs.Vulnerabilities {
+		if slices.Contains(modulesIncl, vn.Module) {
+			out.Vulnerabilities = append(out.Vulnerabilities, vn)
+		}
+	}
+	return out
+}
+
+func (vs *VulnerabilitiesSet) FilterSeverity(sevsIncl []string) *VulnerabilitiesSet {
+	out := NewVulnerabilitiesSet()
+	out.Name = vs.Name
+	out.RepoPath = vs.RepoPath
+	out.RepoURL = vs.RepoURL
+	if vs.DateTime != nil {
+		out.DateTime = pointer.Clone(vs.DateTime)
+	}
+	if vs.SLAPolicy != nil {
+		out.SLAPolicy = pointer.Clone(vs.SLAPolicy)
+	}
+	if vs.VulnValueOpts != nil {
+		out.VulnValueOpts = pointer.Clone(vs.VulnValueOpts)
+	}
+	for _, vn := range vs.Vulnerabilities {
+		if slices.Contains(sevsIncl, vn.Severity) {
+			out.Vulnerabilities = append(out.Vulnerabilities, vn)
+		}
+	}
+	return out
+}
+
 func (vs *VulnerabilitiesSet) SetRepoURL(s string) {
 	vs.RepoURL = strings.TrimSuffix(s, ".git")
 	if strings.TrimSpace(vs.RepoPath) == "" {
@@ -64,7 +111,7 @@ func (vs *VulnerabilitiesSet) SetRepoURL(s string) {
 func (vs *VulnerabilitiesSet) SeverityStatusSetsByCategory(slaRefTime time.Time) (*severity.SeverityStatusSets, error) {
 	out := severity.NewSeverityStatusSets()
 	if vs.VulnValueOpts != nil && vs.VulnValueOpts.SLAOptions != nil {
-		out.SLAMap = vs.VulnValueOpts.SLAOptions.SLAMap
+		out.SLAPolicy = vs.VulnValueOpts.SLAOptions.SLAPolicy
 	}
 	for _, v := range vs.Vulnerabilities {
 		ageDur := v.Age(slaRefTime, 0)
@@ -78,7 +125,7 @@ func (vs *VulnerabilitiesSet) SeverityStatusSetsByCategory(slaRefTime time.Time)
 func (vs *VulnerabilitiesSet) SeverityStatusSetsByTag(slaRefTime time.Time) (*severity.SeverityStatusSets, error) {
 	out := severity.NewSeverityStatusSets()
 	if vs.VulnValueOpts != nil && vs.VulnValueOpts.SLAOptions != nil {
-		out.SLAMap = vs.VulnValueOpts.SLAOptions.SLAMap
+		out.SLAPolicy = vs.VulnValueOpts.SLAOptions.SLAPolicy
 	}
 	for _, v := range vs.Vulnerabilities {
 		ageDur := v.Age(slaRefTime, 0)
