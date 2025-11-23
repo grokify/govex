@@ -111,20 +111,20 @@ func (vs *Vulnerabilities) FilterSeveritiesLower(sev string, incl bool) (Vulnera
 	}
 }
 
-func (vs *Vulnerabilities) FilterSLAElapsed(slaMap severity.SLAMap, compTime time.Time) Vulnerabilities {
+func (vs *Vulnerabilities) FilterSLAElapsed(sla severity.SLAPolicy, compTime time.Time) Vulnerabilities {
 	var out Vulnerabilities
 	for _, vn := range *vs {
-		if vn.SLAElapsed(slaMap, compTime) {
+		if vn.SLAElapsed(sla, compTime) {
 			out = append(out, vn)
 		}
 	}
 	return out
 }
 
-func (vs *Vulnerabilities) FilterSLACompliant(slaMap severity.SLAMap, compTime time.Time) Vulnerabilities {
+func (vs *Vulnerabilities) FilterSLACompliant(sla severity.SLAPolicy, compTime time.Time) Vulnerabilities {
 	var out Vulnerabilities
 	for _, vn := range *vs {
-		if vn.SLACompliant(slaMap, compTime) {
+		if vn.SLACompliant(sla, compTime) {
 			out = append(out, vn)
 		}
 	}
