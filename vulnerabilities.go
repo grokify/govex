@@ -138,7 +138,9 @@ func (vs *Vulnerabilities) SeverityStatsSetByModule(slaPolicy severity.SLAPolicy
 		if vn.SLATimeStart == nil {
 			continue
 		} else if vn.SLATimeStart.Before(slaCalcTime) {
-			statsSet.Add(slaPolicy, vn.Module, vn.Severity, slaCalcTime.Sub(*vn.SLATimeStart))
+			if err := statsSet.Add(slaPolicy, vn.Module, vn.Severity, slaCalcTime.Sub(*vn.SLATimeStart)); err != nil {
+				return statsSet, err
+			}
 		}
 	}
 	return statsSet, nil
@@ -155,7 +157,9 @@ func (vs *Vulnerabilities) SeverityStatsSetBySeverity(slaPolicy severity.SLAPoli
 		if vn.SLATimeStart == nil {
 			continue
 		} else if vn.SLATimeStart.Before(slaCalcTime) {
-			statsSet.Add(slaPolicy, vn.Severity, vn.Severity, slaCalcTime.Sub(*vn.SLATimeStart))
+			if err := statsSet.Add(slaPolicy, vn.Severity, vn.Severity, slaCalcTime.Sub(*vn.SLATimeStart)); err != nil {
+				return statsSet, err
+			}
 		}
 	}
 	return statsSet, nil

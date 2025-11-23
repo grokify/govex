@@ -34,8 +34,8 @@ func Report(vs *govex.VulnerabilitiesSet) (string, error) {
 		return "", err
 	}
 
-	lineBreak := "\\"
-	lineBreak = "<br/>\n\n"
+	// lineBreak := "\\"
+	lineBreak := "<br/>\n\n"
 
 	referenceTime := pointer.Dereference(vs.DateTime)
 
@@ -101,7 +101,6 @@ func Report(vs *govex.VulnerabilitiesSet) (string, error) {
 
 	// 2. By Severity
 	{
-
 		for _, sev := range sevs {
 			if _, err := sb.WriteString(
 				fmt.Sprintf("### All %s Findings\n\n", sev)); err != nil {

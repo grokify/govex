@@ -9,7 +9,6 @@ import (
 
 	"github.com/grokify/gocharts/v2/data/table"
 	"github.com/grokify/govex/severity"
-	"github.com/grokify/mogo/fmt/fmtutil"
 	"github.com/grokify/mogo/pointer"
 	"github.com/grokify/mogo/text/markdown"
 )
@@ -47,21 +46,13 @@ func (vs *Vulnerabilities) TableOverdue(opts *ValueOptions, referenceTime time.T
 		if err != nil {
 			return nil, err
 		}
-		//overdueDuration := v.SLAOverdueDuration(sla, referenceTime)
-		//overdueDurationDays := int(overdueDuration / timeutil.Day)
 		t.Rows = append(t.Rows, []string{
 			markdown.Linkify(pointer.Dereference(vn.WorkItemURL), pointer.Dereference(vn.WorkItemID)),
-			strings.Replace(strings.Join(strings.Fields(vn.Name), " "), "|", "-", -1),
-			// strings.Join(strings.Fields(vn.Name), " "),
+			strings.ReplaceAll(strings.Join(strings.Fields(vn.Name), " "), "|", "-"),
 			vn.Severity,
-			strings.Replace(strings.Join(strings.Fields(vn.VersionRemediationTarget), " "), "|", "-", -1),
-			// strings.Join(strings.Fields(vn.VersionRemediationTarget), " "),
+			strings.ReplaceAll(strings.Join(strings.Fields(vn.VersionRemediationTarget), " "), "|", "-"),
 			strconv.Itoa(overdueDurationDays),
 		})
-		if 1 == 0 && pointer.Dereference(vn.WorkItemID) == "FON-19464" {
-			fmtutil.PrintJSON(t.Rows[len(t.Rows)-1])
-			panic("Z")
-		}
 	}
 	return &t, nil
 }
