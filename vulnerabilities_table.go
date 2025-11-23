@@ -3,10 +3,15 @@ package govex
 import (
 	"errors"
 	"fmt"
+	"strconv"
 	"strings"
+	"time"
 
 	"github.com/grokify/gocharts/v2/data/table"
 	"github.com/grokify/govex/severity"
+	"github.com/grokify/mogo/fmt/fmtutil"
+	"github.com/grokify/mogo/pointer"
+	"github.com/grokify/mogo/text/markdown"
 )
 
 func (vs *Vulnerabilities) Table(colDefs table.ColumnDefinitionSet, opts *ValueOptions) (*table.Table, error) {
@@ -14,6 +19,49 @@ func (vs *Vulnerabilities) Table(colDefs table.ColumnDefinitionSet, opts *ValueO
 	t.LoadColumnDefinitionSet(colDefs)
 	for _, v := range *vs {
 		t.Rows = append(t.Rows, v.Values(colDefs.Definitions, opts))
+	}
+	return &t, nil
+}
+
+func (vs *Vulnerabilities) TableOverdue(opts *ValueOptions, referenceTime time.Time) (*table.Table, error) {
+	t := table.NewTable("")
+	t.Columns = []string{
+		"ID",
+		"Name",
+		"Severity",
+		"Target Release",
+		"Overdue Days"}
+	t.FormatMap = map[int]string{
+		0: table.FormatURL,
+		3: table.FormatInt,
+	}
+	var sla severity.SLAPolicy
+	if opts != nil && opts.SLAOptions != nil && opts.SLAOptions.SLAPolicy != nil {
+		sla = *opts.SLAOptions.SLAPolicy
+	} else {
+		return nil, errors.New("sla policy cannot be nil")
+	}
+
+	for _, vn := range *vs {
+		overdueDurationDays, err := sla.OverdueDays(vn.Severity, referenceTime.Sub(pointer.Dereference(vn.SLATimeStart)))
+		if err != nil {
+			return nil, err
+		}
+		//overdueDuration := v.SLAOverdueDuration(sla, referenceTime)
+		//overdueDurationDays := int(overdueDuration / timeutil.Day)
+		t.Rows = append(t.Rows, []string{
+			markdown.Linkify(pointer.Dereference(vn.WorkItemURL), pointer.Dereference(vn.WorkItemID)),
+			strings.Replace(strings.Join(strings.Fields(vn.Name), " "), "|", "-", -1),
+			// strings.Join(strings.Fields(vn.Name), " "),
+			vn.Severity,
+			strings.Replace(strings.Join(strings.Fields(vn.VersionRemediationTarget), " "), "|", "-", -1),
+			// strings.Join(strings.Fields(vn.VersionRemediationTarget), " "),
+			strconv.Itoa(overdueDurationDays),
+		})
+		if 1 == 0 && pointer.Dereference(vn.WorkItemID) == "FON-19464" {
+			fmtutil.PrintJSON(t.Rows[len(t.Rows)-1])
+			panic("Z")
+		}
 	}
 	return &t, nil
 }
