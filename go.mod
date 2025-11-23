@@ -6,9 +6,9 @@ toolchain go1.24.5
 
 require (
 	github.com/essentialkaos/go-badge v1.4.2
-	github.com/grokify/gocharts/v2 v2.26.4
+	github.com/grokify/gocharts/v2 v2.26.5
 	github.com/grokify/google-fonts v0.1.7
-	github.com/grokify/mogo v0.71.9
+	github.com/grokify/mogo v0.71.10
 	github.com/grokify/sogo v0.12.10
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/pandatix/go-cvss v0.6.2
@@ -46,7 +46,7 @@ require (
 	github.com/xuri/efp v0.0.1 // indirect
 	github.com/xuri/excelize/v2 v2.10.0 // indirect
 	github.com/xuri/nfp v0.0.2-0.20250530014748-2ddeb826f9a9 // indirect
-	golang.org/x/crypto v0.44.0 // indirect
+	golang.org/x/crypto v0.45.0 // indirect
 	golang.org/x/exp v0.0.0-20251113190631-e25ba8c21ef6 // indirect
 	golang.org/x/image v0.33.0 // indirect
 	golang.org/x/net v0.47.0 // indirect
