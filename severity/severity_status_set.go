@@ -144,13 +144,16 @@ func NewSeverityStatsSet() SeverityStatsSet {
 	return SeverityStatsSet{Items: map[string]SeverityStats{}}
 }
 
-func (set *SeverityStatsSet) Add(slaPolicy SLAPolicy, key, sev string, age time.Duration) {
+func (set *SeverityStatsSet) Add(slaPolicy SLAPolicy, key, sev string, age time.Duration) error {
 	stats := SeverityStats{}
 	if _, ok := set.Items[key]; ok {
 		stats = set.Items[key]
 	}
-	stats.Add(slaPolicy, sev, age)
+	if err := stats.Add(slaPolicy, sev, age); err != nil {
+		return err
+	}
 	set.Items[key] = stats
+	return nil
 }
 
 func (set *SeverityStatsSet) Sum() SeverityStats {
@@ -163,8 +166,8 @@ func (set *SeverityStatsSet) Sum() SeverityStats {
 
 func (set *SeverityStatsSet) Table() *table.Table {
 	tbl := table.NewTable("")
-	daysOverdueSuffix := " " + DaysOverdue
-	daysOverdueSuffix = ""
+	// daysOverdueSuffix := " " + DaysOverdue
+	daysOverdueSuffix := ""
 	tbl.Columns = []string{
 		"Module",
 		AgeBucketWithinSLA + daysOverdueSuffix,
