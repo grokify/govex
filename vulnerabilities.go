@@ -4,9 +4,12 @@ import (
 	"cmp"
 	"slices"
 	"sort"
+	"strconv"
 	"strings"
+	"time"
 
 	"github.com/grokify/gocharts/v2/data/histogram"
+	"github.com/grokify/gocharts/v2/data/table"
 	"github.com/grokify/mogo/type/maputil"
 	"github.com/grokify/mogo/type/slicesutil"
 	"github.com/grokify/mogo/type/stringsutil"
@@ -58,6 +61,20 @@ func (vs *Vulnerabilities) LenSeverities(severitiesIncl ...string) (int, error) 
 		_, ok := sevMap[vn.Severity]
 		return ok, nil
 	})
+}
+
+func (vs *Vulnerabilities) Modules(dedupe, sortAsc bool) []string {
+	var modules []string
+	for _, vn := range *vs {
+		modules = append(modules, vn.Module)
+	}
+	if dedupe {
+		modules = slicesutil.Dedupe(modules)
+	}
+	if sortAsc {
+		sort.Strings(modules)
+	}
+	return modules
 }
 
 func (vs *Vulnerabilities) OrderedListMarkdownBytes(opts *ValueOptions) []byte {
@@ -113,6 +130,91 @@ func (vs *Vulnerabilities) SortByID() {
 	slices.SortFunc(*vs, func(a, b Vulnerability) int {
 		return cmp.Compare(a.ID, b.ID)
 	})
+}
+
+func (vs *Vulnerabilities) SeverityStatsSetByModule(slaPolicy severity.SLAPolicy, slaCalcTime time.Time, unknownModule string) (severity.SeverityStatsSet, error) {
+	statsSet := severity.NewSeverityStatsSet()
+	for _, vn := range *vs {
+		if vn.SLATimeStart == nil {
+			continue
+		} else if vn.SLATimeStart.Before(slaCalcTime) {
+			statsSet.Add(slaPolicy, vn.Module, vn.Severity, slaCalcTime.Sub(*vn.SLATimeStart))
+		}
+	}
+	return statsSet, nil
+}
+
+func (vs *Vulnerabilities) SeverityStatsSetBySeverity(slaPolicy severity.SLAPolicy, slaCalcTime time.Time, unknownModule string) (severity.SeverityStatsSet, error) {
+	statsSet := severity.NewSeverityStatsSet()
+	statsSet.Order = []string{
+		severity.SeverityCritical,
+		severity.SeverityHigh,
+		severity.SeverityMedium,
+		severity.SeverityLow}
+	for _, vn := range *vs {
+		if vn.SLATimeStart == nil {
+			continue
+		} else if vn.SLATimeStart.Before(slaCalcTime) {
+			statsSet.Add(slaPolicy, vn.Severity, vn.Severity, slaCalcTime.Sub(*vn.SLATimeStart))
+		}
+	}
+	return statsSet, nil
+}
+
+func (vs *Vulnerabilities) SortBySLATimeStart() {
+	sort.Slice(*vs, func(i, j int) bool {
+		t1, t2 := (*vs)[i].SLATimeStart, (*vs)[j].SLATimeStart
+
+		// Treat nil as earliest; adjust if you want different behavior.
+		if t1 == nil && t2 == nil {
+			return false
+		}
+		if t1 == nil {
+			return true
+		}
+		if t2 == nil {
+			return false
+		}
+		return t1.Before(*t2)
+	})
+}
+
+func (vs *Vulnerabilities) TableSeverities(componentName string) *table.Table {
+	tbl := table.NewTable("")
+	tbl.Columns = []string{
+		componentName,
+		severity.SeverityCritical,
+		severity.SeverityHigh,
+		severity.SeverityMedium,
+		severity.SeverityLow,
+		"Overdue Days"}
+	allCounts := vs.SeverityHistogram()
+	row := []string{
+		"All",
+		strconv.Itoa(allCounts.GetOrDefault(severity.SeverityCritical, 0)),
+		strconv.Itoa(allCounts.GetOrDefault(severity.SeverityHigh, 0)),
+		strconv.Itoa(allCounts.GetOrDefault(severity.SeverityMedium, 0)),
+		strconv.Itoa(allCounts.GetOrDefault(severity.SeverityLow, 0)),
+	}
+	tbl.Rows = append(tbl.Rows, row)
+	hset := histogram.NewHistogramSet("")
+	for _, v := range *vs {
+		hset.Add(v.Module, v.Severity, 1)
+	}
+	moduleNames := hset.ItemNames()
+	for _, moduleName := range moduleNames {
+		moduleHist, ok := hset.Items[moduleName]
+		if ok {
+			tbl.Rows = append(tbl.Rows, []string{
+				moduleName,
+				strconv.Itoa(moduleHist.GetOrDefault(severity.SeverityCritical, 0)),
+				strconv.Itoa(moduleHist.GetOrDefault(severity.SeverityHigh, 0)),
+				strconv.Itoa(moduleHist.GetOrDefault(severity.SeverityMedium, 0)),
+				strconv.Itoa(moduleHist.GetOrDefault(severity.SeverityLow, 0)),
+			})
+		}
+	}
+	return &tbl
 }
 
 func (vs *Vulnerabilities) CVE20Vulnerabilities() cve20.Vulnerabilities {
