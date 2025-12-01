@@ -34,6 +34,10 @@ type SeverityStats struct {
 	Count361Plus  int
 }
 
+func NewSeverityStats() SeverityStats {
+	return SeverityStats{}
+}
+
 func (stats *SeverityStats) Add(slaPolicy SLAPolicy, sev string, age time.Duration) error {
 	overdueDays, err := slaPolicy.OverdueDays(sev, age)
 	if err != nil {
