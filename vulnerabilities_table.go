@@ -22,7 +22,7 @@ func (vs *Vulnerabilities) Table(colDefs table.ColumnDefinitionSet, opts *ValueO
 	return &t, nil
 }
 
-func (vs *Vulnerabilities) TableOverdue(opts *ValueOptions, referenceTime time.Time) (*table.Table, error) {
+func (vs *Vulnerabilities) TableFindingsOverdue(opts *ValueOptions, referenceTime time.Time) (*table.Table, error) {
 	t := table.NewTable("")
 	t.Columns = []string{
 		"ID",
