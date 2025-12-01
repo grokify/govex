@@ -164,7 +164,7 @@ func Report(vs *govex.VulnerabilitiesSet) (string, error) {
 				}
 				vsModSev := vsMod.FilterSeverity([]string{sev})
 				vsModSev.Vulnerabilities.SortBySLATimeStart()
-				tbl, err := vsModSev.Vulnerabilities.TableOverdue(vs.VulnValueOpts, referenceTime)
+				tbl, err := vsModSev.Vulnerabilities.TableFindingsOverdue(vs.VulnValueOpts, referenceTime)
 				if err != nil {
 					return "", err
 				}
