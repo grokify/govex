@@ -55,6 +55,16 @@ func ReadFilesVulnerabilitiesSet(filenames ...string) (*VulnerabilitiesSet, erro
 	return &set, nil
 }
 
+func (vs *VulnerabilitiesSet) CloneEmpty() *VulnerabilitiesSet {
+	return &VulnerabilitiesSet{
+		Name:          vs.Name,
+		RepoPath:      vs.RepoPath,
+		RepoURL:       vs.RepoURL,
+		DateTime:      vs.DateTime,
+		SLAPolicy:     vs.SLAPolicy,
+		VulnValueOpts: vs.VulnValueOpts}
+}
+
 func (vs *VulnerabilitiesSet) FilterModule(modulesIncl []string) *VulnerabilitiesSet {
 	out := NewVulnerabilitiesSet()
 	out.Name = vs.Name
@@ -106,6 +116,17 @@ func (vs *VulnerabilitiesSet) SetRepoURL(s string) {
 		rp = strings.TrimPrefix(rp, "git://")
 		vs.RepoPath = strings.TrimPrefix(rp, "https://")
 	}
+}
+
+func (vs *VulnerabilitiesSet) SetsByReporter() *VulnerabilitiesSets {
+	sets := NewVulnerabilitiesSets()
+	for _, vn := range vs.Vulnerabilities {
+		orgNames := vn.Reporters.OrganizationNames()
+		for _, orgName := range orgNames {
+			sets.Add(orgName, vn)
+		}
+	}
+	return sets
 }
 
 func (vs *VulnerabilitiesSet) SeverityStatusSetsByCategory(slaRefTime time.Time) (*severity.SeverityStatusSets, error) {
