@@ -57,6 +57,23 @@ func (vs *Vulnerabilities) SeverityStatsSetByModule(slaPolicy severity.SLAPolicy
 	return statsSet, nil
 }
 
+func (vs *Vulnerabilities) SeverityStatsSetByReporter(slaPolicy severity.SLAPolicy, slaCalcTime time.Time, unknownModule string) (severity.SeverityStatsSet, error) {
+	statsSet := severity.NewSeverityStatsSet()
+	for _, vn := range *vs {
+		if vn.SLATimeStart == nil {
+			continue
+		} else if vn.SLATimeStart.Before(slaCalcTime) {
+			reporterOrgNames := vn.Reporters.OrganizationNames()
+			for _, orgName := range reporterOrgNames {
+				if err := statsSet.Add(slaPolicy, orgName, vn.Severity, slaCalcTime.Sub(*vn.SLATimeStart)); err != nil {
+					return statsSet, err
+				}
+			}
+		}
+	}
+	return statsSet, nil
+}
+
 func (vs *Vulnerabilities) SeverityStatsSetBySeverity(slaPolicy severity.SLAPolicy, slaCalcTime time.Time, unknownModule string) (severity.SeverityStatsSet, error) {
 	statsSet := severity.NewSeverityStatsSet()
 	statsSet.Order = []string{
