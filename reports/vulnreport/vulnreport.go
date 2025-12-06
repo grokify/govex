@@ -3,9 +3,11 @@ package vulnreport
 import (
 	"errors"
 	"fmt"
+	"log/slog"
 	"strings"
 	"time"
 
+	"github.com/grokify/mogo/log/slogutil"
 	"github.com/grokify/mogo/pointer"
 	"github.com/grokify/mogo/time/timeutil"
 
@@ -25,10 +27,17 @@ output:
   pdf_document
 ---`
 
-func Report(vs *govex.VulnerabilitiesSet) (string, error) {
+func Report(vs *govex.VulnerabilitiesSet, lgr *slog.Logger) (string, error) {
 	if vs == nil {
 		return "", errors.New("vulnerabilities set cannot be nil")
 	}
+	if lgr == nil {
+		lgr = slogutil.Null()
+	}
+
+	colNameModule := "Module"
+	colNameReporter := "Reporter"
+
 	sb := strings.Builder{}
 	if _, err := sb.WriteString(pdfMarkdownHeader + "\n\n"); err != nil {
 		return "", err
@@ -40,6 +49,7 @@ func Report(vs *govex.VulnerabilitiesSet) (string, error) {
 	referenceTime := pointer.Dereference(vs.DateTime)
 
 	{
+		lgr.Info("vulnreport: writing summary")
 		// Summary
 		reportName := strings.TrimSpace(vs.Name)
 		if reportName == "" {
@@ -57,6 +67,7 @@ func Report(vs *govex.VulnerabilitiesSet) (string, error) {
 	}
 
 	{
+		lgr.Info("vulnreport: writing overview")
 		if _, err := sb.WriteString("## Overview\n\n"); err != nil {
 			return "", err
 		}
@@ -76,17 +87,20 @@ func Report(vs *govex.VulnerabilitiesSet) (string, error) {
 		}
 	}
 
+	lgr.Info("vulnreport: writing summary tables")
 	if _, err := sb.WriteString("## Summary Tables\n\n### All Findings\n\n"); err != nil {
 		return "", err
 	}
 	{
+		lgr.Info("vulnreport: writing summary tables: get stats by module")
 		stats, err := vs.Vulnerabilities.SeverityStatsSetByModule(pointer.Dereference(
 			vs.SLAPolicy), referenceTime, "__UNKNOWN_MODULE__")
 		if err != nil {
 			return "", err
 		}
 
-		tbl := stats.Table()
+		lgr.Info("vulnreport: writing summary tables: get table")
+		tbl := stats.Table(colNameModule)
 
 		if _, err = sb.WriteString(tbl.Markdown("\n", false) + lineBreak); err != nil {
 			return "", err
@@ -99,6 +113,7 @@ func Report(vs *govex.VulnerabilitiesSet) (string, error) {
 		severity.SeverityMedium,
 		severity.SeverityLow}
 
+	lgr.Info("vulnreport: writing by severity")
 	// 2. By Severity
 	{
 		for _, sev := range sevs {
@@ -113,7 +128,7 @@ func Report(vs *govex.VulnerabilitiesSet) (string, error) {
 				if err != nil {
 					return "", err
 				}
-				tbl := stats.Table()
+				tbl := stats.Table(colNameModule)
 				if _, err = sb.WriteString(tbl.Markdown("\n", false) + lineBreak); err != nil {
 					return "", err
 				}
@@ -125,6 +140,48 @@ func Report(vs *govex.VulnerabilitiesSet) (string, error) {
 		}
 	}
 
+	lgr.Info("vulnreport: writing by reporter")
+	if _, err := sb.WriteString("## By Reporter\n\n### All Findings\n\n"); err != nil {
+		return "", err
+	}
+	{
+		stats, err := vs.Vulnerabilities.SeverityStatsSetByReporter(pointer.Dereference(
+			vs.SLAPolicy), time.Now(), "__UNKNOWN_MODULE__")
+		if err != nil {
+			return "", err
+		}
+		tbl := stats.Table(colNameReporter)
+		if _, err = sb.WriteString(tbl.Markdown("\n", false) + lineBreak); err != nil {
+			return "", err
+		}
+
+		{
+			for _, sev := range sevs {
+				if _, err := sb.WriteString(
+					fmt.Sprintf("### All %s Findings by Reporter\n\n", sev)); err != nil {
+					return "", err
+				}
+				vsSev := vs.FilterSeverity([]string{sev})
+				if len(vsSev.Vulnerabilities) > 0 {
+					stats, err := vsSev.Vulnerabilities.SeverityStatsSetByReporter(pointer.Dereference(
+						vs.SLAPolicy), time.Now(), "__UNKNOWN_REPORTER__")
+					if err != nil {
+						return "", err
+					}
+					tbl := stats.Table(colNameReporter)
+					if _, err = sb.WriteString(tbl.Markdown("\n", false) + lineBreak); err != nil {
+						return "", err
+					}
+				} else {
+					if _, err := sb.WriteString("No findings.\n\n"); err != nil {
+						return "", err
+					}
+				}
+			}
+		}
+	}
+
+	lgr.Info("vulnreport: writing by module")
 	{
 		// 2. By Module
 		if _, err := sb.WriteString("## Modules\n\n"); err != nil {
@@ -147,7 +204,7 @@ func Report(vs *govex.VulnerabilitiesSet) (string, error) {
 				if err != nil {
 					return "", err
 				}
-				tbl := stats.Table()
+				tbl := stats.Table("Module")
 				if _, err := sb.WriteString(tbl.Markdown("\n", false) + lineBreak); err != nil {
 					return "", err
 				}
