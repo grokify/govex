@@ -168,12 +168,12 @@ func (set *SeverityStatsSet) Sum() SeverityStats {
 	return sum
 }
 
-func (set *SeverityStatsSet) Table() *table.Table {
+func (set *SeverityStatsSet) Table(col0Name string) *table.Table {
 	tbl := table.NewTable("")
 	// daysOverdueSuffix := " " + DaysOverdue
 	daysOverdueSuffix := ""
 	tbl.Columns = []string{
-		"Module",
+		col0Name,
 		AgeBucketWithinSLA + daysOverdueSuffix,
 		AgeBucket1To30 + daysOverdueSuffix,
 		AgeBucket31To60 + daysOverdueSuffix,
