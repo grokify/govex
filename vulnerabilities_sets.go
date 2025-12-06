@@ -3,6 +3,7 @@ package govex
 import (
 	"time"
 
+	"github.com/grokify/gocharts/v2/data/histogram"
 	"github.com/grokify/mogo/type/maputil"
 
 	"github.com/grokify/govex/severity"
@@ -25,6 +26,16 @@ func (sets *VulnerabilitiesSets) Add(setName string, vn Vulnerability) {
 	}
 	set.Vulnerabilities = append(set.Vulnerabilities, vn)
 	sets.Items[setName] = set
+}
+
+func (sets *VulnerabilitiesSets) HistogramSetSeverities() *histogram.HistogramSet {
+	hs := histogram.NewHistogramSet("")
+	for setName, set := range sets.Items {
+		for _, vn := range set.Vulnerabilities {
+			hs.Add(setName, vn.Severity, 1)
+		}
+	}
+	return hs
 }
 
 func (sets *VulnerabilitiesSets) ItemNames() []string {
