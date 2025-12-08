@@ -3,6 +3,7 @@ package semgrep
 import (
 	"github.com/grokify/mogo/pointer"
 	"github.com/grokify/mogo/text/markdown"
+	"github.com/grokify/mogo/type/number"
 
 	"github.com/grokify/govex"
 
@@ -26,10 +27,19 @@ func (o *Output) ToGovexVulnerabilities() (govex.Vulnerabilities, error) {
 				result.Extra.Metadata.Category, result.Extra.Severity),
 			Category: result.Extra.Metadata.Category,
 			Location: &govex.Location{
-				Path:      pointer.Pointer(result.Path),
-				LineStart: pointer.Pointer(uint32(result.Start.Line)),
-				LineEnd:   pointer.Pointer(uint32(result.End.Line)),
+				Path: pointer.Pointer(result.Path),
 			},
+		}
+
+		if tryStart, err := number.Itou32(result.Start.Line); err != nil {
+			return nil, err
+		} else {
+			vuln.Location.LineStart = pointer.Pointer(tryStart)
+		}
+		if tryEnd, err := number.Itou32(result.End.Line); err != nil {
+			return nil, err
+		} else {
+			vuln.Location.LineEnd = pointer.Pointer(tryEnd)
 		}
 
 		if vuln.Category == CategorySecurity {
