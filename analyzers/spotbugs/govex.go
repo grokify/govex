@@ -83,6 +83,6 @@ func priorityToSeverity(priority string) (string, error) {
 	case "3":
 		return severity.SeverityLow, nil
 	default:
-		return "", fmt.Errorf("Unknown Spotbugs Priority (%s)", priority)
+		return "", fmt.Errorf("unknown spotbugs xml source priority (%s)", priority)
 	}
 }
