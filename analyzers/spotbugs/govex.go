@@ -35,7 +35,7 @@ func (bc *BugCollection) ToGovexVulnerabilities(inclSecurityOnly bool) (govex.Vu
 				Category:        cat,
 				Description:     strings.TrimSpace(bug.Message),
 				Name:            strings.TrimSpace(bug.Type),
-				ScannerName:     SourceSpotBugs,
+				AnalyzerName:    AnalyzerSpotBugs,
 				Severity:        sev,
 				SourceComponent: strings.TrimSpace(file.ClassName),
 			}

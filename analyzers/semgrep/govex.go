@@ -6,7 +6,6 @@ import (
 	"github.com/grokify/mogo/type/number"
 
 	"github.com/grokify/govex"
-
 	"github.com/grokify/govex/cwe"
 	"github.com/grokify/govex/severity"
 )
@@ -86,7 +85,7 @@ func (o *Output) ToGovexVulnerabilities() (govex.Vulnerabilities, error) {
 		}
 
 		// Set source identifier to Semgrep
-		vuln.ScannerName = SourceSemgrep
+		vuln.AnalyzerName = AnalyzerSemgrep
 		vuln.SourceComponent = result.Extra.EngineKind
 
 		vulns = append(vulns, vuln)

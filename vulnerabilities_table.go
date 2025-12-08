@@ -180,8 +180,8 @@ func TableColumnDefinitionSetSASTSCAReport() table.ColumnDefinitionSet {
 				DefaultValue: severity.SeverityUnknown,
 			},
 			{
-				Name:         FieldScannerName,
-				SourceName:   FieldScannerName,
+				Name:         FieldAnalyzerName,
+				SourceName:   FieldAnalyzerName,
 				DefaultValue: "",
 			},
 			{

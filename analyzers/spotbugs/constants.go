@@ -1,7 +1,7 @@
 package spotbugs
 
 const (
-	SourceSpotBugs = "SpotBugs"
+	AnalyzerSpotBugs = "SpotBugs"
 
 	CategorySecurity = "SECURITY"
 	PriorityHigh     = "High"
