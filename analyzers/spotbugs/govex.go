@@ -12,7 +12,7 @@ import (
 )
 
 // ToGovex converts BugCollection to a slice of govex.Vulnerability
-func (bc *BugCollection) ToGovex(inclSecurityOnly bool) (govex.Vulnerabilities, error) {
+func (bc *BugCollection) ToGovexVulnerabilities(inclSecurityOnly bool) (govex.Vulnerabilities, error) {
 	var vulns []govex.Vulnerability
 
 	for _, file := range bc.Files {
