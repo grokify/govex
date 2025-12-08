@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/grokify/govex"
-	"github.com/grokify/govex/severity"
 	"github.com/grokify/mogo/pointer"
 	"github.com/grokify/mogo/type/number"
+
+	"github.com/grokify/govex"
+	"github.com/grokify/govex/severity"
 )
 
 // ToGovex converts BugCollection to a slice of govex.Vulnerability
