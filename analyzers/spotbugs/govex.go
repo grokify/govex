@@ -32,12 +32,12 @@ func (bc *BugCollection) ToGovexVulnerabilities(inclSecurityOnly bool) (govex.Vu
 			}
 
 			vuln := govex.Vulnerability{
-				Category:         cat,
-				Description:      strings.TrimSpace(bug.Message),
-				Name:             strings.TrimSpace(bug.Type),
-				Severity:         sev,
-				SourceIdentifier: SourceSpotBugs,
-				SourceComponent:  strings.TrimSpace(file.ClassName),
+				Category:        cat,
+				Description:     strings.TrimSpace(bug.Message),
+				Name:            strings.TrimSpace(bug.Type),
+				ScannerName:     SourceSpotBugs,
+				Severity:        sev,
+				SourceComponent: strings.TrimSpace(file.ClassName),
 			}
 
 			var lineStart *uint32
