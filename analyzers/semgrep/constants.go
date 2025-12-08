@@ -1,7 +1,7 @@
 package semgrep
 
 const (
-	SourceSemgrep = "Semgrep"
+	AnalyzerSemgrep = "Semgrep"
 
 	CategorySecurity        = "security"
 	CategoryCorrectness     = "correctness"
