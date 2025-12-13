@@ -6,8 +6,23 @@ import (
 	"github.com/grokify/gocharts/v2/data/histogram"
 	"github.com/grokify/mogo/type/maputil"
 
+	"github.com/grokify/govex/reports/releasebom"
 	"github.com/grokify/govex/severity"
 )
+
+func (vs *Vulnerabilities) ReleaseBOMModuleToImageName() releasebom.ReleaseBOM {
+	bom := releasebom.ReleaseBOM{}
+	for _, vn := range *vs {
+		art := releasebom.Artifact{
+			Name: vn.Module,
+		}
+		if len(vn.Tags) > 0 {
+			art.Tag = vn.Tags[0]
+		}
+		bom.AddImage(art)
+	}
+	return bom
+}
 
 func (vs *Vulnerabilities) SeverityCounts() maputil.Records {
 	h := vs.SeverityHistogram()
@@ -41,6 +56,14 @@ func (vs *Vulnerabilities) SeverityStats(slaPolicy severity.SLAPolicy, slaCalcTi
 		}
 	}
 	return &statsSet, nil
+}
+
+func (vs *Vulnerabilities) SeverityCountSetsByModule() *severity.SeverityCountsSets {
+	sets := severity.NewSeverityCountsSets()
+	for _, vn := range *vs {
+		sets.Add(vn.Module, vn.Severity, 1)
+	}
+	return sets
 }
 
 func (vs *Vulnerabilities) SeverityStatsSetByModule(slaPolicy severity.SLAPolicy, slaCalcTime time.Time, unknownModule string) (severity.SeverityStatsSet, error) {
