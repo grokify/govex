@@ -6,7 +6,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/grokify/govex/cisakevc"
+	"github.com/grokify/govex/feeds/cisakev"
 	"github.com/grokify/mogo/fmt/fmtutil"
 	"github.com/grokify/mogo/type/maputil"
 )
@@ -34,7 +34,7 @@ func main() {
 	keys := ckev.Vulnerabilities.UniqueKeys()
 	fmtutil.MustPrintJSON(keys)
 
-	cat, err := cisakevc.ReadFile(os.Args[1])
+	cat, err := cisakev.ReadFile(os.Args[1])
 	if err != nil {
 		slog.Error(err.Error())
 		os.Exit(4)
