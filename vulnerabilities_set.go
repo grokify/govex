@@ -55,21 +55,12 @@ func ReadFilesVulnerabilitiesSet(filenames ...string) (*VulnerabilitiesSet, erro
 	return &set, nil
 }
 
-func (vs *VulnerabilitiesSet) CloneEmpty() *VulnerabilitiesSet {
-	return &VulnerabilitiesSet{
-		Name:          vs.Name,
-		RepoPath:      vs.RepoPath,
-		RepoURL:       vs.RepoURL,
-		DateTime:      vs.DateTime,
-		SLAPolicy:     vs.SLAPolicy,
-		VulnValueOpts: vs.VulnValueOpts}
-}
-
-func (vs *VulnerabilitiesSet) FilterModule(modulesIncl []string) *VulnerabilitiesSet {
-	out := NewVulnerabilitiesSet()
-	out.Name = vs.Name
-	out.RepoPath = vs.RepoPath
-	out.RepoURL = vs.RepoURL
+func (vs *VulnerabilitiesSet) CloneNoVulns() *VulnerabilitiesSet {
+	out := &VulnerabilitiesSet{
+		Name:     vs.Name,
+		RepoPath: vs.RepoPath,
+		RepoURL:  vs.RepoURL,
+	}
 	if vs.DateTime != nil {
 		out.DateTime = pointer.Clone(vs.DateTime)
 	}
@@ -79,6 +70,11 @@ func (vs *VulnerabilitiesSet) FilterModule(modulesIncl []string) *Vulnerabilitie
 	if vs.VulnValueOpts != nil {
 		out.VulnValueOpts = pointer.Clone(vs.VulnValueOpts)
 	}
+	return out
+}
+
+func (vs *VulnerabilitiesSet) FilterModule(modulesIncl []string) *VulnerabilitiesSet {
+	out := vs.CloneNoVulns()
 	for _, vn := range vs.Vulnerabilities {
 		if slices.Contains(modulesIncl, vn.Module) {
 			out.Vulnerabilities = append(out.Vulnerabilities, vn)
@@ -87,26 +83,43 @@ func (vs *VulnerabilitiesSet) FilterModule(modulesIncl []string) *Vulnerabilitie
 	return out
 }
 
+func (vs *VulnerabilitiesSet) FilterReporterExternal() *VulnerabilitiesSet {
+	out := vs.CloneNoVulns()
+	for _, vn := range vs.Vulnerabilities {
+		if vn.Reporters.HaveExternalReporter() {
+			out.Vulnerabilities = append(out.Vulnerabilities, vn)
+		}
+	}
+	return out
+}
+
+func (vs *VulnerabilitiesSet) FilterReporterInternal() *VulnerabilitiesSet {
+	out := vs.CloneNoVulns()
+	for _, vn := range vs.Vulnerabilities {
+		if vn.Reporters.HaveInternalReporter() {
+			out.Vulnerabilities = append(out.Vulnerabilities, vn)
+		}
+	}
+	return out
+}
+
 func (vs *VulnerabilitiesSet) FilterSeverity(sevsIncl []string) *VulnerabilitiesSet {
-	out := NewVulnerabilitiesSet()
-	out.Name = vs.Name
-	out.RepoPath = vs.RepoPath
-	out.RepoURL = vs.RepoURL
-	if vs.DateTime != nil {
-		out.DateTime = pointer.Clone(vs.DateTime)
-	}
-	if vs.SLAPolicy != nil {
-		out.SLAPolicy = pointer.Clone(vs.SLAPolicy)
-	}
-	if vs.VulnValueOpts != nil {
-		out.VulnValueOpts = pointer.Clone(vs.VulnValueOpts)
-	}
+	out := vs.CloneNoVulns()
 	for _, vn := range vs.Vulnerabilities {
 		if slices.Contains(sevsIncl, vn.Severity) {
 			out.Vulnerabilities = append(out.Vulnerabilities, vn)
 		}
 	}
 	return out
+}
+
+func (vs *VulnerabilitiesSet) HaveUnknownReporterType() bool {
+	for _, vn := range vs.Vulnerabilities {
+		if !vn.Reporters.HaveKnownReporterType() {
+			return true
+		}
+	}
+	return false
 }
 
 func (vs *VulnerabilitiesSet) SetRepoURL(s string) {
