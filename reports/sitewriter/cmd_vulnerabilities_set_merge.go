@@ -1,4 +1,4 @@
-package govex
+package sitewriter
 
 import (
 	"errors"
@@ -7,6 +7,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/grokify/govex"
 	"github.com/grokify/mogo/pointer"
 	"github.com/grokify/sogo/flag/cobrautil"
 	"github.com/jessevdk/go-flags"
@@ -20,16 +21,16 @@ const (
 )
 
 type CmdMergeJSONsOptions struct {
-	InputFilename     []string                            `short:"i" long:"inputFiles" description:"Input filenames to merge" required:"true"`
-	OutputFileJSON    string                              `short:"o" long:"outputFile" description:"Outputfile in JSON format" required:"false"`
-	OutputFileXLSX    string                              `short:"x" long:"xlsxOutputFile" description:"Outputfile in XLSX format" required:"false"`
-	OutputFileMKDN    string                              `short:"m" long:"markdownOutputFile" description:"Outputfile in Markdown format" required:"true"`
-	SeveritySplitXLSX string                              `short:"s" long:"severityFilterCutoff" description:"Outputfile" required:"false"`
-	ReportRepoURL     string                              `short:"r" long:"reportRepoURL" description:"Outputfile" required:"false"`
-	ProjectName       string                              `short:"n" long:"projectName" description:"Project name to use" required:"false"`
-	ProjectRepoPath   string                              `short:"p" long:"repoPath" description:"Project repo path" required:"false"`
-	ProjectRepoURL    string                              `short:"u" long:"repoURL" description:"Project repo URL" required:"false"`
-	FuncUpdateVulns   func(v Vulnerability) Vulnerability `json:"-"`
+	InputFilename     []string                                        `short:"i" long:"inputFiles" description:"Input filenames to merge" required:"true"`
+	OutputFileJSON    string                                          `short:"o" long:"outputFile" description:"Outputfile in JSON format" required:"false"`
+	OutputFileXLSX    string                                          `short:"x" long:"xlsxOutputFile" description:"Outputfile in XLSX format" required:"false"`
+	OutputFileMKDN    string                                          `short:"m" long:"markdownOutputFile" description:"Outputfile in Markdown format" required:"true"`
+	SeveritySplitXLSX string                                          `short:"s" long:"severityFilterCutoff" description:"Outputfile" required:"false"`
+	ReportRepoURL     string                                          `short:"r" long:"reportRepoURL" description:"Outputfile" required:"false"`
+	ProjectName       string                                          `short:"n" long:"projectName" description:"Project name to use" required:"false"`
+	ProjectRepoPath   string                                          `short:"p" long:"repoPath" description:"Project repo path" required:"false"`
+	ProjectRepoURL    string                                          `short:"u" long:"repoURL" description:"Project repo URL" required:"false"`
+	FuncUpdateVulns   func(v govex.Vulnerability) govex.Vulnerability `json:"-"`
 }
 
 type CmdMergeJSONsResponse struct {
@@ -124,7 +125,7 @@ func (opts *CmdMergeJSONsOptions) Run() (*CmdMergeJSONsResponse, error) {
 
 	// TODO: len1/len2/split are only implemented with XLSX.
 
-	vs, err := ReadFilesVulnerabilitiesSet(opts.InputFilename...)
+	vs, err := govex.ReadFilesVulnerabilitiesSet(opts.InputFilename...)
 	if err != nil {
 		return nil, err
 	}
@@ -167,7 +168,7 @@ func (opts *CmdMergeJSONsOptions) Run() (*CmdMergeJSONsResponse, error) {
 
 	if opts.OutputFileMKDN != "" {
 		err := vs.WriteReportMarkdownTablesToFile(opts.OutputFileMKDN, 0600,
-			"", TableColumnDefinitionSetSASTSCA(), true, nil)
+			"", govex.TableColumnDefinitionSetSASTSCA(), true, nil)
 		if err != nil {
 			return nil, err
 		} else {
@@ -178,7 +179,7 @@ func (opts *CmdMergeJSONsOptions) Run() (*CmdMergeJSONsResponse, error) {
 	if opts.OutputFileXLSX != "" {
 		len1, len2, err := vs.Vulnerabilities.WriteFileXLSXSplitSeverity(
 			opts.OutputFileXLSX,
-			TableColumnDefinitionSetSASTSCA(),
+			govex.TableColumnDefinitionSetSASTSCA(),
 			opts.SeveritySplitXLSX,
 			P1DoNow, P2DoNext, nil)
 		if err != nil {
@@ -222,7 +223,7 @@ func CmdMergeJSONsCobra(cmdName string) (*cobra.Command, error) {
 	}
 }
 
-func UpdateFilesVulnerabilitiesSetCobraCmd(cmd *cobra.Command, updateFunc func(v Vulnerability) Vulnerability) (*CmdMergeJSONsResponse, error) {
+func UpdateFilesVulnerabilitiesSetCobraCmd(cmd *cobra.Command, updateFunc func(v govex.Vulnerability) govex.Vulnerability) (*CmdMergeJSONsResponse, error) {
 	if cmd == nil {
 		return nil, errors.New("cobra.Command cannot be nil")
 	}
@@ -243,7 +244,7 @@ func UpdateFilesVulnerabilitiesSetCobraCmd(cmd *cobra.Command, updateFunc func(v
 }
 
 // UpdateFilesVulnerabilitiesSet updates the fuile using the supplied `modFn` func.
-func UpdateFilesVulnerabilitiesSet(vsetFileJSON, vsetFileXLSX, vsetFileMKDN string, updateFunc func(v Vulnerability) Vulnerability) (*CmdMergeJSONsResponse, error) {
+func UpdateFilesVulnerabilitiesSet(vsetFileJSON, vsetFileXLSX, vsetFileMKDN string, updateFunc func(v govex.Vulnerability) govex.Vulnerability) (*CmdMergeJSONsResponse, error) {
 	opts := CmdMergeJSONsOptions{
 		InputFilename:   []string{vsetFileJSON},
 		OutputFileJSON:  vsetFileJSON,

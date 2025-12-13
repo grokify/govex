@@ -22,14 +22,7 @@ const (
 	Priority2 = "Priority 2"
 	Priority3 = "Priority 3"
 
-	P1DoNow   = "P1 - Do Now"
-	P2DoNext  = "P2 - Do Next"
-	P3DoLater = "P3 - Do Later"
-
 	ReportName = "AppSec Scan Report"
-
-	CmdMerge             = "merge"
-	CmdWriteSiteHomepage = "writesitehomepage"
 )
 
 // CategoriesOrdered returns a set of categories ordered by SDLC position.
