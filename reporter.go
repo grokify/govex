@@ -10,6 +10,33 @@ import (
 
 type Reporters []Reporter
 
+func (repts Reporters) HaveKnownReporterType() bool {
+	for _, rpt := range repts {
+		if rpt.IsExternal != nil {
+			return true
+		}
+	}
+	return false
+}
+
+func (repts Reporters) HaveExternalReporter() bool {
+	for _, rpt := range repts {
+		if rpt.IsExternal != nil && *rpt.IsExternal {
+			return true
+		}
+	}
+	return false
+}
+
+func (repts Reporters) HaveInternalReporter() bool {
+	for _, rpt := range repts {
+		if rpt.IsExternal != nil && !*rpt.IsExternal {
+			return true
+		}
+	}
+	return false
+}
+
 func (repts Reporters) OrganizationNames() []string {
 	var names []string
 	for _, rpt := range repts {
@@ -26,4 +53,5 @@ type Reporter struct {
 	OrganizationName string
 	Date             *time.Time
 	FindingDocument  string
+	IsExternal       *bool // Reporter Type
 }
