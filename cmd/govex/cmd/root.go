@@ -4,8 +4,9 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/grokify/govex"
 	"github.com/spf13/cobra"
+
+	"github.com/grokify/govex/reports/sitewriter"
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -25,13 +26,13 @@ func Execute() {
 }
 
 func init() {
-	if mergeCmd, err := govex.CmdMergeJSONsCobra(""); err != nil {
+	if mergeCmd, err := sitewriter.CmdMergeJSONsCobra(""); err != nil {
 		slog.Error("Error marking flag required", "errorMessage", err.Error())
 		os.Exit(1)
 	} else {
 		rootCmd.AddCommand(mergeCmd)
 	}
-	if homepageCmd, err := govex.CmdSiteWriteHomeCobra(""); err != nil {
+	if homepageCmd, err := sitewriter.CmdSiteWriteHomeCobra(""); err != nil {
 		slog.Error("Error marking flag required", "errorMessage", err.Error())
 		os.Exit(2)
 	} else {

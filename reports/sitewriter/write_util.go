@@ -1,10 +1,9 @@
-package govex
+package sitewriter
 
 import (
 	"fmt"
 	"io"
 	"strings"
-	"time"
 )
 
 func writeReportMkdnShields(w io.Writer, shieldsMkdn string) error {
@@ -31,6 +30,7 @@ func writeReportMkdnShields(w io.Writer, shieldsMkdn string) error {
 	}
 }
 
+/*
 func writeReportMkdnTime(w io.Writer, dt *time.Time) (bool, error) {
 	if dt != nil && !dt.IsZero() {
 		if _, err := fmt.Fprintf(w, "* Report Time: %s\n\n", dt.Format(time.RFC1123)); err != nil {
@@ -42,3 +42,4 @@ func writeReportMkdnTime(w io.Writer, dt *time.Time) (bool, error) {
 		return false, nil
 	}
 }
+*/

@@ -1,4 +1,4 @@
-package govex
+package sitewriter
 
 import (
 	"errors"
@@ -12,6 +12,7 @@ import (
 
 	"github.com/grokify/gocharts/v2/data/histogram"
 	"github.com/grokify/gocharts/v2/data/table"
+	"github.com/grokify/govex"
 	"github.com/grokify/mogo/errors/errorsutil"
 	"github.com/grokify/mogo/os/fileext"
 	"github.com/grokify/mogo/os/osutil"
@@ -84,7 +85,7 @@ func DefaultSiteWriterRepo() SiteWriter {
 		MetaWrite:                  true,
 		MkdnWriteFileVulns:         true,
 		MkdnWriteFileVulnsAsIndex:  true,
-		MkdnColDefsSet:             TableColumnDefinitionSetSASTSCA(),
+		MkdnColDefsSet:             govex.TableColumnDefinitionSetSASTSCA(),
 		MkdnAddColLinNum:           true,
 		JSONWriteFileVulns:         true,
 		JSONWriteFileVulnsAsLatest: true,
@@ -93,7 +94,7 @@ func DefaultSiteWriterRepo() SiteWriter {
 		XLSXWriteFileVulns:         true,
 		XLSXSheetName1:             P1DoNow,
 		XLSXSheetName2:             P2DoNext,
-		XLSXColDefsSet:             TableColumnDefinitionSetSASTSCA(),
+		XLSXColDefsSet:             govex.TableColumnDefinitionSetSASTSCA(),
 	}
 }
 
@@ -113,7 +114,7 @@ func DefaultSiteWriterHome(rootIndexPath, rootIndexShieldsMarkdown string) SiteW
 	}
 }
 
-func WriteFilesSiteForRepo(rootFilePath string, vs *VulnerabilitiesSet) error {
+func WriteFilesSiteForRepo(rootFilePath string, vs *govex.VulnerabilitiesSet) error {
 	if vs == nil {
 		return ErrVulnerabilitySetCannotBeNil
 	}
@@ -127,7 +128,7 @@ func WriteFilesSiteForRepo(rootFilePath string, vs *VulnerabilitiesSet) error {
 	return sw.WriteFiles(vs)
 }
 
-func (sw SiteWriter) WriteFiles(vs *VulnerabilitiesSet) error {
+func (sw SiteWriter) WriteFiles(vs *govex.VulnerabilitiesSet) error {
 	if err := sw.writeFilesVulns(vs); err != nil {
 		return err
 	} else {
@@ -153,7 +154,7 @@ func (sw SiteWriter) WriteFileHome() error {
 	return nil
 }
 
-func (sw SiteWriter) writeFilesVulns(vs *VulnerabilitiesSet) error {
+func (sw SiteWriter) writeFilesVulns(vs *govex.VulnerabilitiesSet) error {
 	if vs == nil {
 		return ErrVulnerabilitySetCannotBeNil
 	} else if vs.RepoPath == "" {
@@ -289,7 +290,7 @@ func (sw SiteWriter) writeRootIndex(w io.Writer, rootIndexName string, dirsWithI
 		return err
 	} else if err := writeReportMkdnShields(w, sw.RootIndexShieldsMarkdown); err != nil {
 		return err
-	} else if _, err := writeReportMkdnTime(w, pointer.Pointer(time.Now().UTC())); err != nil {
+	} else if _, err := govex.WriteReportMkdnTime(w, pointer.Pointer(time.Now().UTC())); err != nil {
 		return err
 	}
 	sort.Strings(dirsWithIndexes)
@@ -328,7 +329,7 @@ func (sw SiteWriter) writeRootIndexWithTable(w io.Writer, rootIndexName string, 
 		return err
 	} else if err := writeReportMkdnShields(w, sw.RootIndexShieldsMarkdown); err != nil {
 		return err
-	} else if _, err := writeReportMkdnTime(w, pointer.Pointer(time.Now().UTC())); err != nil {
+	} else if _, err := govex.WriteReportMkdnTime(w, pointer.Pointer(time.Now().UTC())); err != nil {
 		return err
 	}
 
@@ -354,7 +355,7 @@ func (sw SiteWriter) reposListTableSeverities(dirsWithIndex []string) *table.Tab
 			markdown.Linkify(filepath.Join(dir, sw.IndexFilename), dir),
 		}
 		fpMeta := sw.buildFilePath(dir, FilenameMetaJSON)
-		if meta, err := ReadFileVulnerabilitiesSetMeta(fpMeta); err != nil {
+		if meta, err := govex.ReadFileVulnerabilitiesSetMeta(fpMeta); err != nil {
 			row = append(row, "")
 			counts := slicesutil.MakeRepeatingElement(len(sevs), "?")
 			row = append(row, counts...)
