@@ -1,4 +1,4 @@
-package vulnreport
+package psirtreport
 
 import (
 	"errors"
