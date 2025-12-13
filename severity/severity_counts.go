@@ -8,11 +8,76 @@ import (
 
 	badge "github.com/essentialkaos/go-badge"
 	"github.com/grokify/gocharts/v2/data/histogram"
+	"github.com/grokify/gocharts/v2/data/table"
 	"github.com/grokify/google-fonts/roboto"
 )
 
+type SeverityCountsSets struct {
+	KeyName string
+	Items   map[string]SeverityCountsSet
+}
+
+func NewSeverityCountsSets() *SeverityCountsSets {
+	return &SeverityCountsSets{
+		Items: map[string]SeverityCountsSet{},
+	}
+}
+
+func (sets *SeverityCountsSets) Add(key, sev string, count int) {
+	set, ok := sets.Items[key]
+	if !ok {
+		set = NewSeverityCountsSet()
+	}
+	if set.Histogram == nil {
+		set.Histogram = histogram.NewHistogram("")
+	}
+	set.Histogram.Add(sev, count)
+	sets.Items[key] = set
+}
+
+func (sets *SeverityCountsSets) Table(sevs []string) *table.Table {
+	if len(sevs) == 0 {
+		sevs = SeveritiesFinding()
+	}
+	tbl := table.NewTable("")
+	tbl.Columns = []string{
+		sets.KeyName,
+	}
+	tbl.FormatMap = map[int]string{
+		-1: table.FormatInt,
+		0:  table.FormatString}
+	tbl.Columns = append(tbl.Columns, sevs...)
+	for key, set := range sets.Items {
+		row := []string{key}
+		counts := set.Counts(sevs)
+		for _, c := range counts {
+			row = append(row, strconv.Itoa(c))
+		}
+		tbl.Rows = append(tbl.Rows, row)
+	}
+	return &tbl
+}
+
 type SeverityCountsSet struct {
 	Histogram *histogram.Histogram
+}
+
+func NewSeverityCountsSet() SeverityCountsSet {
+	return SeverityCountsSet{Histogram: histogram.NewHistogram("")}
+}
+
+func (set *SeverityCountsSet) Counts(sevs []string) []int {
+	var out []int
+	for _, sev := range sevs {
+		if set.Histogram == nil {
+			out = append(out, 0)
+		} else if v, ok := set.Histogram.Items[sev]; ok {
+			out = append(out, v)
+		} else {
+			out = append(out, 0)
+		}
+	}
+	return out
 }
 
 func FuncShieldNameSeverity() func(sev string) (string, error) {
