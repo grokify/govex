@@ -12,8 +12,8 @@ import (
 	"github.com/grokify/mogo/type/slicesutil"
 	"github.com/grokify/mogo/type/stringsutil"
 
-	"github.com/grokify/govex/cve20"
 	"github.com/grokify/govex/severity"
+	"github.com/grokify/govex/standards/cve20"
 )
 
 type Vulnerabilities []Vulnerability

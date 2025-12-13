@@ -6,8 +6,8 @@ import (
 	"github.com/grokify/mogo/type/number"
 
 	"github.com/grokify/govex"
-	"github.com/grokify/govex/cwe"
 	"github.com/grokify/govex/severity"
+	"github.com/grokify/govex/standards/cwe"
 )
 
 // ToGovexVulnerabilities converts a Semgrep Output to a slice of govex.Vulnerability
