@@ -33,6 +33,7 @@ func (bom *ReleaseBOM) AddImage(art Artifact) {
 	bom.ContainerImages = append(bom.ContainerImages, art)
 }
 
+// use `pandoc src -o out --pdf-engine=xelatex“
 const pdfMarkdownHeader = `---
 header-includes:
  \usepackage{geometry}
