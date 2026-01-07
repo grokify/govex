@@ -59,8 +59,8 @@ github.com/pandatix/go-cvss v0.6.2 h1:TFiHlzUkT67s6UkelHmK6s1INKVUG7nlKYiWWDTITG
 github.com/pandatix/go-cvss v0.6.2/go.mod h1:jDXYlQBZrc8nvrMUVVvTG8PhmuShOnKrxP53nOFkt8Q=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/quay/claircore/toolkit v1.3.0 h1:QncygaArnuSKbkPESD2zMDz5xJLWlJxAGPZ69XCYA5o=
-github.com/quay/claircore/toolkit v1.3.0/go.mod h1:REVn3WdU+9yMurWa+h9mfuiPWYzKqSaKIGWZ4Xanj5g=
+github.com/quay/claircore/toolkit v1.4.0 h1:ygHG1pLAOTSk7r2Wmo/UbIz9WHJb+K3hhQnNIvLrBSQ=
+github.com/quay/claircore/toolkit v1.4.0/go.mod h1:0cQXEt/BIYSxo/Wq6ItyAJOJzdvD6ty1wPZJ9xR3b6E=
 github.com/relvacode/iso8601 v1.7.0 h1:BXy+V60stMP6cpswc+a93Mq3e65PfXCgDFfhvNNGrdo=
 github.com/relvacode/iso8601 v1.7.0/go.mod h1:FlNp+jz+TXpyRqgmM7tnzHHzBnz776kmAH2h3sZCn0I=
 github.com/richardlehane/mscfb v1.0.4 h1:WULscsljNPConisD5hR0+OyZjwK46Pfyr6mPu5ZawpM=
