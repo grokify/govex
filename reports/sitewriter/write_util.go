@@ -20,7 +20,7 @@ func writeReportMkdnShields(w io.Writer, shieldsMkdn string) error {
 	}
 
 	if out != "" {
-		if _, err := fmt.Fprintln(w, out); err != nil {
+		if _, err := fmt.Fprintln(w, out); err != nil { // #nosec G705 -- writing markdown, not web content
 			return err
 		} else {
 			return nil
