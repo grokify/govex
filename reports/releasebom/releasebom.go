@@ -68,13 +68,12 @@ func (bom *ReleaseBOM) ReleaseManifestDocMarkdown() (string, error) {
 		reportName = "Bill of Materials"
 	}
 
-	if _, err := sb.WriteString(fmt.Sprintf("# %s\n\n", reportName)); err != nil {
+	if _, err := fmt.Fprintf(&sb, "# %s\n\n", reportName); err != nil {
 		return "", err
 	}
 
 	if ver := strings.TrimSpace(bom.Version); ver != "" {
-		if _, err := sb.WriteString(fmt.Sprintf("Version: %s\n\n",
-			ver)); err != nil {
+		if _, err := fmt.Fprintf(&sb, "Version: %s\n\n", ver); err != nil {
 			return "", err
 		}
 	}
