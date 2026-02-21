@@ -296,7 +296,7 @@ func (sw SiteWriter) writeRootIndex(w io.Writer, rootIndexName string, dirsWithI
 	sort.Strings(dirsWithIndexes)
 	for _, sdir := range dirsWithIndexes {
 		sdirWithIndex := filepath.Join(sdir, sw.IndexFilename)
-		if _, err := fmt.Fprintf(w, "1. [%s](%s)\n", sdir, sdirWithIndex); err != nil {
+		if _, err := fmt.Fprintf(w, "1. [%s](%s)\n", sdir, sdirWithIndex); err != nil { // #nosec G705 -- writing markdown, not web content
 			return err
 		}
 	}
@@ -336,7 +336,7 @@ func (sw SiteWriter) writeRootIndexWithTable(w io.Writer, rootIndexName string, 
 	sort.Strings(dirsWithIndexes)
 	tbl := sw.reposListTableSeverities(dirsWithIndexes)
 
-	_, err := fmt.Fprint(w, tbl.Markdown("\n", true))
+	_, err := fmt.Fprint(w, tbl.Markdown("\n", true)) // #nosec G705 -- writing markdown, not web content
 	return err
 }
 
