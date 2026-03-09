@@ -24,8 +24,8 @@ github.com/grokify/gocharts/v2 v2.26.9 h1:gobUXVdwPkKvpYtsivwmcOQxzEyy2Bzpw+ne7l
 github.com/grokify/gocharts/v2 v2.26.9/go.mod h1:DnEVnkAP4OCqpPOTb5VCL7zKrOY2qq6RBFUMTM2rzag=
 github.com/grokify/google-fonts v0.1.9 h1:KgJgTyMbKUbwvImZ9EMsCTA2/PIDNO+h/E533t0ux9s=
 github.com/grokify/google-fonts v0.1.9/go.mod h1:QfXZ/LRQmQ2g389jfdVucuVIiVstQAHBlsOfaOb7RAQ=
-github.com/grokify/mogo v0.73.3 h1:icEi2mTd5MyWKG1osinpkFmjr1dFuyOBzdSKLyeq4DQ=
-github.com/grokify/mogo v0.73.3/go.mod h1:dq1YdL7IkcA6B8uAFGbKsReX9GWAunIyjl+cTNAenc0=
+github.com/grokify/mogo v0.73.4 h1:Todlr6dipsFD3zWy8Djod9j6iswN77pe7Q9AOFGdg3E=
+github.com/grokify/mogo v0.73.4/go.mod h1:dq1YdL7IkcA6B8uAFGbKsReX9GWAunIyjl+cTNAenc0=
 github.com/grokify/sogo v0.14.0 h1:BjhTRzur/V9DzPslKy5TLqxLna3O6EXe4b1WLyOIbLM=
 github.com/grokify/sogo v0.14.0/go.mod h1:VlV8J7HJQMs9trLT2qeHYOCcXGhYuuKfd48flANwlX0=
 github.com/huandu/xstrings v1.5.0 h1:2ag3IFq9ZDANvthTwTiqSSZLjDc+BedvHPAp5tJy2TI=
