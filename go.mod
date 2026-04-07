@@ -10,7 +10,7 @@ require (
 	github.com/grokify/sogo v0.14.0
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/pandatix/go-cvss v0.6.2
-	github.com/quay/claircore/toolkit v1.4.0
+	github.com/quay/claircore/toolkit v1.5.0
 	github.com/relvacode/iso8601 v1.7.0
 	github.com/shopspring/decimal v1.4.0
 	github.com/spf13/cobra v1.10.2
