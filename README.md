@@ -43,6 +43,7 @@
 1. **CI/CD Integration:** The `Cmd` wrappers provide convenient commands that can be integrated into a CI/CD pipeline with proper OS exit codes.
 1. **SLA Management:** Track remediation SLAs with severity-based policies, compliance checking, and overdue duration calculations.
 1. **Reporter Tracking:** Track internal vs. external reporters with filtering and statistics capabilities.
+1. **Security Letters:** Generate SLA exception notifications and security hardening notices in Markdown (Pandoc-compatible for DOCX/PDF).
 
 ## Packages
 
@@ -50,6 +51,7 @@
 |---------|-------------|
 | `govex` | Core vulnerability structs, filtering, and table generation |
 | `severity` | Severity classification, SLA policies, and statistics |
+| `letter` | Security notification letter generation (SLA exceptions, hardening notices) |
 | `standards/cve20` | CVE 2.0 format support |
 | `standards/cvss30` | CVSS 3.0/3.1 scoring |
 | `standards/cwe` | Common Weakness Enumeration parsing |
@@ -57,13 +59,10 @@
 | `analyzers/semgrep` | Semgrep SAST tool integration |
 | `analyzers/spotbugs` | SpotBugs Java security analysis |
 | `feeds/cisakev` | CISA Known Exploited Vulnerabilities catalog |
-| `nvd` | NIST National Vulnerability Database API client |
 | `reports/sitewriter` | Markdown website generation for vulnerability tracking |
 | `reports/psirtreport` | PSIRT vulnerability report generation |
 | `reports/releasebom` | Release BOM manifest generation |
 | `reports/poam` | FedRAMP Plan of Action and Milestones |
-| `exceptionrequest` | SLA exception request tracking |
-| `slaexception` | SLA exception notification letter generation |
 
 ## CLI Commands
 
@@ -71,12 +70,13 @@
 # Main govex CLI
 govex merge         # Merge JSON vulnerability files
 govex homepage      # Write site homepage for vulnerability reports
-govex slaletter     # Generate SLA exception notification letters
+govex letter        # Generate security notification letters
 
-# SLA Letter subcommands
-govex slaletter generate --input finding.json --output-md letter.md
-govex slaletter schema   # Output JSON Schema for AI agent integration
-govex slaletter example  # Output example JSON template
+# Letter subcommands
+govex letter generate --input finding.json --output-md letter.md
+govex letter generate --type hardening --input notice.json --output-md letter.md
+govex letter schema   # Output JSON Schema for AI agent integration
+govex letter example  # Output example JSON template (--type sla or --type hardening)
 ```
 
 ## Integrations
@@ -104,6 +104,10 @@ govex slaletter example  # Output example JSON template
 ```bash
 go install github.com/grokify/govex/cmd/govex@latest
 ```
+
+## Documentation
+
+Full documentation is available at: **[grokify.github.io/govex](https://grokify.github.io/govex/)**
 
 ## Code Visualization
 
