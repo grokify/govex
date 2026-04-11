@@ -1,0 +1,200 @@
+{
+  "irVersion": "1.0",
+  "project": "govex",
+  "repository": "https://github.com/grokify/govex",
+  "versioning": "semver",
+  "commitConvention": "conventional",
+  "maintainers": ["grokify"],
+  "releases": [
+    {
+      "version": "v0.19.0",
+      "date": "2026-04-11",
+      "highlights": [
+        { "description": "Security notification letter generation with SLA exception and hardening notice support" }
+      ],
+      "added": [
+        { "description": "`letter`: new package for security notification letter generation", "commit": "7d02a76" },
+        { "description": "`letter`: SLA exception notifications (`--type sla`)", "commit": "7d02a76" },
+        { "description": "`letter`: Security hardening notices (`--type hardening`)", "commit": "7d02a76" },
+        { "description": "`letter`: JSON Schema generation via `govex letter schema`", "commit": "7d02a76" },
+        { "description": "`letter`: Pandoc Markdown output for DOCX/PDF conversion", "commit": "7d02a76" },
+        { "description": "`govex letter` CLI subcommand with generate, schema, example commands", "commit": "f02dbe6" }
+      ],
+      "documentation": [
+        { "description": "README: added packages table, CLI commands, integrations, and standards support", "commit": "b7f4c63" }
+      ],
+      "dependencies": [
+        { "description": "Added `github.com/invopop/jsonschema` for JSON Schema generation", "commit": "3658776" }
+      ]
+    },
+    {
+      "version": "v0.18.0",
+      "date": "2025-12-13",
+      "highlights": [
+        { "description": "Reporter type filtering for internal vs external vulnerability sources" }
+      ],
+      "added": [
+        { "description": "`Reporter.IsExternal` field for identifying external reporters", "commit": "34e573e" },
+        { "description": "`Reporters.HaveKnownReporterType()`, `HaveExternalReporter()`, `HaveInternalReporter()` methods", "commit": "34e573e" },
+        { "description": "`VulnerabilitiesSet.FilterReporterExternal()`, `FilterReporterInternal()`, `HaveUnknownReporterType()`", "commit": "20b7c47" },
+        { "description": "`reports/psirtreport`: reporter-based report sections", "commit": "fae2bc6" }
+      ],
+      "changed": [
+        { "description": "`feeds/cisakev`: moved to feeds folder", "commit": "1e95314" },
+        { "description": "`standards`: moved to standards folder", "commit": "1789920" }
+      ]
+    },
+    {
+      "version": "v0.17.0",
+      "date": "2025-12-12",
+      "highlights": [
+        { "description": "Release BOM manifest generation for tracking vulnerabilities across container images" }
+      ],
+      "added": [
+        { "description": "`reports/releasebom`: `ReleaseBOM{}` type with Markdown and YAML export", "commit": "5e366c6" },
+        { "description": "`Vulnerabilities.ReleaseBOMModuleToImageName()`, `SeverityCountSetsByModule()`", "commit": "ded068e" },
+        { "description": "`severity.SeverityCountsSets{}`, `NewSeverityCountsSet()`", "commit": "512f56a" },
+        { "description": "`analyzers.FileInfo{}`, `FileInfos{}` with `MergeVulnerabilities()`", "commit": "06d5394" }
+      ],
+      "changed": [
+        { "description": "`reports/psirtreport`: renamed from `reports/vulnreport`", "commit": "0fdb117" },
+        { "description": "`reports/poam`: moved from `poam`", "commit": "9a92890" },
+        { "description": "`reports/sitewriter`: moved from `govex/site_writer.go`", "commit": "e369dba" }
+      ],
+      "documentation": [
+        { "description": "`analyzers/semgrep`: added README.md", "commit": "99c2ce8" }
+      ]
+    },
+    {
+      "version": "v0.16.0",
+      "date": "2025-12-07",
+      "highlights": [
+        { "description": "Semgrep and SpotBugs analyzer integration for SAST vulnerability scanning" }
+      ],
+      "added": [
+        { "description": "`analyzers/semgrep`: Semgrep SAST tool integration", "commit": "9407039" },
+        { "description": "`analyzers/spotbugs`: SpotBugs Java security analyzer integration", "commit": "650c8e9" },
+        { "description": "`Vulnerability.CWE`, `Vulnerability.ScannerName` fields", "commit": "6469f5e" },
+        { "description": "`cwe.ParseCWEAsPrefix()`, `ParsesCWEsAsPrefix()`", "commit": "86d3e50" },
+        { "description": "`VulnerabilitiesSets.HistogramSetSeverities()`", "commit": "d801e9d" },
+        { "description": "`Vulnerabilities.Update()`, `UpdateModules()`, `UpdateSeverities()`", "commit": "031e7b2" },
+        { "description": "`Vulnerabilities.SeverityStatsSetByReporter()`", "commit": "2eda4c1" }
+      ],
+      "changed": [
+        { "description": "`TableColumnDefinitionSetSASTSCAReport()`: added `FieldScannerName`", "commit": "f2f63b5" },
+        { "description": "`reports/vulnreport`: added 'By Reporter' section", "commit": "391ea1e" }
+      ]
+    },
+    {
+      "version": "v0.15.0",
+      "date": "2025-12-01",
+      "highlights": [
+        { "description": "Reporter tracking and vulnerability statistics with SLA overdue calculations" }
+      ],
+      "added": [
+        { "description": "`Reporter{}`, `Reporters{}` types for tracking vulnerability sources", "commit": "f67419d" },
+        { "description": "`VulnerabilitiesSets{}` for managing multiple vulnerability sets", "commit": "4a1aab4" },
+        { "description": "`VulnerabilitiesSet.CloneEmpty()`, `SetsByReporter()`", "commit": "74932a0" },
+        { "description": "`Vulnerabilities.SeverityStats()`", "commit": "b565eaa" },
+        { "description": "`severity.NewSeverityStats()`", "commit": "48cec21" },
+        { "description": "`reports/vulnreport.Report()`", "commit": "37700d4" },
+        { "description": "`VulnerabilitiesSet.FilterModule()`, `FilterSeverity()`", "commit": "e8eb05e" },
+        { "description": "`Vulnerabilities.TableOverdue()`", "commit": "530250e" },
+        { "description": "`Vulnerability.SLAOverdueDuration()`", "commit": "6409713" },
+        { "description": "`severity.SeverityStats{}`, `SeverityStatsSet{}`", "commit": "2885270" },
+        { "description": "`severity.SeverityToScoreTable()`, `SeverityToScoreTableMarkdown()`", "commit": "c4f69f2" },
+        { "description": "`severity.SLAPolicy.Table()`", "commit": "a6c6ddc" }
+      ]
+    },
+    {
+      "version": "v0.14.0",
+      "date": "2025-09-14",
+      "highlights": [
+        { "description": "Severity status tracking with SLA compliance checking by category and tag" }
+      ],
+      "added": [
+        { "description": "`severity.SeverityStatus{}`, `SeverityStatusSet{}`, `SeverityStatusSets{}`", "commit": "714d89d" },
+        { "description": "`VulnerabilitiesSet.SeverityStatusSetsByCategory()`, `SeverityStatusSetsByTag()`", "commit": "4ad43af" },
+        { "description": "`Vulnerability.Age()`, `Vulnerability.SLAInfo()`", "commit": "3e00c3b" },
+        { "description": "`severity.SLAMap.IsOverdue()`", "commit": "2252dad" },
+        { "description": "`FileInfo{}`, `FileInfoSet{}`, `FilepathStats{}`", "commit": "d13cffe" },
+        { "description": "`FileInfoSetReports()`", "commit": "6fe8150" }
+      ]
+    },
+    {
+      "version": "v0.13.0",
+      "date": "2025-08-27",
+      "highlights": [
+        { "description": "Batch file update support for vulnerability sets" }
+      ],
+      "added": [
+        { "description": "`UpdateFilesVulnerabilitiesSet()`, `UpdateFilesVulnerabilitiesSetCobraCmd()`", "commit": "9f79de6" }
+      ]
+    },
+    {
+      "version": "v0.12.0",
+      "date": "2025-05-18",
+      "highlights": [
+        { "description": "CLI merge command for combining multiple vulnerability JSON files" }
+      ],
+      "added": [
+        { "description": "`CmdMergeJSONsCobra()` Cobra command for merging vulnerability files", "commit": "dd86077" },
+        { "description": "`CmdMergeJSONsOptions.Exec()` for programmatic merge execution", "commit": "dd86077" }
+      ]
+    },
+    {
+      "version": "v0.11.0",
+      "date": "2025-04-22",
+      "highlights": [
+        { "description": "CISA KEV catalog integration and FedRAMP POAM support" }
+      ],
+      "added": [
+        { "description": "`feeds/cisakev`: CISA Known Exploited Vulnerabilities catalog parser", "commit": "0721d1c" },
+        { "description": "`reports/poam`: FedRAMP Plan of Action and Milestones support", "commit": "bc19a7c" }
+      ]
+    },
+    {
+      "version": "v0.10.0",
+      "date": "2025-04-07",
+      "highlights": [
+        { "description": "SLA policy management and CSAF standard support" }
+      ],
+      "added": [
+        { "description": "`severity.SLAMap{}` for SLA policy configuration", "commit": "5981515" },
+        { "description": "`standards/csaf`: Common Security Advisory Framework support", "commit": "df96050" }
+      ],
+      "changed": [
+        { "description": "Added AWS Inspector `Untriaged` severity support", "commit": "9a4549a" },
+        { "description": "Handle `Important` (high) and `Moderate` (medium) severity aliases", "commit": "2a33840" }
+      ]
+    },
+    {
+      "version": "v0.9.0",
+      "date": "2025-01-03",
+      "highlights": [
+        { "description": "SiteWriter for Markdown vulnerability website generation" }
+      ],
+      "added": [
+        { "description": "`SiteWriter{}` for generating Markdown vulnerability websites", "commit": "3454c8d" },
+        { "description": "`VulnerabilitiesSet.WriteFilesSiteForRepo()`", "commit": "4099b8f" },
+        { "description": "`VulnerabilitiesSetMeta.MissingFields()`", "commit": "75a4fbe" },
+        { "description": "`CLIMergeJSONsOptions{}` CLI command structure", "commit": "59f45b3" }
+      ]
+    },
+    {
+      "version": "v0.1.0",
+      "date": "2024-12-16",
+      "highlights": [
+        { "description": "Initial release with core vulnerability structs and table generation" }
+      ],
+      "added": [
+        { "description": "Core `Vulnerability{}` struct with severity, CVSS, CWE, location fields", "commit": "e5df837" },
+        { "description": "`Vulnerabilities` slice type with filtering and table generation", "commit": "e5df837" },
+        { "description": "`Location{}` for source code location tracking", "commit": "e5df837" },
+        { "description": "Category constants for SAST, SCA, DAST, IaC, Container security", "commit": "9b2e271" },
+        { "description": "Table column definitions for SAST and SCA reports", "commit": "3d1c201" },
+        { "description": "`Vulnerability.Values()` for extracting field values", "commit": "55de918" }
+      ]
+    }
+  ]
+}
