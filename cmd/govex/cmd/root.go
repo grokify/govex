@@ -6,6 +6,7 @@ import (
 
 	"github.com/spf13/cobra"
 
+	"github.com/grokify/govex/letter"
 	"github.com/grokify/govex/reports/sitewriter"
 )
 
@@ -38,4 +39,5 @@ func init() {
 	} else {
 		rootCmd.AddCommand(homepageCmd)
 	}
+	rootCmd.AddCommand(letter.CmdLetterCobra())
 }
