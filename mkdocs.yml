@@ -74,6 +74,9 @@ nav:
       - Vulnerability Formats: reference/vulnerability-formats.md
       - Vulnerability Status: reference/status.md
       - SLA Management: reference/sla.md
+  - Releases:
+      - Overview: releases/index.md
+      - v0.19.0: releases/v0.19.0.md
 
 extra:
   social:
