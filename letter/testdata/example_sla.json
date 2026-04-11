@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "subject": "SLA Exception – Low – Missing rate limiting",
+  "sender": {
+    "name": "Jane Smith",
+    "title": "Security Engineer",
+    "team": "Application Security",
+    "company": "Acme Corp",
+    "email": "security@acme.com",
+    "phone": "+1-555-123-4567"
+  },
+  "customer_name": "Widget Inc",
+  "application": "Payments API",
+  "finding": {
+    "title": "Missing rate limiting",
+    "severity": "Low",
+    "identifier": "APPSEC-1234",
+    "detected_on": "2026-04-01"
+  },
+  "cvss": {
+    "score": 3.1,
+    "version": "4.0",
+    "vector": "AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N"
+  },
+  "sla": {
+    "target_days": 90,
+    "original_due_date": "2026-06-30",
+    "new_due_date": "2026-07-31"
+  },
+  "delay_reasons": [
+    "Dependent on upstream API gateway change"
+  ],
+  "risk_assessment": "Low likelihood of exploitation due to internal-only access.",
+  "mitigations": [
+    "WAF rate limiting rules in place",
+    "Monitoring enabled"
+  ],
+  "remediation_plan": "Implement native rate limiting in service layer",
+  "milestones": [
+    {
+      "phase": 1,
+      "description": "Deploy rate limiting in report-only mode",
+      "target_date": "2026-08-01",
+      "customer_impact": "None — monitoring only"
+    },
+    {
+      "phase": 2,
+      "description": "Enable rate limiting enforcement",
+      "target_date": "2026-09-01",
+      "customer_impact": "None expected"
+    }
+  ],
+  "approver": {
+    "name": "John Doe",
+    "title": "VP of Engineering",
+    "approval_date": "2026-04-10"
+  },
+  "escalation_policy": [
+    "Reassess severity and fast-track remediation as warranted",
+    "Deploy additional WAF rules or virtual patches within 48 hours",
+    "Notify affected customers of any change in risk posture"
+  ]
+}
