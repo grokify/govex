@@ -10,6 +10,7 @@ GoVEX provides various report generation capabilities.
 | [PSIRT Report](psirtreport.md) | PSIRT vulnerability reports |
 | [Release BOM](releasebom.md) | Release manifest with vulnerabilities |
 | [POAM](poam.md) | FedRAMP Plan of Action & Milestones |
+| [Pentest Remediation](pentest.md) | Pentest remediation status reports |
 
 ## Basic Table Reports
 
