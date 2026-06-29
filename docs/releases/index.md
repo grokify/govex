@@ -6,6 +6,7 @@ Release notes for GoVEX versions.
 
 | Version | Date | Highlights |
 |---------|------|------------|
+| [v0.20.0](v0.20.0.md) | 2026-06-28 | Pentest remediation status reports |
 | [v0.19.0](v0.19.0.md) | 2026-04-11 | Security notification letter generation |
 
 ## Changelog
