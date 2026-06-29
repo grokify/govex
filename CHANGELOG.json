@@ -7,6 +7,37 @@
   "maintainers": ["grokify"],
   "releases": [
     {
+      "version": "v0.20.0",
+      "date": "2026-06-28",
+      "highlights": [
+        { "description": "Pentest remediation status reports with severity tracking and milestone management" }
+      ],
+      "added": [
+        { "description": "`reports/pentest`: new package for pentest remediation status reports", "commit": "dc0df10" },
+        { "description": "`reports/pentest`: `Report{}` type with metadata, findings, and status tracking", "commit": "dc0df10" },
+        { "description": "`reports/pentest`: `PendingItem{}` for tracking pending remediation with owner and target dates", "commit": "dc0df10" },
+        { "description": "`reports/pentest`: `CompensatingControl{}` for documenting mitigations", "commit": "dc0df10" },
+        { "description": "`reports/pentest`: `Milestone{}` for remediation phase tracking", "commit": "dc0df10" },
+        { "description": "`reports/pentest`: Markdown, JSON, and PDF output generation", "commit": "dc0df10" },
+        { "description": "`reports/pentest`: JSON Schema generation via `JSONSchema()`", "commit": "dc0df10" },
+        { "description": "`reports/pentest/cmd/example`: example command with PDF generation via maroto", "commit": "bdab70b" }
+      ],
+      "documentation": [
+        { "description": "`reports/pentest`: example output files (JSON, Markdown, PDF)", "commit": "690e85e" }
+      ],
+      "changed": [
+        { "description": "`reports/pentest`: use `fmt.Fprintf` instead of `WriteString+Sprintf`", "commit": "2106882" }
+      ],
+      "dependencies": [
+        { "description": "Added `github.com/johnfercher/maroto/v2` for PDF generation", "commit": "bdab70b" },
+        { "description": "Updated `github.com/grokify/mogo` v0.74.5 → v0.74.6", "commit": "50bf08b" },
+        { "description": "Updated `github.com/essentialkaos/go-badge` v1.4.2 → v1.4.3", "commit": "749578c" },
+        { "description": "Updated `github.com/invopop/jsonschema` v0.13.0 → v0.14.0", "commit": "9fbb435" },
+        { "description": "Updated `github.com/quay/claircore/toolkit` v1.6.0 → v1.6.1", "commit": "f288ec8" },
+        { "description": "Updated `github.com/grokify/sogo` v0.14.0 → v0.15.0", "commit": "90aa2d0" }
+      ]
+    },
+    {
       "version": "v0.19.0",
       "date": "2026-04-11",
       "highlights": [
