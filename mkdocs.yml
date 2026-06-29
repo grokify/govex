@@ -70,12 +70,14 @@ nav:
       - PSIRT Report: reports/psirtreport.md
       - Release BOM: reports/releasebom.md
       - POAM: reports/poam.md
+      - Pentest Remediation: reports/pentest.md
   - Reference:
       - Vulnerability Formats: reference/vulnerability-formats.md
       - Vulnerability Status: reference/status.md
       - SLA Management: reference/sla.md
   - Releases:
       - Overview: releases/index.md
+      - v0.20.0: releases/v0.20.0.md
       - v0.19.0: releases/v0.19.0.md
 
 extra:

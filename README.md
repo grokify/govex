@@ -63,6 +63,7 @@
 | `reports/psirtreport` | PSIRT vulnerability report generation |
 | `reports/releasebom` | Release BOM manifest generation |
 | `reports/poam` | FedRAMP Plan of Action and Milestones |
+| `reports/pentest` | Pentest remediation status reports |
 
 ## CLI Commands
 
