@@ -15,6 +15,7 @@ go install github.com/grokify/govex/cmd/govex@latest
 | `govex merge` | Merge multiple JSON vulnerability files |
 | `govex homepage` | Generate site homepage for vulnerability reports |
 | `govex letter` | Generate security notification letters |
+| `govex report` | Generate Markdown/HTML/PDF reports from JSON |
 
 ## Global Flags
 

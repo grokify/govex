@@ -6,6 +6,7 @@ GoVEX provides various report generation capabilities.
 
 | Package | Description |
 |---------|-------------|
+| [Vulnerability Report](vulnreport.md) | Titled Markdown/HTML/PDF reports over a VulnerabilitiesSet |
 | [Site Writer](sitewriter.md) | Markdown website generation |
 | [PSIRT Report](psirtreport.md) | PSIRT vulnerability reports |
 | [Release BOM](releasebom.md) | Release manifest with vulnerabilities |

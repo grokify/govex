@@ -18,7 +18,10 @@ Standard severity levels:
 | High | Urgent remediation needed |
 | Medium | Moderate priority |
 | Low | Lower priority |
-| Informational | For awareness only |
+| Informational | Not a vulnerability; observation or best-practice note (no CVSS score) |
+| None | Scored vulnerability computing to CVSS 0.0 |
+
+Informational and None occupy the same reporting tier below Low and are excluded from SLA tracking; they differ in whether a CVSS score exists behind the label. Residual severity (after compensating controls) is restricted to Critical–Low — see [Compensating Controls & Residual Risk](../reference/residual-risk.md).
 
 ## SLA Policies
 

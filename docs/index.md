@@ -11,6 +11,8 @@ GoVEX is a comprehensive solution for creating, consolidating, and sharing vulne
 - **Vulnerability Website** - Create Markdown websites for tracking vulnerabilities across projects
 - **CI/CD Integration** - Commands with proper exit codes for pipeline integration
 - **SLA Management** - Track remediation SLAs with severity-based policies
+- **Compensating Controls & Residual Risk** - Model inherent vs. residual severity and risk, with exception-driven SLA switching
+- **Risk Ratings** - Likelihood × impact matrices with NIST SP 800-30 scale translation
 - **Security Letters** - Generate SLA exception and hardening notification letters
 
 ## Quick Example
@@ -41,11 +43,14 @@ table.WriteXLSX("vulnerabilities.xlsx")
 |---------|-------------|
 | `govex` | Core vulnerability structs, filtering, and table generation |
 | `severity` | Severity classification, SLA policies, and statistics |
+| `risk` | Risk ratings, matrices, and NIST SP 800-30 translation |
+| `cvss` | Version-specific CVSS qualitative severity rating scales |
 | `letter` | Security notification letter generation |
 | `analyzers/semgrep` | Semgrep SAST integration |
 | `analyzers/spotbugs` | SpotBugs Java analysis |
 | `feeds/cisakev` | CISA KEV catalog |
 | `reports/sitewriter` | Markdown website generation |
+| `reports/vulnreport` | Titled Markdown/HTML/PDF vulnerability reports |
 
 ## Installation
 
