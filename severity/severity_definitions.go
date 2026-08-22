@@ -7,7 +7,7 @@ func SeverityToScoreTable() *table.Table {
 	tbl.Columns = []string{"Rating", "CVSS Score"}
 	tbl.Rows = [][]string{
 		{SeverityNone, "0.0"},
-		{SeverityLow, "1.0 - 3.9"},
+		{SeverityLow, "0.1 - 3.9"},
 		{SeverityMedium, "4.0 - 6.9"},
 		{SeverityHigh, "7.0 - 8.9"},
 		{SeverityCritical, "9.0 - 10.0"},
