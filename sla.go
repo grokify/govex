@@ -54,12 +54,12 @@ func (slaMap SLAMap) slaStatusOverdueTimes(severity string, startTime, evalTime 
 func (slaMap SLAMap) SLAStatusTimesString(severity string, startTime *time.Time, evalTime time.Time, unknownString string) (string, error) {
 	if startTime == nil {
 		return unknownString, nil
-	} else if withinSLA, err := slaMap.slaStatusOverdueTimes(severity, *startTime, evalTime); err != nil {
+	} else if isOverdue, err := slaMap.slaStatusOverdueTimes(severity, *startTime, evalTime); err != nil {
 		return unknownString, err
-	} else if withinSLA {
-		return StatusWithinSLA, nil
-	} else {
+	} else if isOverdue {
 		return StatusOutOfSLA, nil
+	} else {
+		return StatusWithinSLA, nil
 	}
 }
 
