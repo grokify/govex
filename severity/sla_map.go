@@ -147,12 +147,12 @@ func (sla SLAPolicy) slaStatusOverdueTimes(severity string, startTime, evalTime 
 func (sla SLAPolicy) SLAStatusTimesString(severity string, startTime *time.Time, evalTime time.Time, unknownString string) (string, error) {
 	if startTime == nil {
 		return unknownString, nil
-	} else if withinSLA, err := sla.slaStatusOverdueTimes(severity, *startTime, evalTime); err != nil {
+	} else if isOverdue, err := sla.slaStatusOverdueTimes(severity, *startTime, evalTime); err != nil {
 		return unknownString, err
-	} else if withinSLA {
-		return StatusWithinSLA, nil
-	} else {
+	} else if isOverdue {
 		return StatusOutOfSLA, nil
+	} else {
+		return StatusWithinSLA, nil
 	}
 }
 
