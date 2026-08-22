@@ -39,6 +39,9 @@
 1. **Vulnerability Reports Website:** Creation of a Markdown website for managing reports across multiple git-based projects with history is available using `SiteWriter`. This is currently intended to be used with a git UI, but may have future support for a Docs-as-Code documentation generator such as [MkDocs](https://www.mkdocs.org/).
 1. **CI/CD Integration:** The `Cmd` wrappers provide convenient commands that can be integrated into a CI/CD pipeline with proper OS exit codes.
 1. **SLA Management:** Track remediation SLAs with severity-based policies, compliance checking, and overdue duration calculations.
+1. **Residual Risk & Compensating Controls:** Model inherent vs. residual severity and risk with first-class compensating controls and exceptions. The SLA clock runs on inherent severity until an exception is approved, then on residual severity.
+1. **Risk Ratings:** Likelihood × impact assessments against explicit organization-defined risk matrices, with NIST SP 800-30 scale translation for FedRAMP-style exports.
+1. **Titled Reports:** Render a vulnerability set as a titled report (title, classification, executive summary, per-finding details) in Markdown, HTML, or PDF via `reports/vulnreport` and `govex report`.
 1. **Reporter Tracking:** Track internal vs. external reporters with filtering and statistics capabilities.
 1. **Security Letters:** Generate SLA exception notifications and security hardening notices in Markdown (Pandoc-compatible for DOCX/PDF).
 
@@ -48,6 +51,8 @@
 |---------|-------------|
 | `govex` | Core vulnerability structs, filtering, and table generation |
 | `severity` | Severity classification, SLA policies, and statistics |
+| `risk` | Risk ratings, matrices, and NIST SP 800-30 translation |
+| `cvss` | Version-specific CVSS qualitative severity rating scales |
 | `letter` | Security notification letter generation (SLA exceptions, hardening notices) |
 | `standards/cve20` | CVE 2.0 format support |
 | `standards/cvss30` | CVSS 3.0/3.1 scoring |
@@ -61,6 +66,7 @@
 | `reports/releasebom` | Release BOM manifest generation |
 | `reports/poam` | FedRAMP Plan of Action and Milestones |
 | `reports/pentest` | Pentest remediation status reports |
+| `reports/vulnreport` | Titled Markdown/HTML/PDF vulnerability reports |
 
 ## CLI Commands
 
@@ -69,6 +75,11 @@
 govex merge         # Merge JSON vulnerability files
 govex homepage      # Write site homepage for vulnerability reports
 govex letter        # Generate security notification letters
+govex report        # Generate Markdown/HTML/PDF reports from JSON
+
+# Report subcommand (output format inferred from extension)
+govex report -i vulns.json -o report.html
+govex report -i vulns.json -o report.pdf --title "Q3 Report" --columns residual
 
 # Letter subcommands
 govex letter generate --input finding.json --output-md letter.md
@@ -92,9 +103,10 @@ govex letter example  # Output example JSON template (--type sla or --type harde
 | Standard | Description |
 |----------|-------------|
 | CVE 2.0 | NIST CVE format |
-| CVSS 3.0/3.1/4.0 | Vulnerability scoring |
+| CVSS 2.0/3.0/3.1/4.0 | Vulnerability scoring with NVD-aligned qualitative rating scales |
 | CWE | Common Weakness Enumeration |
 | CSAF | Common Security Advisory Framework |
+| NIST SP 800-30 | Risk assessment scale translation |
 | OSCAL/POAM | FedRAMP compliance |
 
 ## Installation
