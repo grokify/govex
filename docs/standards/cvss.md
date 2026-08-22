@@ -48,7 +48,20 @@ score := cvss30.Score{
 base := score.Calculate()
 ```
 
-## Severity Ratings
+## Qualitative Severity Rating Scales
+
+GoVEX aligns with the [NVD qualitative severity ratings](https://nvd.nist.gov/vuln-metrics/cvss). The rating bands are version-specific and provided by the `cvss` package:
+
+```go
+import "github.com/grokify/govex/cvss"
+
+set, err := cvss.SeveritySetForVersion("3.1") // accepts "2.0", "3.0", "3.1", "3.x", "4.0"
+sev, err := set.SeverityFromScoreFloat32(3.9) // "Low"
+```
+
+### CVSS v3.x and v4.0
+
+CVSS v3.0, v3.1, and v4.0 share the same rating bands:
 
 | Score Range | Rating |
 |-------------|--------|
@@ -57,6 +70,23 @@ base := score.Calculate()
 | 4.0 - 6.9 | Medium |
 | 7.0 - 8.9 | High |
 | 9.0 - 10.0 | Critical |
+
+### CVSS v2.0
+
+CVSS v2.0 defines no None or Critical rating; Low starts at 0.0 and High extends to 10.0:
+
+| Score Range | Rating |
+|-------------|--------|
+| 0.0 - 3.9 | Low |
+| 4.0 - 6.9 | Medium |
+| 7.0 - 10.0 | High |
+
+!!! warning "Do not relabel v2 scores with v3/v4 bands"
+    A CVSS v2.0 score of 9.8 is **High** under the v2 scale. It must not be relabeled Critical unless re-derived from a v3.x or v4.0 vector. Use `cvss.SeveritySetCVSS2()` for legacy v2-scored data.
+
+### Base vs. Environmental Severity
+
+The base score yields the **inherent** severity. A CVSS environmental score — the base metrics modified by verified compensating controls (e.g. `MAV:A` for network segmentation) — yields the **residual** severity, using the same rating bands. See [Compensating Controls & Residual Risk](../reference/residual-risk.md).
 
 ## Vector String Format
 

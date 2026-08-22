@@ -31,6 +31,58 @@ type Vulnerability struct {
 }
 ```
 
+#### Residual Assessment Fields
+
+A vulnerability also carries its assessment before and after compensating controls:
+
+```go
+type Vulnerability struct {
+    // ...
+    Severity               string                // inherent severity (CVSS base)
+    SeverityResidual       string                // residual severity (CVSS environmental)
+    SeverityResidualVector string                // environmental vector justifying the residual
+    RiskInherent           *risk.Rating          // likelihood × impact without controls
+    RiskResidual           *risk.Rating          // likelihood × impact with verified controls
+    Controls               []CompensatingControl // controls justifying the residual assessments
+    Exception              *ExceptionStatus      // exception approval state
+    // ...
+}
+```
+
+See [Compensating Controls & Residual Risk](../reference/residual-risk.md) for the full model.
+
+### CompensatingControl
+
+A measure that reduces exploitability or impact without remediating the vulnerability:
+
+```go
+control := govex.CompensatingControl{
+    ID:              "CTRL-NET-001",
+    Name:            "Network segmentation",
+    Function:        govex.ControlFunctionPreventive, // or Detective, Corrective
+    Reduces:         []string{govex.ReducesLikelihood},
+    ModifiedMetrics: []string{"MAV:A"},
+    Effectiveness:   govex.EffectivenessHigh,
+    Verified:        true,
+}
+```
+
+### ExceptionStatus
+
+Approval state of a risk exception. The SLA clock runs on inherent severity until an exception is approved, then on residual severity:
+
+```go
+vn.Exception = &govex.ExceptionStatus{
+    Status:     govex.ExceptionStatusApproved,
+    ApprovedAt: &approvedTime,
+    ExpiresAt:  &expiryTime,
+}
+
+sev := vn.EffectiveSeverity(time.Now()) // residual while approval in effect
+
+err := vn.ValidateResidualSeverity() // residual must be Critical–Low and ≤ inherent
+```
+
 ### Vulnerabilities
 
 A slice of Vulnerability with convenience methods.
@@ -146,4 +198,5 @@ err := vulns.WriteFile("output.json")
 ## Related Packages
 
 - [severity](severity.md) - Severity classification and SLA policies
+- [risk](risk.md) - Risk ratings, matrices, and NIST SP 800-30 translation
 - [letter](letter.md) - Security notification letters

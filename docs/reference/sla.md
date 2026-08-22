@@ -1,28 +1,131 @@
-# SLA Statuses
+# SLA Management
 
-When reviewing an SLA (Service Level Agreement) to determine whether an "in-progress" item is within or out of SLA, the categorization typically uses status words or time indicators related to the lifecycle of a ticket or task. Common words or phrases include:
+GoVEX tracks remediation Service Level Agreements (SLAs) with severity-based policies: each severity level gets a number of days to remediate, and every vulnerability's age is evaluated against the policy for its **effective severity**.
 
-1. Time-Based Categories:
-  * Within SLA: Indicates the item is still within the agreed response or resolution timeframe.
-  * Approaching SLA: Signals that the item is nearing its SLA threshold and may require immediate attention.
-  * Out of SLA: Indicates that the SLA commitment has been breached.
-2. Status Descriptors:
-  * In Progress: Work has started, and the ticket or task is being actively worked on.
-  * Pending: Waiting on an external factor, such as customer input or a third-party response. (Some SLAs pause during this status.)
-  * On Hold: Similar to "Pending," but often internally paused due to prioritization or resource constraints.
-  * Escalated: Raised to a higher tier of support or urgency due to potential SLA risks.
-  * Breached: Explicit acknowledgment that the SLA timeline was not met.
-3. Priority-Based Tags:
-  * Critical or High Priority: Often associated with shorter SLA timelines and closer monitoring.
-  * Low Priority: May have longer SLA periods, less urgency.
-4. Time-Specific Metrics:
-  * Response Time: How quickly the first response was made after the item was logged.
-  * Resolution Time: Total time taken to resolve the issue or complete the task.
-  * Elapsed Time: Time passed since the item was created, which is compared to SLA thresholds.
-5. SLA States or Indicators in Tools:
-  * Tools like ServiceNow, Jira, or Zendesk might use terms or visual indicators like:
-    * Green: Within SLA.
-    * Yellow/Amber: Approaching SLA breach.
-    * Red: Out of SLA.
+## SLA Policies
 
-By monitoring these terms and metrics, teams can quickly identify items needing attention to ensure SLA compliance. Would you like help designing an SLA monitoring system?
+### SLAPolicy
+
+`severity.SLAPolicy` defines remediation days for the four actionable severity levels:
+
+```go
+import "github.com/grokify/govex/severity"
+
+policy := severity.SLAPolicy{
+    CriticalDays: 15,
+    HighDays:     30,
+    MediumDays:   90,
+    LowDays:      180,
+}
+```
+
+Informational and None findings are not vulnerabilities requiring remediation and have no SLA days; severities without configured days return 0 and produce no due date via `SLAOptions.DueDate`.
+
+### SLAMap and Predefined Policies
+
+`severity.SLAMap` is a simple severity → days map, with predefined policies for common frameworks:
+
+```go
+fedramp := severity.SLAMapFedRAMP() // Critical/High: 30, Medium: 90, Low: 180
+gitlab := severity.SLAMapGitLab()   // Critical/High: 30, Medium: 90, Low: 180
+```
+
+## Policy Methods
+
+```go
+// Due date for a severity from a start time
+due, err := policy.DueDate("High", detectedTime)
+
+// Overdue check from an age
+overdueBy, isOverdue, err := policy.IsOverdue("High", age)
+
+// Days configured for a severity
+days := policy.SeveritySLADays("High") // 30
+
+// Render the policy for reports
+md := policy.Markdown()
+tbl := policy.Table()
+```
+
+## SLA Statuses
+
+Status strings for reporting:
+
+| Constant | Value | Meaning |
+|----------|-------|---------|
+| `StatusWithinSLA` | Within SLA | Age is inside the remediation window |
+| `StatusApproachingSLA` | Approaching SLA | Nearing the SLA threshold |
+| `StatusOutOfSLA` | Out of SLA | The remediation window has been breached |
+
+```go
+status, err := policy.SLAStatusTimesString("High", &startTime, evalTime, "Unknown")
+// "Within SLA" or "Out of SLA"; the unknown string when startTime is nil
+```
+
+## Vulnerability SLA Methods
+
+`govex.Vulnerability` evaluates its own SLA state against a policy. The SLA clock starts at `SLATimeStart`:
+
+```go
+vn := govex.Vulnerability{
+    Severity:     "High",
+    SLATimeStart: &detectedTime,
+}
+
+overdueBy := vn.SLAOverdueDuration(policy, time.Now()) // 0 if within SLA
+compliant := vn.SLACompliant(policy, time.Now())
+elapsed := vn.SLAElapsed(policy, time.Now())
+ageDays, overdueDays, overdue := vn.SLAInfo(slaMap, time.Now())
+
+// Sets and returns vn.SLAStatus for report columns
+status := vn.BuildSLAStatusString(policy, time.Now(), "Unknown")
+```
+
+## Effective Severity: Exceptions Switch the SLA Basis
+
+All vulnerability SLA methods key off `EffectiveSeverity`, not the raw `Severity` field. The policy is:
+
+> The SLA clock runs on **inherent severity** until a risk exception is approved, then on **residual severity** for as long as the approval is in effect.
+
+```go
+vn := govex.Vulnerability{
+    Severity:         "High", // inherent: 30-day SLA
+    SeverityResidual: "Low",  // residual: 180-day SLA
+    SLATimeStart:     &detectedTime,
+}
+
+// Before approval: evaluated as High.
+vn.SLACompliant(policy, evalTime)
+
+// After approval: evaluated as Low.
+vn.Exception = &govex.ExceptionStatus{
+    Status:     govex.ExceptionStatusApproved,
+    ApprovedAt: &approvedTime,
+    ExpiresAt:  &expiryTime,
+}
+vn.SLACompliant(policy, evalTime)
+
+// After expiry: evaluated as High again.
+```
+
+A residual severity with a merely requested or rejected exception has no effect on the SLA. See [Compensating Controls & Residual Risk](residual-risk.md) for the full model.
+
+## SLA Start Dates
+
+`severity.SLAOptions` resolves the SLA start time with explicit precedence — a hard per-finding start date, then a fixed program-wide start date, then the finding's soft start date:
+
+```go
+opts := severity.SLAOptions{
+    SLAStartDateFixed: &programStartDate,
+    SLAPolicy:         &policy,
+}
+
+due, err := opts.DueDate("High", softStart, hardStart)
+// hardStart > SLAStartDateFixed > softStart; nil when no SLA days configured
+```
+
+## Related
+
+- [Severity Package](../packages/severity.md) - Severity classification underlying SLA policies
+- [Compensating Controls & Residual Risk](residual-risk.md) - Exception workflow and effective severity
+- [Vulnerability Status](status.md) - Remediation status vocabulary
