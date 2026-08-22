@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://grokify.github.io/govex/packages/core/">
       
       
-        <link rel="prev" href="../../cli/letter/">
+        <link rel="prev" href="../../cli/report/">
       
       
         <link rel="next" href="../severity/">
@@ -565,6 +565,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    govex report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -720,6 +748,45 @@
     <span class="md-ellipsis">
       
         Vulnerability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vulnerability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#residual-assessment-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Residual Assessment Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compensatingcontrol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CompensatingControl
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exceptionstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ExceptionStatus
       
     </span>
   </a>
@@ -899,6 +966,34 @@
     
   
     Severity & SLA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Risk
   
 
     
@@ -1528,6 +1623,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../reports/vulnreport/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vulnerability Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../reports/sitewriter/" class="md-nav__link">
         
   
@@ -1785,6 +1908,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../reference/residual-risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Residual Risk & Controls
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../reference/sla/" class="md-nav__link">
         
   
@@ -1882,6 +2033,34 @@
     
   
     Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/v0.21.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v0.21.0
   
 
     
@@ -2001,55 +2180,94 @@
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="c1">// ... additional fields</span>
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="p">}</span>
 </code></pre></div>
+<h4 id="residual-assessment-fields">Residual Assessment Fields<a class="headerlink" href="#residual-assessment-fields" title="Permanent link">&para;</a></h4>
+<p>A vulnerability also carries its assessment before and after compensating controls:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">Vulnerability</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nx">Severity</span><span class="w">               </span><span class="kt">string</span><span class="w">                </span><span class="c1">// inherent severity (CVSS base)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nx">SeverityResidual</span><span class="w">       </span><span class="kt">string</span><span class="w">                </span><span class="c1">// residual severity (CVSS environmental)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nx">SeverityResidualVector</span><span class="w"> </span><span class="kt">string</span><span class="w">                </span><span class="c1">// environmental vector justifying the residual</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nx">RiskInherent</span><span class="w">           </span><span class="o">*</span><span class="nx">risk</span><span class="p">.</span><span class="nx">Rating</span><span class="w">          </span><span class="c1">// likelihood × impact without controls</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nx">RiskResidual</span><span class="w">           </span><span class="o">*</span><span class="nx">risk</span><span class="p">.</span><span class="nx">Rating</span><span class="w">          </span><span class="c1">// likelihood × impact with verified controls</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="nx">Controls</span><span class="w">               </span><span class="p">[]</span><span class="nx">CompensatingControl</span><span class="w"> </span><span class="c1">// controls justifying the residual assessments</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="nx">Exception</span><span class="w">              </span><span class="o">*</span><span class="nx">ExceptionStatus</span><span class="w">      </span><span class="c1">// exception approval state</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">}</span>
+</code></pre></div>
+<p>See <a href="../../reference/residual-risk/">Compensating Controls &amp; Residual Risk</a> for the full model.</p>
+<h3 id="compensatingcontrol">CompensatingControl<a class="headerlink" href="#compensatingcontrol" title="Permanent link">&para;</a></h3>
+<p>A measure that reduces exploitability or impact without remediating the vulnerability:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">control</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">govex</span><span class="p">.</span><span class="nx">CompensatingControl</span><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nx">ID</span><span class="p">:</span><span class="w">              </span><span class="s">&quot;CTRL-NET-001&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nx">Name</span><span class="p">:</span><span class="w">            </span><span class="s">&quot;Network segmentation&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nx">Function</span><span class="p">:</span><span class="w">        </span><span class="nx">govex</span><span class="p">.</span><span class="nx">ControlFunctionPreventive</span><span class="p">,</span><span class="w"> </span><span class="c1">// or Detective, Corrective</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nx">Reduces</span><span class="p">:</span><span class="w">         </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="nx">govex</span><span class="p">.</span><span class="nx">ReducesLikelihood</span><span class="p">},</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nx">ModifiedMetrics</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;MAV:A&quot;</span><span class="p">},</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nx">Effectiveness</span><span class="p">:</span><span class="w">   </span><span class="nx">govex</span><span class="p">.</span><span class="nx">EffectivenessHigh</span><span class="p">,</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="nx">Verified</span><span class="p">:</span><span class="w">        </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="exceptionstatus">ExceptionStatus<a class="headerlink" href="#exceptionstatus" title="Permanent link">&para;</a></h3>
+<p>Approval state of a risk exception. The SLA clock runs on inherent severity until an exception is approved, then on residual severity:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">vn</span><span class="p">.</span><span class="nx">Exception</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">govex</span><span class="p">.</span><span class="nx">ExceptionStatus</span><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nx">Status</span><span class="p">:</span><span class="w">     </span><span class="nx">govex</span><span class="p">.</span><span class="nx">ExceptionStatusApproved</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nx">ApprovedAt</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">approvedTime</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nx">ExpiresAt</span><span class="p">:</span><span class="w">  </span><span class="o">&amp;</span><span class="nx">expiryTime</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">}</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nx">sev</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">vn</span><span class="p">.</span><span class="nx">EffectiveSeverity</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">())</span><span class="w"> </span><span class="c1">// residual while approval in effect</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">vn</span><span class="p">.</span><span class="nx">ValidateResidualSeverity</span><span class="p">()</span><span class="w"> </span><span class="c1">// residual must be Critical–Low and ≤ inherent</span>
+</code></pre></div>
 <h3 id="vulnerabilities">Vulnerabilities<a class="headerlink" href="#vulnerabilities" title="Permanent link">&para;</a></h3>
 <p>A slice of Vulnerability with convenience methods.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">Vulnerabilities</span><span class="w"> </span><span class="p">[]</span><span class="nx">Vulnerability</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">Vulnerabilities</span><span class="w"> </span><span class="p">[]</span><span class="nx">Vulnerability</span>
 </code></pre></div>
 <h3 id="vulnerabilitiesset">VulnerabilitiesSet<a class="headerlink" href="#vulnerabilitiesset" title="Permanent link">&para;</a></h3>
 <p>A named collection of vulnerabilities with metadata.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">VulnerabilitiesSet</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nx">Name</span><span class="w">            </span><span class="kt">string</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nx">Vulnerabilities</span><span class="w"> </span><span class="nx">Vulnerabilities</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nx">Meta</span><span class="w">            </span><span class="nx">VulnerabilitiesSetMeta</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kd">type</span><span class="w"> </span><span class="nx">VulnerabilitiesSet</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nx">Name</span><span class="w">            </span><span class="kt">string</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nx">Vulnerabilities</span><span class="w"> </span><span class="nx">Vulnerabilities</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nx">Meta</span><span class="w">            </span><span class="nx">VulnerabilitiesSetMeta</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="core-functions">Core Functions<a class="headerlink" href="#core-functions" title="Permanent link">&para;</a></h2>
 <h3 id="creating-vulnerabilities">Creating Vulnerabilities<a class="headerlink" href="#creating-vulnerabilities" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">vulns</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">govex</span><span class="p">.</span><span class="nx">Vulnerabilities</span><span class="p">{</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="p">{</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">        </span><span class="nx">ID</span><span class="p">:</span><span class="w">       </span><span class="s">&quot;CVE-2024-1234&quot;</span><span class="p">,</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">        </span><span class="nx">Title</span><span class="p">:</span><span class="w">    </span><span class="s">&quot;SQL Injection&quot;</span><span class="p">,</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">        </span><span class="nx">Severity</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;High&quot;</span><span class="p">,</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="nx">Status</span><span class="p">:</span><span class="w">   </span><span class="s">&quot;Open&quot;</span><span class="p">,</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="p">},</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nx">vulns</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">govex</span><span class="p">.</span><span class="nx">Vulnerabilities</span><span class="p">{</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">        </span><span class="nx">ID</span><span class="p">:</span><span class="w">       </span><span class="s">&quot;CVE-2024-1234&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">        </span><span class="nx">Title</span><span class="p">:</span><span class="w">    </span><span class="s">&quot;SQL Injection&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">        </span><span class="nx">Severity</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;High&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">        </span><span class="nx">Status</span><span class="p">:</span><span class="w">   </span><span class="s">&quot;Open&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="p">}</span>
 </code></pre></div>
 <h3 id="filtering">Filtering<a class="headerlink" href="#filtering" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Filter by severity</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nx">high</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">vulns</span><span class="p">.</span><span class="nx">FilterSeverity</span><span class="p">(</span><span class="s">&quot;High&quot;</span><span class="p">)</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1">// Filter by module</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nx">api</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">vulns</span><span class="p">.</span><span class="nx">FilterModule</span><span class="p">(</span><span class="s">&quot;backend-api&quot;</span><span class="p">)</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1">// Filter by status</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nx">open</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">vulns</span><span class="p">.</span><span class="nx">FilterStatus</span><span class="p">(</span><span class="s">&quot;Open&quot;</span><span class="p">)</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1">// Filter by category</span>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="nx">sast</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">vulns</span><span class="p">.</span><span class="nx">FilterCategory</span><span class="p">(</span><span class="nx">govex</span><span class="p">.</span><span class="nx">CategorySAST</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// Filter by severity</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nx">high</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">vulns</span><span class="p">.</span><span class="nx">FilterSeverity</span><span class="p">(</span><span class="s">&quot;High&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1">// Filter by module</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nx">api</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">vulns</span><span class="p">.</span><span class="nx">FilterModule</span><span class="p">(</span><span class="s">&quot;backend-api&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1">// Filter by status</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="nx">open</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">vulns</span><span class="p">.</span><span class="nx">FilterStatus</span><span class="p">(</span><span class="s">&quot;Open&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1">// Filter by category</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="nx">sast</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">vulns</span><span class="p">.</span><span class="nx">FilterCategory</span><span class="p">(</span><span class="nx">govex</span><span class="p">.</span><span class="nx">CategorySAST</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="table-generation">Table Generation<a class="headerlink" href="#table-generation" title="Permanent link">&para;</a></h3>
 <p>Generate tables for reporting:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// Use predefined column set</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nx">table</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">vulns</span><span class="p">.</span><span class="nx">Table</span><span class="p">(</span><span class="nx">govex</span><span class="p">.</span><span class="nx">TableColumnDefinitionSetSASTSCAReport</span><span class="p">())</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1">// Export to formats</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nx">table</span><span class="p">.</span><span class="nx">WriteXLSX</span><span class="p">(</span><span class="s">&quot;report.xlsx&quot;</span><span class="p">)</span>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="nx">table</span><span class="p">.</span><span class="nx">WriteCSV</span><span class="p">(</span><span class="s">&quot;report.csv&quot;</span><span class="p">)</span>
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="nx">md</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">table</span><span class="p">.</span><span class="nx">Markdown</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// Use predefined column set</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nx">table</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">vulns</span><span class="p">.</span><span class="nx">Table</span><span class="p">(</span><span class="nx">govex</span><span class="p">.</span><span class="nx">TableColumnDefinitionSetSASTSCAReport</span><span class="p">())</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1">// Export to formats</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nx">table</span><span class="p">.</span><span class="nx">WriteXLSX</span><span class="p">(</span><span class="s">&quot;report.xlsx&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="nx">table</span><span class="p">.</span><span class="nx">WriteCSV</span><span class="p">(</span><span class="s">&quot;report.csv&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="nx">md</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">table</span><span class="p">.</span><span class="nx">Markdown</span><span class="p">()</span>
 </code></pre></div>
 <h3 id="statistics">Statistics<a class="headerlink" href="#statistics" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nx">stats</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">vulns</span><span class="p">.</span><span class="nx">SeverityStats</span><span class="p">()</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1">// Returns counts by severity level</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nx">stats</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">vulns</span><span class="p">.</span><span class="nx">SeverityStats</span><span class="p">()</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1">// Returns counts by severity level</span>
 </code></pre></div>
 <h2 id="categories">Categories<a class="headerlink" href="#categories" title="Permanent link">&para;</a></h2>
 <p>Predefined vulnerability categories:</p>
@@ -2085,27 +2303,28 @@
 </table>
 <h2 id="table-column-definitions">Table Column Definitions<a class="headerlink" href="#table-column-definitions" title="Permanent link">&para;</a></h2>
 <p>Predefined column sets for common report types:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">// SAST/SCA report columns</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nx">cols</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">govex</span><span class="p">.</span><span class="nx">TableColumnDefinitionSetSASTSCAReport</span><span class="p">()</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1">// Custom columns</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="nx">cols</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="nx">govex</span><span class="p">.</span><span class="nx">TableColumnDefinition</span><span class="p">{</span>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="p">{</span><span class="nx">Field</span><span class="p">:</span><span class="w"> </span><span class="nx">govex</span><span class="p">.</span><span class="nx">FieldID</span><span class="p">,</span><span class="w"> </span><span class="nx">Header</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CVE&quot;</span><span class="p">},</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="p">{</span><span class="nx">Field</span><span class="p">:</span><span class="w"> </span><span class="nx">govex</span><span class="p">.</span><span class="nx">FieldSeverity</span><span class="p">,</span><span class="w"> </span><span class="nx">Header</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Severity&quot;</span><span class="p">},</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="p">{</span><span class="nx">Field</span><span class="p">:</span><span class="w"> </span><span class="nx">govex</span><span class="p">.</span><span class="nx">FieldTitle</span><span class="p">,</span><span class="w"> </span><span class="nx">Header</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Title&quot;</span><span class="p">},</span>
-<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">// SAST/SCA report columns</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nx">cols</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">govex</span><span class="p">.</span><span class="nx">TableColumnDefinitionSetSASTSCAReport</span><span class="p">()</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1">// Custom columns</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="nx">cols</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">[]</span><span class="nx">govex</span><span class="p">.</span><span class="nx">TableColumnDefinition</span><span class="p">{</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="p">{</span><span class="nx">Field</span><span class="p">:</span><span class="w"> </span><span class="nx">govex</span><span class="p">.</span><span class="nx">FieldID</span><span class="p">,</span><span class="w"> </span><span class="nx">Header</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CVE&quot;</span><span class="p">},</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">    </span><span class="p">{</span><span class="nx">Field</span><span class="p">:</span><span class="w"> </span><span class="nx">govex</span><span class="p">.</span><span class="nx">FieldSeverity</span><span class="p">,</span><span class="w"> </span><span class="nx">Header</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Severity&quot;</span><span class="p">},</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">    </span><span class="p">{</span><span class="nx">Field</span><span class="p">:</span><span class="w"> </span><span class="nx">govex</span><span class="p">.</span><span class="nx">FieldTitle</span><span class="p">,</span><span class="w"> </span><span class="nx">Header</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Title&quot;</span><span class="p">},</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="p">}</span>
 </code></pre></div>
 <h2 id="file-operations">File Operations<a class="headerlink" href="#file-operations" title="Permanent link">&para;</a></h2>
 <h3 id="readingwriting-json">Reading/Writing JSON<a class="headerlink" href="#readingwriting-json" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// Read vulnerabilities from JSON file</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nx">vulns</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">govex</span><span class="p">.</span><span class="nx">ReadVulnerabilitiesFile</span><span class="p">(</span><span class="s">&quot;vulns.json&quot;</span><span class="p">)</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1">// Write vulnerabilities to JSON file</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">vulns</span><span class="p">.</span><span class="nx">WriteFile</span><span class="p">(</span><span class="s">&quot;output.json&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1">// Read vulnerabilities from JSON file</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nx">vulns</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">govex</span><span class="p">.</span><span class="nx">ReadVulnerabilitiesFile</span><span class="p">(</span><span class="s">&quot;vulns.json&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1">// Write vulnerabilities to JSON file</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">vulns</span><span class="p">.</span><span class="nx">WriteFile</span><span class="p">(</span><span class="s">&quot;output.json&quot;</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="related-packages">Related Packages<a class="headerlink" href="#related-packages" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../severity/">severity</a> - Severity classification and SLA policies</li>
+<li><a href="../risk/">risk</a> - Risk ratings, matrices, and NIST SP 800-30 translation</li>
 <li><a href="../letter/">letter</a> - Security notification letters</li>
 </ul>
 

@@ -565,6 +565,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    govex report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -669,6 +697,34 @@
     
   
     Severity & SLA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../packages/risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Risk
   
 
     
@@ -1246,13 +1302,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#severity-ratings" class="md-nav__link">
+  <a href="#qualitative-severity-rating-scales" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Severity Ratings
+        Qualitative Severity Rating Scales
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Qualitative Severity Rating Scales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cvss-v3x-and-v40" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CVSS v3.x and v4.0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cvss-v20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CVSS v2.0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#base-vs-environmental-severity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Base vs. Environmental Severity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1419,6 +1514,34 @@
     
   
     Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/vulnreport/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vulnerability Report
   
 
     
@@ -1696,6 +1819,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../reference/residual-risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Residual Risk & Controls
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../reference/sla/" class="md-nav__link">
         
   
@@ -1793,6 +1944,34 @@
     
   
     Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/v0.21.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v0.21.0
   
 
     
@@ -1942,7 +2121,15 @@
 <a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="nx">base</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">score</span><span class="p">.</span><span class="nx">Calculate</span><span class="p">()</span>
 </code></pre></div>
-<h2 id="severity-ratings">Severity Ratings<a class="headerlink" href="#severity-ratings" title="Permanent link">&para;</a></h2>
+<h2 id="qualitative-severity-rating-scales">Qualitative Severity Rating Scales<a class="headerlink" href="#qualitative-severity-rating-scales" title="Permanent link">&para;</a></h2>
+<p>GoVEX aligns with the <a href="https://nvd.nist.gov/vuln-metrics/cvss">NVD qualitative severity ratings</a>. The rating bands are version-specific and provided by the <code>cvss</code> package:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;github.com/grokify/govex/cvss&quot;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nx">set</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">cvss</span><span class="p">.</span><span class="nx">SeveritySetForVersion</span><span class="p">(</span><span class="s">&quot;3.1&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// accepts &quot;2.0&quot;, &quot;3.0&quot;, &quot;3.1&quot;, &quot;3.x&quot;, &quot;4.0&quot;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nx">sev</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">set</span><span class="p">.</span><span class="nx">SeverityFromScoreFloat32</span><span class="p">(</span><span class="mf">3.9</span><span class="p">)</span><span class="w"> </span><span class="c1">// &quot;Low&quot;</span>
+</code></pre></div>
+<h3 id="cvss-v3x-and-v40">CVSS v3.x and v4.0<a class="headerlink" href="#cvss-v3x-and-v40" title="Permanent link">&para;</a></h3>
+<p>CVSS v3.0, v3.1, and v4.0 share the same rating bands:</p>
 <table>
 <thead>
 <tr>
@@ -1973,9 +2160,39 @@
 </tr>
 </tbody>
 </table>
+<h3 id="cvss-v20">CVSS v2.0<a class="headerlink" href="#cvss-v20" title="Permanent link">&para;</a></h3>
+<p>CVSS v2.0 defines no None or Critical rating; Low starts at 0.0 and High extends to 10.0:</p>
+<table>
+<thead>
+<tr>
+<th>Score Range</th>
+<th>Rating</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.0 - 3.9</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>4.0 - 6.9</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>7.0 - 10.0</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Do not relabel v2 scores with v3/v4 bands</p>
+<p>A CVSS v2.0 score of 9.8 is <strong>High</strong> under the v2 scale. It must not be relabeled Critical unless re-derived from a v3.x or v4.0 vector. Use <code>cvss.SeveritySetCVSS2()</code> for legacy v2-scored data.</p>
+</div>
+<h3 id="base-vs-environmental-severity">Base vs. Environmental Severity<a class="headerlink" href="#base-vs-environmental-severity" title="Permanent link">&para;</a></h3>
+<p>The base score yields the <strong>inherent</strong> severity. A CVSS environmental score — the base metrics modified by verified compensating controls (e.g. <code>MAV:A</code> for network segmentation) — yields the <strong>residual</strong> severity, using the same rating bands. See <a href="../../reference/residual-risk/">Compensating Controls &amp; Residual Risk</a>.</p>
 <h2 id="vector-string-format">Vector String Format<a class="headerlink" href="#vector-string-format" title="Permanent link">&para;</a></h2>
 <p>CVSS 3.1 vector format:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H
 </code></pre></div>
 <table>
 <thead>

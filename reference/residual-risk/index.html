@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://grokify.github.io/govex/cli/letter/">
+        <link rel="canonical" href="https://grokify.github.io/govex/reference/residual-risk/">
       
       
-        <link rel="prev" href="../homepage/">
+        <link rel="prev" href="../status/">
       
       
-        <link rel="next" href="../report/">
+        <link rel="next" href="../sla/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>govex letter - GoVEX Documentation</title>
+        <title>Residual Risk & Controls - GoVEX Documentation</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#govex-letter" class="md-skip">
+        <a href="#compensating-controls-residual-risk" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              govex letter
+              Residual Risk & Controls
             
           </span>
         </div>
@@ -403,8 +403,6 @@
       
   
   
-    
-  
   
   
     
@@ -417,11 +415,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
@@ -442,7 +442,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -460,7 +460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../cli/" class="md-nav__link">
         
   
   
@@ -488,7 +488,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../merge/" class="md-nav__link">
+      <a href="../../cli/merge/" class="md-nav__link">
         
   
   
@@ -516,7 +516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../homepage/" class="md-nav__link">
+      <a href="../../cli/homepage/" class="md-nav__link">
         
   
   
@@ -541,37 +541,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    govex letter
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../cli/letter/" class="md-nav__link">
         
   
   
@@ -587,369 +560,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Usage
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#subcommands" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Subcommands
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#letter-types" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Letter Types
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#govex-letter-generate" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        govex letter generate
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="govex letter generate">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#usage_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Usage
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#input-options" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Input Options
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#output-options" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Output Options
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#customerapplication" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Customer/Application
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#finding-details" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Finding Details
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cvss-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        CVSS (Optional)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sla-fields-typesla" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SLA Fields (type=sla)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#hardening-fields-typehardening" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Hardening Fields (type=hardening)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#riskmitigation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Risk/Mitigation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sender-information" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sender Information
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#milestones-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Milestones (Optional)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#approver-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Approver (Optional)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#escalation-policy-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Escalation Policy (Optional)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Examples
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#generate-from-json" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Generate from JSON
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#generate-sla-exception" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Generate SLA Exception
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#generate-hardening-notice" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Generate Hardening Notice
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#govex-letter-schema" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        govex letter schema
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="govex letter schema">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#usage_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Usage
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#flags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flags
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#examples_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Examples
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#govex-letter-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        govex letter example
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="govex letter example">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#usage_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Usage
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#flags_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Flags
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#examples_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Examples
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -962,7 +572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../report/" class="md-nav__link">
+      <a href="../../cli/report/" class="md-nav__link">
         
   
   
@@ -1916,8 +1526,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -1928,13 +1540,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
           <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
@@ -1955,7 +1565,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1973,7 +1583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/vulnerability-formats/" class="md-nav__link">
+      <a href="../vulnerability-formats/" class="md-nav__link">
         
   
   
@@ -2001,7 +1611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/status/" class="md-nav__link">
+      <a href="../status/" class="md-nav__link">
         
   
   
@@ -2026,10 +1636,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../reference/residual-risk/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Residual Risk & Controls
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2045,6 +1682,92 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-four-measures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Four Measures
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#compensating-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compensating Controls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exceptions-and-the-sla-clock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exceptions and the SLA Clock
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validation Rules
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-belongs-where" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Belongs Where
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -2057,7 +1780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/sla/" class="md-nav__link">
+      <a href="../sla/" class="md-nav__link">
         
   
   
@@ -2278,434 +2001,106 @@
   
 
 
-<h1 id="govex-letter">govex letter<a class="headerlink" href="#govex-letter" title="Permanent link">&para;</a></h1>
-<p>Generate security notification letters for vulnerability findings.</p>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>govex<span class="w"> </span>letter<span class="w"> </span><span class="o">[</span>command<span class="o">]</span>
+<h1 id="compensating-controls-residual-risk">Compensating Controls &amp; Residual Risk<a class="headerlink" href="#compensating-controls-residual-risk" title="Permanent link">&para;</a></h1>
+<p>GoVEX models the severity of a vulnerability <strong>before</strong> and <strong>after</strong> compensating controls, without ever relabeling the original assessment. This preserves the auditable chain:</p>
+<blockquote>
+<p>Finding severity → compensating controls → residual severity / residual risk → exception approval → SLA.</p>
+</blockquote>
+<h2 id="the-four-measures">The Four Measures<a class="headerlink" href="#the-four-measures" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Measure</th>
+<th>Field</th>
+<th>Scale</th>
+<th>Derived From</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inherent severity</td>
+<td><code>Vulnerability.Severity</code></td>
+<td>Critical, High, Medium, Low, Informational, None</td>
+<td>CVSS base score</td>
+</tr>
+<tr>
+<td>Residual severity</td>
+<td><code>Vulnerability.SeverityResidual</code></td>
+<td>Critical, High, Medium, Low</td>
+<td>CVSS environmental score</td>
+</tr>
+<tr>
+<td>Inherent risk</td>
+<td><code>Vulnerability.RiskInherent</code></td>
+<td>Critical, High, Medium, Low (+ Negligible)</td>
+<td>Likelihood × impact matrix, without controls</td>
+</tr>
+<tr>
+<td>Residual risk</td>
+<td><code>Vulnerability.RiskResidual</code></td>
+<td>Critical, High, Medium, Low (+ Negligible)</td>
+<td>Likelihood × impact matrix, with verified controls</td>
+</tr>
+</tbody>
+</table>
+<p>Key distinctions:</p>
+<ul>
+<li><strong>Severity</strong> is technical and recomputable: it comes from a CVSS score with published rating bands. Residual severity is derived from a CVSS <em>environmental</em> vector (<code>SeverityResidualVector</code>) justified by the vulnerability's controls.</li>
+<li><strong>Risk</strong> is an organizational judgment: likelihood × impact looked up in an explicit risk matrix (<a href="../../packages/risk/">risk package</a>). It captures what CVSS cannot — asset criticality, data sensitivity, detective controls.</li>
+<li>The residual <strong>risk</strong> convinces the exception approver; the approval activates the residual <strong>severity</strong>; the residual severity drives the SLA.</li>
+</ul>
+<h2 id="compensating-controls">Compensating Controls<a class="headerlink" href="#compensating-controls" title="Permanent link">&para;</a></h2>
+<p>A <code>CompensatingControl</code> reduces exploitability or impact without remediating the vulnerability:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">control</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">govex</span><span class="p">.</span><span class="nx">CompensatingControl</span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nx">ID</span><span class="p">:</span><span class="w">              </span><span class="s">&quot;CTRL-NET-001&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nx">Name</span><span class="p">:</span><span class="w">            </span><span class="s">&quot;Network segmentation&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nx">Function</span><span class="p">:</span><span class="w">        </span><span class="nx">govex</span><span class="p">.</span><span class="nx">ControlFunctionPreventive</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nx">Reduces</span><span class="p">:</span><span class="w">         </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="nx">govex</span><span class="p">.</span><span class="nx">ReducesLikelihood</span><span class="p">},</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nx">ModifiedMetrics</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;MAV:A&quot;</span><span class="p">},</span><span class="w"> </span><span class="c1">// CVSS environmental metric this control justifies</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nx">Effectiveness</span><span class="p">:</span><span class="w">   </span><span class="nx">govex</span><span class="p">.</span><span class="nx">EffectivenessHigh</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nx">Verified</span><span class="p">:</span><span class="w">        </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nx">VerifiedMethod</span><span class="p">:</span><span class="w">  </span><span class="s">&quot;external-reachability-test&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">}</span>
 </code></pre></div>
-<h2 id="subcommands">Subcommands<a class="headerlink" href="#subcommands" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>generate</code></td>
-<td>Generate a letter from JSON or command-line parameters</td>
-</tr>
-<tr>
-<td><code>schema</code></td>
-<td>Output JSON Schema for the letter format</td>
-</tr>
-<tr>
-<td><code>example</code></td>
-<td>Output example JSON template</td>
-</tr>
-</tbody>
-</table>
-<h2 id="letter-types">Letter Types<a class="headerlink" href="#letter-types" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>sla</code></td>
-<td>SLA exception notification (default)</td>
-</tr>
-<tr>
-<td><code>hardening</code></td>
-<td>Security hardening notice</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="govex-letter-generate">govex letter generate<a class="headerlink" href="#govex-letter-generate" title="Permanent link">&para;</a></h2>
-<p>Generate a security notification letter.</p>
-<h3 id="usage_1">Usage<a class="headerlink" href="#usage_1" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>govex<span class="w"> </span>letter<span class="w"> </span>generate<span class="w"> </span><span class="o">[</span>flags<span class="o">]</span>
+<p><code>ModifiedMetrics</code> is the load-bearing link: it records which CVSS environmental metric change each control justifies, so the residual severity vector is <em>derived from controls</em> rather than asserted independently.</p>
+<p>Detective controls (monitoring, WAF rules) typically modify no CVSS metric — per FIRST guidance, a WAF does not change Modified Attack Vector. Such controls still reduce residual <em>risk</em> and support its <code>Rationale</code>, but should not shrink the SLA-driving residual severity.</p>
+<h2 id="exceptions-and-the-sla-clock">Exceptions and the SLA Clock<a class="headerlink" href="#exceptions-and-the-sla-clock" title="Permanent link">&para;</a></h2>
+<p>The SLA policy is: <strong>the SLA clock runs on inherent severity until an exception is approved, then on residual severity.</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">vn</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">govex</span><span class="p">.</span><span class="nx">Vulnerability</span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nx">Severity</span><span class="p">:</span><span class="w">         </span><span class="s">&quot;High&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nx">SeverityResidual</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Low&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nx">Exception</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">govex</span><span class="p">.</span><span class="nx">ExceptionStatus</span><span class="p">{</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="nx">Status</span><span class="p">:</span><span class="w">     </span><span class="nx">govex</span><span class="p">.</span><span class="nx">ExceptionStatusApproved</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="nx">ApprovedAt</span><span class="p">:</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">approvedTime</span><span class="p">,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">        </span><span class="nx">ExpiresAt</span><span class="p">:</span><span class="w">  </span><span class="o">&amp;</span><span class="nx">expiryTime</span><span class="p">,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nx">sev</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">vn</span><span class="p">.</span><span class="nx">EffectiveSeverity</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">())</span><span class="w"> </span><span class="c1">// &quot;Low&quot; while approval is in effect</span>
 </code></pre></div>
-<h3 id="input-options">Input Options<a class="headerlink" href="#input-options" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Flag</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>--input</code>, <code>-i</code></td>
-<td>Input JSON file</td>
-</tr>
-<tr>
-<td><code>--type</code>, <code>-t</code></td>
-<td>Letter type: <code>sla</code> or <code>hardening</code> (default: <code>sla</code>)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="output-options">Output Options<a class="headerlink" href="#output-options" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Flag</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>--output-json</code></td>
-<td>Output JSON file path</td>
-</tr>
-<tr>
-<td><code>--output-md</code></td>
-<td>Output Markdown file path</td>
-</tr>
-<tr>
-<td><code>--stdout</code></td>
-<td>Output to stdout: <code>json</code> or <code>md</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="customerapplication">Customer/Application<a class="headerlink" href="#customerapplication" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Flag</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>--customer</code></td>
-<td>Customer name</td>
-</tr>
-<tr>
-<td><code>--application</code></td>
-<td>Application name</td>
-</tr>
-</tbody>
-</table>
-<h3 id="finding-details">Finding Details<a class="headerlink" href="#finding-details" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Flag</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>--finding-title</code></td>
-<td>Finding title</td>
-</tr>
-<tr>
-<td><code>--finding-severity</code></td>
-<td>Severity: Low, Moderate, High, Critical</td>
-</tr>
-<tr>
-<td><code>--finding-id</code></td>
-<td>Finding identifier</td>
-</tr>
-<tr>
-<td><code>--finding-date</code></td>
-<td>Detection date (YYYY-MM-DD)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="cvss-optional">CVSS (Optional)<a class="headerlink" href="#cvss-optional" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Flag</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>--cvss-score</code></td>
-<td>CVSS score (0.0-10.0)</td>
-</tr>
-<tr>
-<td><code>--cvss-version</code></td>
-<td>CVSS version (e.g., 4.0)</td>
-</tr>
-<tr>
-<td><code>--cvss-vector</code></td>
-<td>CVSS vector string</td>
-</tr>
-</tbody>
-</table>
-<h3 id="sla-fields-typesla">SLA Fields (type=sla)<a class="headerlink" href="#sla-fields-typesla" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Flag</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>--sla-target-days</code></td>
-<td>Target days for remediation</td>
-</tr>
-<tr>
-<td><code>--sla-original-date</code></td>
-<td>Original due date (YYYY-MM-DD)</td>
-</tr>
-<tr>
-<td><code>--sla-new-date</code></td>
-<td>New due date (YYYY-MM-DD)</td>
-</tr>
-<tr>
-<td><code>--delay-reason</code></td>
-<td>Delay reason (repeatable)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="hardening-fields-typehardening">Hardening Fields (type=hardening)<a class="headerlink" href="#hardening-fields-typehardening" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Flag</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>--rationale</code></td>
-<td>Rationale for improvement</td>
-</tr>
-<tr>
-<td><code>--target-date</code></td>
-<td>Target completion date (YYYY-MM-DD)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="riskmitigation">Risk/Mitigation<a class="headerlink" href="#riskmitigation" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Flag</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>--risk</code></td>
-<td>Risk assessment text</td>
-</tr>
-<tr>
-<td><code>--mitigation</code></td>
-<td>Mitigation measure (repeatable)</td>
-</tr>
-<tr>
-<td><code>--remediation</code></td>
-<td>Remediation plan</td>
-</tr>
-</tbody>
-</table>
-<h3 id="sender-information">Sender Information<a class="headerlink" href="#sender-information" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Flag</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>--sender-name</code></td>
-<td>Sender name</td>
-</tr>
-<tr>
-<td><code>--sender-title</code></td>
-<td>Sender title</td>
-</tr>
-<tr>
-<td><code>--sender-team</code></td>
-<td>Sender team</td>
-</tr>
-<tr>
-<td><code>--sender-company</code></td>
-<td>Sender company</td>
-</tr>
-<tr>
-<td><code>--sender-email</code></td>
-<td>Sender email</td>
-</tr>
-<tr>
-<td><code>--sender-phone</code></td>
-<td>Sender phone (optional)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="milestones-optional">Milestones (Optional)<a class="headerlink" href="#milestones-optional" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Flag</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>--milestone</code></td>
-<td>Milestone in <code>phase:description:date:impact</code> format (repeatable)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="approver-optional">Approver (Optional)<a class="headerlink" href="#approver-optional" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Flag</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>--approver-name</code></td>
-<td>Approver name</td>
-</tr>
-<tr>
-<td><code>--approver-title</code></td>
-<td>Approver title</td>
-</tr>
-<tr>
-<td><code>--approver-date</code></td>
-<td>Approval date (YYYY-MM-DD)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="escalation-policy-optional">Escalation Policy (Optional)<a class="headerlink" href="#escalation-policy-optional" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Flag</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>--escalation</code></td>
-<td>Escalation action (repeatable)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
-<h4 id="generate-from-json">Generate from JSON<a class="headerlink" href="#generate-from-json" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>govex<span class="w"> </span>letter<span class="w"> </span>generate<span class="w"> </span>--input<span class="w"> </span>finding.json<span class="w"> </span>--output-md<span class="w"> </span>letter.md
-</code></pre></div>
-<h4 id="generate-sla-exception">Generate SLA Exception<a class="headerlink" href="#generate-sla-exception" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>govex<span class="w"> </span>letter<span class="w"> </span>generate<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>--type<span class="w"> </span>sla<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>--customer<span class="w"> </span><span class="s2">&quot;Widget Inc&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span>--application<span class="w"> </span><span class="s2">&quot;Payments API&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span>--finding-title<span class="w"> </span><span class="s2">&quot;Missing rate limiting&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span>--finding-severity<span class="w"> </span>Low<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span>--finding-id<span class="w"> </span>APPSEC-1234<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span>--finding-date<span class="w"> </span><span class="m">2026</span>-04-01<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span>--sla-target-days<span class="w"> </span><span class="m">90</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span>--sla-original-date<span class="w"> </span><span class="m">2026</span>-06-30<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span>--sla-new-date<span class="w"> </span><span class="m">2026</span>-07-31<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span>--delay-reason<span class="w"> </span><span class="s2">&quot;Dependent on upstream API change&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span>--risk<span class="w"> </span><span class="s2">&quot;Low likelihood due to internal-only access&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">  </span>--mitigation<span class="w"> </span><span class="s2">&quot;WAF rate limiting rules in place&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">  </span>--remediation<span class="w"> </span><span class="s2">&quot;Implement native rate limiting&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">  </span>--sender-name<span class="w"> </span><span class="s2">&quot;Jane Smith&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">  </span>--sender-title<span class="w"> </span><span class="s2">&quot;Security Engineer&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">  </span>--sender-team<span class="w"> </span><span class="s2">&quot;Application Security&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">  </span>--sender-company<span class="w"> </span><span class="s2">&quot;Acme Corp&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">  </span>--sender-email<span class="w"> </span><span class="s2">&quot;security@acme.com&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">  </span>--output-md<span class="w"> </span>letter.md
-</code></pre></div>
-<h4 id="generate-hardening-notice">Generate Hardening Notice<a class="headerlink" href="#generate-hardening-notice" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>govex<span class="w"> </span>letter<span class="w"> </span>generate<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>--type<span class="w"> </span>hardening<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>--customer<span class="w"> </span><span class="s2">&quot;Widget Inc&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span>--application<span class="w"> </span><span class="s2">&quot;Customer Portal&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span>--finding-title<span class="w"> </span><span class="s2">&quot;CSP Configuration Enhancement&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span>--finding-severity<span class="w"> </span>Low<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span>--finding-id<span class="w"> </span>APPSEC-5678<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span>--finding-date<span class="w"> </span><span class="m">2026</span>-04-01<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span>--rationale<span class="w"> </span><span class="s2">&quot;Defense-in-depth improvement to strengthen CSP&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span>--risk<span class="w"> </span><span class="s2">&quot;Hardening opportunity, not exploitable&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span>--mitigation<span class="w"> </span><span class="s2">&quot;Existing CSP provides baseline protection&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">  </span>--remediation<span class="w"> </span><span class="s2">&quot;Implement stricter CSP directives&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span>--target-date<span class="w"> </span><span class="m">2026</span>-08-01<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">  </span>--sender-name<span class="w"> </span><span class="s2">&quot;Jane Smith&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">  </span>--sender-title<span class="w"> </span><span class="s2">&quot;Security Engineer&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">  </span>--sender-team<span class="w"> </span><span class="s2">&quot;Application Security&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">  </span>--sender-company<span class="w"> </span><span class="s2">&quot;Acme Corp&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">  </span>--sender-email<span class="w"> </span><span class="s2">&quot;security@acme.com&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">  </span>--output-md<span class="w"> </span>letter.md
-</code></pre></div>
-<hr />
-<h2 id="govex-letter-schema">govex letter schema<a class="headerlink" href="#govex-letter-schema" title="Permanent link">&para;</a></h2>
-<p>Output the JSON Schema for the letter format.</p>
-<h3 id="usage_2">Usage<a class="headerlink" href="#usage_2" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>govex<span class="w"> </span>letter<span class="w"> </span>schema<span class="w"> </span><span class="o">[</span>flags<span class="o">]</span>
-</code></pre></div>
-<h3 id="flags">Flags<a class="headerlink" href="#flags" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Flag</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>--output</code>, <code>-o</code></td>
-<td>Output file path (default: stdout)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="examples_1">Examples<a class="headerlink" href="#examples_1" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Print schema to stdout</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>govex<span class="w"> </span>letter<span class="w"> </span>schema
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Save schema to file</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>govex<span class="w"> </span>letter<span class="w"> </span>schema<span class="w"> </span>--output<span class="w"> </span>letter-schema.json
-</code></pre></div>
-<hr />
-<h2 id="govex-letter-example">govex letter example<a class="headerlink" href="#govex-letter-example" title="Permanent link">&para;</a></h2>
-<p>Output an example JSON file as a template.</p>
-<h3 id="usage_3">Usage<a class="headerlink" href="#usage_3" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>govex<span class="w"> </span>letter<span class="w"> </span>example<span class="w"> </span><span class="o">[</span>flags<span class="o">]</span>
-</code></pre></div>
-<h3 id="flags_1">Flags<a class="headerlink" href="#flags_1" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Flag</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>--type</code>, <code>-t</code></td>
-<td>Letter type: <code>sla</code> or <code>hardening</code> (default: <code>sla</code>)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="examples_2">Examples<a class="headerlink" href="#examples_2" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># SLA exception example</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>govex<span class="w"> </span>letter<span class="w"> </span>example
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Hardening notice example</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>govex<span class="w"> </span>letter<span class="w"> </span>example<span class="w"> </span>--type<span class="w"> </span>hardening
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Save to file</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>govex<span class="w"> </span>letter<span class="w"> </span>example<span class="w"> </span>&gt;<span class="w"> </span>finding.json
-</code></pre></div>
+<p><code>EffectiveSeverity</code> returns:</p>
+<ul>
+<li>Inherent severity when no residual severity is set, no exception exists, or the exception is only requested or rejected.</li>
+<li>Residual severity while an approved, unexpired exception is in effect.</li>
+<li>Inherent severity again after the exception expires.</li>
+</ul>
+<p>All SLA methods (<code>SLAOverdueDuration</code>, <code>SLACompliant</code>, <code>SLAInfo</code>, <code>BuildSLAStatusString</code>) key off <code>EffectiveSeverity</code>, so an approved exception moves the vulnerability onto the residual severity's SLA timeline automatically.</p>
+<h2 id="validation-rules">Validation Rules<a class="headerlink" href="#validation-rules" title="Permanent link">&para;</a></h2>
+<p><code>ValidateResidualSeverity</code> enforces:</p>
+<ol>
+<li><strong>Residual severity is Critical–Low only.</strong> Informational and None are rejected: Informational is an inherent-only classification for non-vulnerability findings, and "not exploitable" is an exception or VEX status (<code>not_affected</code>), not a severity of None.</li>
+<li><strong>Residual can never exceed inherent.</strong> Controls cannot make a vulnerability worse; if the environment amplifies it, that is a separate finding.</li>
+<li><strong>Absent means absent.</strong> An unset residual severity falls back to inherent — do not populate it with Unknown.</li>
+</ol>
+<h2 id="what-belongs-where">What Belongs Where<a class="headerlink" href="#what-belongs-where" title="Permanent link">&para;</a></h2>
+<p>GoVEX owns the per-vulnerability record: findings, severities, controls, exceptions, SLAs. Broader risk modeling — assets, attack paths, multi-finding risks, org-level risk registers — belongs in a threat-model layer that references GoVEX findings by ID.</p>
+<h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../packages/risk/">Risk Package</a> - Risk ratings, matrices, and NIST SP 800-30 translation</li>
+<li><a href="../../standards/cvss/">CVSS Support</a> - Qualitative severity rating scales by CVSS version</li>
+<li><a href="../sla/">SLA Management</a> - SLA policies and effective severity</li>
+<li><a href="../../reports/vulnreport/">Vulnerability Report</a> - Rendering residual columns in Markdown/HTML/PDF</li>
+</ul>
 
 
 

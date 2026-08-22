@@ -16,7 +16,7 @@
         <link rel="prev" href="../core/">
       
       
-        <link rel="next" href="../letter/">
+        <link rel="next" href="../risk/">
       
       
         
@@ -565,6 +565,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    govex report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -930,6 +958,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Risk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1551,6 +1607,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../reports/vulnreport/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vulnerability Report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../reports/sitewriter/" class="md-nav__link">
         
   
@@ -1808,6 +1892,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../reference/residual-risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Residual Risk & Controls
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../reference/sla/" class="md-nav__link">
         
   
@@ -1905,6 +2017,34 @@
     
   
     Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/v0.21.0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v0.21.0
   
 
     
@@ -2034,10 +2174,15 @@
 </tr>
 <tr>
 <td>Informational</td>
-<td>For awareness only</td>
+<td>Not a vulnerability; observation or best-practice note (no CVSS score)</td>
+</tr>
+<tr>
+<td>None</td>
+<td>Scored vulnerability computing to CVSS 0.0</td>
 </tr>
 </tbody>
 </table>
+<p>Informational and None occupy the same reporting tier below Low and are excluded from SLA tracking; they differ in whether a CVSS score exists behind the label. Residual severity (after compensating controls) is restricted to Critical–Low — see <a href="../../reference/residual-risk/">Compensating Controls &amp; Residual Risk</a>.</p>
 <h2 id="sla-policies">SLA Policies<a class="headerlink" href="#sla-policies" title="Permanent link">&para;</a></h2>
 <h3 id="slamap">SLAMap<a class="headerlink" href="#slamap" title="Permanent link">&para;</a></h3>
 <p>Define remediation timelines by severity:</p>
