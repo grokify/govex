@@ -4,7 +4,7 @@ go 1.26.1
 
 require (
 	github.com/essentialkaos/go-badge v1.4.3
-	github.com/grokify/gocharts/v2 v2.27.0
+	github.com/grokify/gocharts/v2 v2.27.1
 	github.com/grokify/google-fonts v0.1.9
 	github.com/grokify/mogo v0.74.7
 	github.com/grokify/sogo v0.15.0
