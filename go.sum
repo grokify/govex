@@ -92,8 +92,8 @@ github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINE
 github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/quay/claircore/toolkit v1.6.1 h1:a3X1v28n5bo05T94cBlaoPU8xYCErRGPM3l6AlmYWj4=
-github.com/quay/claircore/toolkit v1.6.1/go.mod h1:dTzlp1pgNchc+CN73HJiG9+e0ygU54QPt397eXnGGo4=
+github.com/quay/claircore/toolkit v1.7.0 h1:flobJ7hTofiArNSBs1SKq8vDZ9h57dW02RxLyYn+bMw=
+github.com/quay/claircore/toolkit v1.7.0/go.mod h1:1AzB56krwmcpGUak0hAOVbSrtzGywDQu5OTooDlKcb0=
 github.com/relvacode/iso8601 v1.8.0 h1:lDGJ4+nIXPzY1KOTk6DNfKZQWRGMmbvQKPNuZ7GxZPk=
 github.com/relvacode/iso8601 v1.8.0/go.mod h1:FlNp+jz+TXpyRqgmM7tnzHHzBnz776kmAH2h3sZCn0I=
 github.com/richardlehane/mscfb v1.0.8 h1:UXdg61fxF69/X9yMYuRHAWSrGXIul/UAPivAsUXMme8=
