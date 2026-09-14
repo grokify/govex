@@ -10,7 +10,7 @@ require (
 	github.com/grokify/sogo v0.15.0
 	github.com/invopop/jsonschema v0.14.0
 	github.com/jessevdk/go-flags v1.6.1
-	github.com/johnfercher/maroto/v2 v2.4.1
+	github.com/johnfercher/maroto/v2 v2.4.2
 	github.com/pandatix/go-cvss v0.6.4
 	github.com/quay/claircore/toolkit v1.6.1
 	github.com/relvacode/iso8601 v1.8.0
@@ -26,7 +26,6 @@ require (
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/clipperhouse/displaywidth v0.11.0 // indirect
 	github.com/clipperhouse/uax29/v2 v2.7.0 // indirect
-	github.com/f-amaral/go-async v0.3.0 // indirect
 	github.com/fatih/color v1.19.0 // indirect
 	github.com/goccy/go-json v0.10.6 // indirect
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
