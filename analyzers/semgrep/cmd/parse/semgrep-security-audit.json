@@ -1,0 +1,852 @@
+{
+	"version": "1.144.1",
+	"results": [
+		{
+			"check_id": "java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated",
+			"path": "/src/src/main/java/com/example/vulnerabilities/A02_CryptographicFailures.java",
+			"start": {
+				"line": 28,
+				"col": 44,
+				"offset": 896
+			},
+			"end": {
+				"line": 28,
+				"col": 49,
+				"offset": 901
+			},
+			"extra": {
+				"message": "DES is considered deprecated. AES is the recommended cipher. Upgrade to use AES. See https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard for more information.",
+				"fix": "\"AES/GCM/NoPadding\"",
+				"metadata": {
+					"functional-categories": [
+						"crypto::search::symmetric-algorithm::javax.crypto"
+					],
+					"cwe": [
+						"CWE-326: Inadequate Encryption Strength"
+					],
+					"owasp": [
+						"A03:2017 - Sensitive Data Exposure",
+						"A02:2021 - Cryptographic Failures"
+					],
+					"source-rule-url": "https://find-sec-bugs.github.io/bugs.htm#DES_USAGE",
+					"asvs": {
+						"control_id": "6.2.5 Insecure Algorithm",
+						"control_url": "https://github.com/OWASP/ASVS/blob/master/4.0/en/0x14-V6-Cryptography.md#v62-algorithms",
+						"section": "V6 Stored Cryptography Verification Requirements",
+						"version": "4"
+					},
+					"references": [
+						"https://www.nist.gov/news-events/news/2005/06/nist-withdraws-outdated-data-encryption-standard",
+						"https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html#algorithms"
+					],
+					"category": "security",
+					"technology": [
+						"java"
+					],
+					"subcategory": [
+						"vuln"
+					],
+					"likelihood": "MEDIUM",
+					"impact": "MEDIUM",
+					"confidence": "HIGH",
+					"license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+					"vulnerability_class": [
+						"Cryptographic Issues"
+					],
+					"source": "https://semgrep.dev/r/java.lang.security.audit.crypto.des-is-deprecated.des-is-deprecated",
+					"shortlink": "https://sg.run/5Q73"
+				},
+				"severity": "WARNING",
+				"fingerprint": "requires login",
+				"lines": "requires login",
+				"validation_state": "NO_VALIDATOR",
+				"engine_kind": "OSS"
+			}
+		},
+		{
+			"check_id": "java.lang.security.audit.crypto.use-of-md5.use-of-md5",
+			"path": "/src/src/main/java/com/example/vulnerabilities/A02_CryptographicFailures.java",
+			"start": {
+				"line": 39,
+				"col": 54,
+				"offset": 1320
+			},
+			"end": {
+				"line": 39,
+				"col": 59,
+				"offset": 1325
+			},
+			"extra": {
+				"message": "Detected MD5 hash algorithm which is considered insecure. MD5 is not collision resistant and is therefore not suitable as a cryptographic signature. Use HMAC instead.",
+				"fix": "\"SHA-512\"",
+				"metadata": {
+					"functional-categories": [
+						"crypto::search::hash-algorithm::java.security"
+					],
+					"owasp": [
+						"A03:2017 - Sensitive Data Exposure",
+						"A02:2021 - Cryptographic Failures"
+					],
+					"cwe": [
+						"CWE-328: Use of Weak Hash"
+					],
+					"source-rule-url": "https://find-sec-bugs.github.io/bugs.htm#WEAK_MESSAGE_DIGEST_MD5",
+					"category": "security",
+					"technology": [
+						"java"
+					],
+					"references": [
+						"https://owasp.org/Top10/A02_2021-Cryptographic_Failures"
+					],
+					"subcategory": [
+						"vuln"
+					],
+					"likelihood": "MEDIUM",
+					"impact": "MEDIUM",
+					"confidence": "HIGH",
+					"license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+					"vulnerability_class": [
+						"Insecure Hashing Algorithm"
+					],
+					"source": "https://semgrep.dev/r/java.lang.security.audit.crypto.use-of-md5.use-of-md5",
+					"shortlink": "https://sg.run/ryJn"
+				},
+				"severity": "WARNING",
+				"fingerprint": "requires login",
+				"lines": "requires login",
+				"validation_state": "NO_VALIDATOR",
+				"engine_kind": "OSS"
+			}
+		},
+		{
+			"check_id": "java.lang.security.audit.crypto.use-of-sha1.use-of-sha1",
+			"path": "/src/src/main/java/com/example/vulnerabilities/A02_CryptographicFailures.java",
+			"start": {
+				"line": 50,
+				"col": 9,
+				"offset": 1671
+			},
+			"end": {
+				"line": 50,
+				"col": 63,
+				"offset": 1725
+			},
+			"extra": {
+				"message": "Detected SHA1 hash algorithm which is considered insecure. SHA1 is not collision resistant and is therefore not suitable as a cryptographic signature. Instead, use PBKDF2 for password hashing or SHA256 or SHA512 for other hash function applications.",
+				"metadata": {
+					"functional-categories": [
+						"crypto::search::hash-algorithm::javax.crypto"
+					],
+					"owasp": [
+						"A03:2017 - Sensitive Data Exposure",
+						"A02:2021 - Cryptographic Failures"
+					],
+					"cwe": [
+						"CWE-328: Use of Weak Hash"
+					],
+					"source-rule-url": "https://find-sec-bugs.github.io/bugs.htm#WEAK_MESSAGE_DIGEST_SHA1",
+					"asvs": {
+						"control_id": "6.2.5 Insecure Algorithm",
+						"control_url": "https://github.com/OWASP/ASVS/blob/master/4.0/en/0x14-V6-Cryptography.md#v62-algorithms",
+						"section": "V6 Stored Cryptography Verification Requirements",
+						"version": "4"
+					},
+					"category": "security",
+					"technology": [
+						"java"
+					],
+					"references": [
+						"https://owasp.org/Top10/A02_2021-Cryptographic_Failures"
+					],
+					"subcategory": [
+						"vuln"
+					],
+					"likelihood": "MEDIUM",
+					"impact": "MEDIUM",
+					"confidence": "HIGH",
+					"license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+					"vulnerability_class": [
+						"Insecure Hashing Algorithm"
+					],
+					"source": "https://semgrep.dev/r/java.lang.security.audit.crypto.use-of-sha1.use-of-sha1",
+					"shortlink": "https://sg.run/bXNp"
+				},
+				"severity": "WARNING",
+				"fingerprint": "requires login",
+				"lines": "requires login",
+				"validation_state": "NO_VALIDATOR",
+				"engine_kind": "OSS"
+			}
+		},
+		{
+			"check_id": "java.lang.security.audit.formatted-sql-string.formatted-sql-string",
+			"path": "/src/src/main/java/com/example/vulnerabilities/A03_Injection.java",
+			"start": {
+				"line": 28,
+				"col": 24,
+				"offset": 957
+			},
+			"end": {
+				"line": 28,
+				"col": 48,
+				"offset": 981
+			},
+			"extra": {
+				"message": "Detected a formatted string in a SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using 'connection.prepareStatement'.",
+				"metadata": {
+					"cwe": [
+						"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+					],
+					"owasp": [
+						"A01:2017 - Injection",
+						"A03:2021 - Injection"
+					],
+					"source-rule-url": "https://find-sec-bugs.github.io/bugs.htm#SQL_INJECTION",
+					"asvs": {
+						"control_id": "5.3.5 Injection",
+						"control_url": "https://github.com/OWASP/ASVS/blob/master/4.0/en/0x13-V5-Validation-Sanitization-Encoding.md#v53-output-encoding-and-injection-prevention-requirements",
+						"section": "V5: Validation, Sanitization and Encoding Verification Requirements",
+						"version": "4"
+					},
+					"references": [
+						"https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+						"https://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html#create_ps",
+						"https://software-security.sans.org/developer-how-to/fix-sql-injection-in-java-using-prepared-callable-statement"
+					],
+					"category": "security",
+					"technology": [
+						"java"
+					],
+					"cwe2022-top25": true,
+					"cwe2021-top25": true,
+					"subcategory": [
+						"vuln"
+					],
+					"likelihood": "HIGH",
+					"impact": "MEDIUM",
+					"confidence": "MEDIUM",
+					"license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+					"vulnerability_class": [
+						"SQL Injection"
+					],
+					"source": "https://semgrep.dev/r/java.lang.security.audit.formatted-sql-string.formatted-sql-string",
+					"shortlink": "https://sg.run/OPXp"
+				},
+				"severity": "ERROR",
+				"fingerprint": "requires login",
+				"lines": "requires login",
+				"validation_state": "NO_VALIDATOR",
+				"engine_kind": "OSS"
+			}
+		},
+		{
+			"check_id": "java.lang.security.audit.formatted-sql-string.formatted-sql-string",
+			"path": "/src/src/main/java/com/example/vulnerabilities/A03_Injection.java",
+			"start": {
+				"line": 45,
+				"col": 9,
+				"offset": 1598
+			},
+			"end": {
+				"line": 45,
+				"col": 33,
+				"offset": 1622
+			},
+			"extra": {
+				"message": "Detected a formatted string in a SQL statement. This could lead to SQL injection if variables in the SQL statement are not properly sanitized. Use a prepared statements (java.sql.PreparedStatement) instead. You can obtain a PreparedStatement using 'connection.prepareStatement'.",
+				"metadata": {
+					"cwe": [
+						"CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+					],
+					"owasp": [
+						"A01:2017 - Injection",
+						"A03:2021 - Injection"
+					],
+					"source-rule-url": "https://find-sec-bugs.github.io/bugs.htm#SQL_INJECTION",
+					"asvs": {
+						"control_id": "5.3.5 Injection",
+						"control_url": "https://github.com/OWASP/ASVS/blob/master/4.0/en/0x13-V5-Validation-Sanitization-Encoding.md#v53-output-encoding-and-injection-prevention-requirements",
+						"section": "V5: Validation, Sanitization and Encoding Verification Requirements",
+						"version": "4"
+					},
+					"references": [
+						"https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+						"https://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html#create_ps",
+						"https://software-security.sans.org/developer-how-to/fix-sql-injection-in-java-using-prepared-callable-statement"
+					],
+					"category": "security",
+					"technology": [
+						"java"
+					],
+					"cwe2022-top25": true,
+					"cwe2021-top25": true,
+					"subcategory": [
+						"vuln"
+					],
+					"likelihood": "HIGH",
+					"impact": "MEDIUM",
+					"confidence": "MEDIUM",
+					"license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+					"vulnerability_class": [
+						"SQL Injection"
+					],
+					"source": "https://semgrep.dev/r/java.lang.security.audit.formatted-sql-string.formatted-sql-string",
+					"shortlink": "https://sg.run/OPXp"
+				},
+				"severity": "ERROR",
+				"fingerprint": "requires login",
+				"lines": "requires login",
+				"validation_state": "NO_VALIDATOR",
+				"engine_kind": "OSS"
+			}
+		},
+		{
+			"check_id": "java.lang.security.audit.crypto.ssl.insecure-trust-manager.insecure-trust-manager",
+			"path": "/src/src/main/java/com/example/vulnerabilities/A05_SecurityMisconfiguration.java",
+			"start": {
+				"line": 26,
+				"col": 17,
+				"offset": 831
+			},
+			"end": {
+				"line": 28,
+				"col": 18,
+				"offset": 929
+			},
+			"extra": {
+				"message": "Detected empty trust manager implementations. This is dangerous because it accepts any certificate, enabling man-in-the-middle attacks. Consider using a KeyStore and TrustManagerFactory instead. See https://stackoverflow.com/questions/2642777/trusting-all-certificates-using-httpclient-over-https for more information.",
+				"metadata": {
+					"cwe": [
+						"CWE-295: Improper Certificate Validation"
+					],
+					"owasp": [
+						"A03:2017 - Sensitive Data Exposure",
+						"A07:2021 - Identification and Authentication Failures"
+					],
+					"source-rule-url": "https://find-sec-bugs.github.io/bugs.htm#WEAK_TRUST_MANAGER",
+					"asvs": {
+						"control_id": "9.2.1 Weak TLS",
+						"control_url": "https://github.com/OWASP/ASVS/blob/master/4.0/en/0x17-V9-Communications.md#v92-server-communications-security-requirements",
+						"section": "V9 Communications Verification Requirements",
+						"version": "4"
+					},
+					"references": [
+						"https://stackoverflow.com/questions/2642777/trusting-all-certificates-using-httpclient-over-https"
+					],
+					"category": "security",
+					"technology": [
+						"java"
+					],
+					"subcategory": [
+						"audit"
+					],
+					"likelihood": "LOW",
+					"impact": "LOW",
+					"confidence": "LOW",
+					"license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+					"vulnerability_class": [
+						"Improper Authentication"
+					],
+					"source": "https://semgrep.dev/r/java.lang.security.audit.crypto.ssl.insecure-trust-manager.insecure-trust-manager",
+					"shortlink": "https://sg.run/GePy"
+				},
+				"severity": "WARNING",
+				"fingerprint": "requires login",
+				"lines": "requires login",
+				"validation_state": "NO_VALIDATOR",
+				"engine_kind": "OSS"
+			}
+		},
+		{
+			"check_id": "java.lang.security.audit.crypto.ssl.insecure-trust-manager.insecure-trust-manager",
+			"path": "/src/src/main/java/com/example/vulnerabilities/A05_SecurityMisconfiguration.java",
+			"start": {
+				"line": 29,
+				"col": 17,
+				"offset": 946
+			},
+			"end": {
+				"line": 30,
+				"col": 18,
+				"offset": 1038
+			},
+			"extra": {
+				"message": "Detected empty trust manager implementations. This is dangerous because it accepts any certificate, enabling man-in-the-middle attacks. Consider using a KeyStore and TrustManagerFactory instead. See https://stackoverflow.com/questions/2642777/trusting-all-certificates-using-httpclient-over-https for more information.",
+				"metadata": {
+					"cwe": [
+						"CWE-295: Improper Certificate Validation"
+					],
+					"owasp": [
+						"A03:2017 - Sensitive Data Exposure",
+						"A07:2021 - Identification and Authentication Failures"
+					],
+					"source-rule-url": "https://find-sec-bugs.github.io/bugs.htm#WEAK_TRUST_MANAGER",
+					"asvs": {
+						"control_id": "9.2.1 Weak TLS",
+						"control_url": "https://github.com/OWASP/ASVS/blob/master/4.0/en/0x17-V9-Communications.md#v92-server-communications-security-requirements",
+						"section": "V9 Communications Verification Requirements",
+						"version": "4"
+					},
+					"references": [
+						"https://stackoverflow.com/questions/2642777/trusting-all-certificates-using-httpclient-over-https"
+					],
+					"category": "security",
+					"technology": [
+						"java"
+					],
+					"subcategory": [
+						"audit"
+					],
+					"likelihood": "LOW",
+					"impact": "LOW",
+					"confidence": "LOW",
+					"license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+					"vulnerability_class": [
+						"Improper Authentication"
+					],
+					"source": "https://semgrep.dev/r/java.lang.security.audit.crypto.ssl.insecure-trust-manager.insecure-trust-manager",
+					"shortlink": "https://sg.run/GePy"
+				},
+				"severity": "WARNING",
+				"fingerprint": "requires login",
+				"lines": "requires login",
+				"validation_state": "NO_VALIDATOR",
+				"engine_kind": "OSS"
+			}
+		},
+		{
+			"check_id": "java.lang.security.audit.crypto.ssl.insecure-trust-manager.insecure-trust-manager",
+			"path": "/src/src/main/java/com/example/vulnerabilities/A05_SecurityMisconfiguration.java",
+			"start": {
+				"line": 31,
+				"col": 17,
+				"offset": 1055
+			},
+			"end": {
+				"line": 32,
+				"col": 18,
+				"offset": 1147
+			},
+			"extra": {
+				"message": "Detected empty trust manager implementations. This is dangerous because it accepts any certificate, enabling man-in-the-middle attacks. Consider using a KeyStore and TrustManagerFactory instead. See https://stackoverflow.com/questions/2642777/trusting-all-certificates-using-httpclient-over-https for more information.",
+				"metadata": {
+					"cwe": [
+						"CWE-295: Improper Certificate Validation"
+					],
+					"owasp": [
+						"A03:2017 - Sensitive Data Exposure",
+						"A07:2021 - Identification and Authentication Failures"
+					],
+					"source-rule-url": "https://find-sec-bugs.github.io/bugs.htm#WEAK_TRUST_MANAGER",
+					"asvs": {
+						"control_id": "9.2.1 Weak TLS",
+						"control_url": "https://github.com/OWASP/ASVS/blob/master/4.0/en/0x17-V9-Communications.md#v92-server-communications-security-requirements",
+						"section": "V9 Communications Verification Requirements",
+						"version": "4"
+					},
+					"references": [
+						"https://stackoverflow.com/questions/2642777/trusting-all-certificates-using-httpclient-over-https"
+					],
+					"category": "security",
+					"technology": [
+						"java"
+					],
+					"subcategory": [
+						"audit"
+					],
+					"likelihood": "LOW",
+					"impact": "LOW",
+					"confidence": "LOW",
+					"license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+					"vulnerability_class": [
+						"Improper Authentication"
+					],
+					"source": "https://semgrep.dev/r/java.lang.security.audit.crypto.ssl.insecure-trust-manager.insecure-trust-manager",
+					"shortlink": "https://sg.run/GePy"
+				},
+				"severity": "WARNING",
+				"fingerprint": "requires login",
+				"lines": "requires login",
+				"validation_state": "NO_VALIDATOR",
+				"engine_kind": "OSS"
+			}
+		},
+		{
+			"check_id": "java.lang.security.audit.weak-ssl-context.weak-ssl-context",
+			"path": "/src/src/main/java/com/example/vulnerabilities/A05_SecurityMisconfiguration.java",
+			"start": {
+				"line": 36,
+				"col": 25,
+				"offset": 1198
+			},
+			"end": {
+				"line": 36,
+				"col": 54,
+				"offset": 1227
+			},
+			"extra": {
+				"message": "An insecure SSL context was detected. TLS versions 1.0, 1.1, and all SSL versions are considered weak encryption and are deprecated. Use SSLContext.getInstance(\"TLSv1.2\") for the best security.",
+				"fix": "SSLContext.getInstance(\"TLSv1.2\")",
+				"metadata": {
+					"cwe": [
+						"CWE-326: Inadequate Encryption Strength"
+					],
+					"owasp": [
+						"A03:2017 - Sensitive Data Exposure",
+						"A02:2021 - Cryptographic Failures"
+					],
+					"source_rule_url": "https://find-sec-bugs.github.io/bugs.htm#SSL_CONTEXT",
+					"references": [
+						"https://tools.ietf.org/html/rfc7568",
+						"https://tools.ietf.org/id/draft-ietf-tls-oldversions-deprecate-02.html"
+					],
+					"category": "security",
+					"technology": [
+						"java"
+					],
+					"subcategory": [
+						"audit"
+					],
+					"likelihood": "LOW",
+					"impact": "MEDIUM",
+					"confidence": "HIGH",
+					"license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+					"vulnerability_class": [
+						"Cryptographic Issues"
+					],
+					"source": "https://semgrep.dev/r/java.lang.security.audit.weak-ssl-context.weak-ssl-context",
+					"shortlink": "https://sg.run/4x7E"
+				},
+				"severity": "WARNING",
+				"fingerprint": "requires login",
+				"lines": "requires login",
+				"validation_state": "NO_VALIDATOR",
+				"engine_kind": "OSS"
+			}
+		},
+		{
+			"check_id": "java.lang.security.audit.object-deserialization.object-deserialization",
+			"path": "/src/src/main/java/com/example/vulnerabilities/A08_SoftwareDataIntegrityFailures.java",
+			"start": {
+				"line": 21,
+				"col": 9,
+				"offset": 642
+			},
+			"end": {
+				"line": 21,
+				"col": 60,
+				"offset": 693
+			},
+			"extra": {
+				"message": "Found object deserialization using ObjectInputStream. Deserializing entire Java objects is dangerous because malicious actors can create Java object streams with unintended consequences. Ensure that the objects being deserialized are not user-controlled. If this must be done, consider using HMACs to sign the data stream to make sure it is not tampered with, or consider only transmitting object fields and populating a new object.",
+				"metadata": {
+					"cwe": [
+						"CWE-502: Deserialization of Untrusted Data"
+					],
+					"owasp": [
+						"A08:2017 - Insecure Deserialization",
+						"A08:2021 - Software and Data Integrity Failures"
+					],
+					"source-rule-url": "https://find-sec-bugs.github.io/bugs.htm#OBJECT_DESERIALIZATION",
+					"references": [
+						"https://www.owasp.org/index.php/Deserialization_of_untrusted_data",
+						"https://www.oracle.com/java/technologies/javase/seccodeguide.html#8"
+					],
+					"category": "security",
+					"technology": [
+						"java"
+					],
+					"cwe2022-top25": true,
+					"cwe2021-top25": true,
+					"subcategory": [
+						"audit"
+					],
+					"likelihood": "LOW",
+					"impact": "HIGH",
+					"confidence": "LOW",
+					"license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+					"vulnerability_class": [
+						"Insecure Deserialization "
+					],
+					"source": "https://semgrep.dev/r/java.lang.security.audit.object-deserialization.object-deserialization",
+					"shortlink": "https://sg.run/Ek0A"
+				},
+				"severity": "WARNING",
+				"fingerprint": "requires login",
+				"lines": "requires login",
+				"validation_state": "NO_VALIDATOR",
+				"engine_kind": "OSS"
+			}
+		},
+		{
+			"check_id": "java.lang.security.audit.object-deserialization.object-deserialization",
+			"path": "/src/src/main/java/com/example/vulnerabilities/A08_SoftwareDataIntegrityFailures.java",
+			"start": {
+				"line": 32,
+				"col": 9,
+				"offset": 1069
+			},
+			"end": {
+				"line": 32,
+				"col": 60,
+				"offset": 1120
+			},
+			"extra": {
+				"message": "Found object deserialization using ObjectInputStream. Deserializing entire Java objects is dangerous because malicious actors can create Java object streams with unintended consequences. Ensure that the objects being deserialized are not user-controlled. If this must be done, consider using HMACs to sign the data stream to make sure it is not tampered with, or consider only transmitting object fields and populating a new object.",
+				"metadata": {
+					"cwe": [
+						"CWE-502: Deserialization of Untrusted Data"
+					],
+					"owasp": [
+						"A08:2017 - Insecure Deserialization",
+						"A08:2021 - Software and Data Integrity Failures"
+					],
+					"source-rule-url": "https://find-sec-bugs.github.io/bugs.htm#OBJECT_DESERIALIZATION",
+					"references": [
+						"https://www.owasp.org/index.php/Deserialization_of_untrusted_data",
+						"https://www.oracle.com/java/technologies/javase/seccodeguide.html#8"
+					],
+					"category": "security",
+					"technology": [
+						"java"
+					],
+					"cwe2022-top25": true,
+					"cwe2021-top25": true,
+					"subcategory": [
+						"audit"
+					],
+					"likelihood": "LOW",
+					"impact": "HIGH",
+					"confidence": "LOW",
+					"license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+					"vulnerability_class": [
+						"Insecure Deserialization "
+					],
+					"source": "https://semgrep.dev/r/java.lang.security.audit.object-deserialization.object-deserialization",
+					"shortlink": "https://sg.run/Ek0A"
+				},
+				"severity": "WARNING",
+				"fingerprint": "requires login",
+				"lines": "requires login",
+				"validation_state": "NO_VALIDATOR",
+				"engine_kind": "OSS"
+			}
+		},
+		{
+			"check_id": "java.spring.security.audit.spring-unvalidated-redirect.spring-unvalidated-redirect",
+			"path": "/src/src/main/java/com/example/vulnerabilities/A08_SoftwareDataIntegrityFailures.java",
+			"start": {
+				"line": 63,
+				"col": 5,
+				"offset": 2149
+			},
+			"end": {
+				"line": 66,
+				"col": 6,
+				"offset": 2286
+			},
+			"extra": {
+				"message": "Application redirects a user to a destination URL specified by a user supplied parameter that is not validated.",
+				"metadata": {
+					"cwe": [
+						"CWE-601: URL Redirection to Untrusted Site ('Open Redirect')"
+					],
+					"owasp": [
+						"A01:2021 - Broken Access Control"
+					],
+					"source-rule-url": "https://find-sec-bugs.github.io/bugs.htm#UNVALIDATED_REDIRECT",
+					"category": "security",
+					"technology": [
+						"spring"
+					],
+					"references": [
+						"https://owasp.org/Top10/A01_2021-Broken_Access_Control"
+					],
+					"subcategory": [
+						"vuln"
+					],
+					"likelihood": "MEDIUM",
+					"impact": "MEDIUM",
+					"confidence": "MEDIUM",
+					"license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+					"vulnerability_class": [
+						"Open Redirect"
+					],
+					"source": "https://semgrep.dev/r/java.spring.security.audit.spring-unvalidated-redirect.spring-unvalidated-redirect",
+					"shortlink": "https://sg.run/9oXz"
+				},
+				"severity": "WARNING",
+				"fingerprint": "requires login",
+				"lines": "requires login",
+				"validation_state": "NO_VALIDATOR",
+				"engine_kind": "OSS"
+			}
+		},
+		{
+			"check_id": "java.lang.security.audit.object-deserialization.object-deserialization",
+			"path": "/src/src/main/java/com/example/vulnerabilities/A08_SoftwareDataIntegrityFailures.java",
+			"start": {
+				"line": 84,
+				"col": 9,
+				"offset": 2876
+			},
+			"end": {
+				"line": 84,
+				"col": 60,
+				"offset": 2927
+			},
+			"extra": {
+				"message": "Found object deserialization using ObjectInputStream. Deserializing entire Java objects is dangerous because malicious actors can create Java object streams with unintended consequences. Ensure that the objects being deserialized are not user-controlled. If this must be done, consider using HMACs to sign the data stream to make sure it is not tampered with, or consider only transmitting object fields and populating a new object.",
+				"metadata": {
+					"cwe": [
+						"CWE-502: Deserialization of Untrusted Data"
+					],
+					"owasp": [
+						"A08:2017 - Insecure Deserialization",
+						"A08:2021 - Software and Data Integrity Failures"
+					],
+					"source-rule-url": "https://find-sec-bugs.github.io/bugs.htm#OBJECT_DESERIALIZATION",
+					"references": [
+						"https://www.owasp.org/index.php/Deserialization_of_untrusted_data",
+						"https://www.oracle.com/java/technologies/javase/seccodeguide.html#8"
+					],
+					"category": "security",
+					"technology": [
+						"java"
+					],
+					"cwe2022-top25": true,
+					"cwe2021-top25": true,
+					"subcategory": [
+						"audit"
+					],
+					"likelihood": "LOW",
+					"impact": "HIGH",
+					"confidence": "LOW",
+					"license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+					"vulnerability_class": [
+						"Insecure Deserialization "
+					],
+					"source": "https://semgrep.dev/r/java.lang.security.audit.object-deserialization.object-deserialization",
+					"shortlink": "https://sg.run/Ek0A"
+				},
+				"severity": "WARNING",
+				"fingerprint": "requires login",
+				"lines": "requires login",
+				"validation_state": "NO_VALIDATOR",
+				"engine_kind": "OSS"
+			}
+		}
+	],
+	"errors": [],
+	"paths": {
+		"scanned": [
+			"/src/.github/workflows/ci.yaml",
+			"/src/README.md",
+			"/src/pom.xml",
+			"/src/security-reports/semgrep-owasp-top-ten.json",
+			"/src/security-reports/spotbugs-findsecbugs_converted.json",
+			"/src/security-reports/spotbugs-findsecbugs_raw.xml",
+			"/src/src/main/java/com/example/App.java",
+			"/src/src/main/java/com/example/vulnerabilities/A01_BrokenAccessControl.java",
+			"/src/src/main/java/com/example/vulnerabilities/A02_CryptographicFailures.java",
+			"/src/src/main/java/com/example/vulnerabilities/A03_Injection.java",
+			"/src/src/main/java/com/example/vulnerabilities/A04_InsecureDesign.java",
+			"/src/src/main/java/com/example/vulnerabilities/A05_SecurityMisconfiguration.java",
+			"/src/src/main/java/com/example/vulnerabilities/A06_VulnerableComponents.java",
+			"/src/src/main/java/com/example/vulnerabilities/A07_IdentificationFailures.java",
+			"/src/src/main/java/com/example/vulnerabilities/A08_SoftwareDataIntegrityFailures.java",
+			"/src/src/main/java/com/example/vulnerabilities/A09_SecurityLoggingFailures.java",
+			"/src/src/main/java/com/example/vulnerabilities/A10_SSRF.java",
+			"/src/target/classes/com/example/App.class",
+			"/src/target/classes/com/example/vulnerabilities/A01_BrokenAccessControl.class",
+			"/src/target/classes/com/example/vulnerabilities/A02_CryptographicFailures.class",
+			"/src/target/classes/com/example/vulnerabilities/A03_Injection.class",
+			"/src/target/classes/com/example/vulnerabilities/A04_InsecureDesign.class",
+			"/src/target/classes/com/example/vulnerabilities/A05_SecurityMisconfiguration$1.class",
+			"/src/target/classes/com/example/vulnerabilities/A05_SecurityMisconfiguration.class",
+			"/src/target/classes/com/example/vulnerabilities/A06_VulnerableComponents.class",
+			"/src/target/classes/com/example/vulnerabilities/A07_IdentificationFailures.class",
+			"/src/target/classes/com/example/vulnerabilities/A08_SoftwareDataIntegrityFailures.class",
+			"/src/target/classes/com/example/vulnerabilities/A09_SecurityLoggingFailures.class",
+			"/src/target/classes/com/example/vulnerabilities/A10_SSRF.class",
+			"/src/target/findsecbugs-plugin-1.13.0.jar",
+			"/src/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst",
+			"/src/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst",
+			"/src/target/spotbugs/spotbugs.xml",
+			"/src/target/spotbugsXml.xml"
+		]
+	},
+	"time": {
+		"rules": [],
+		"rules_parse_time": 0.20975685119628906,
+		"profiling_times": {
+			"config_time": 0.3975522518157959,
+			"core_time": 0.7351734638214111,
+			"ignores_time": 0.00040435791015625,
+			"total_time": 1.1335020065307617
+		},
+		"parsing_time": {
+			"total_time": 0.0,
+			"per_file_time": {
+				"mean": 0.0,
+				"std_dev": 0.0
+			},
+			"very_slow_stats": {
+				"time_ratio": 0.0,
+				"count_ratio": 0.0
+			},
+			"very_slow_files": []
+		},
+		"scanning_time": {
+			"total_time": 0.27755188941955566,
+			"per_file_time": {
+				"mean": 0.00590535934935225,
+				"std_dev": 9.041365956754868e-05
+			},
+			"very_slow_stats": {
+				"time_ratio": 0.0,
+				"count_ratio": 0.0
+			},
+			"very_slow_files": []
+		},
+		"matching_time": {
+			"total_time": 0.0,
+			"per_file_and_rule_time": {
+				"mean": 0.0,
+				"std_dev": 0.0
+			},
+			"very_slow_stats": {
+				"time_ratio": 0.0,
+				"count_ratio": 0.0
+			},
+			"very_slow_rules_on_files": []
+		},
+		"tainting_time": {
+			"total_time": 0.0,
+			"per_def_and_rule_time": {
+				"mean": 0.0,
+				"std_dev": 0.0
+			},
+			"very_slow_stats": {
+				"time_ratio": 0.0,
+				"count_ratio": 0.0
+			},
+			"very_slow_rules_on_defs": []
+		},
+		"fixpoint_timeouts": [],
+		"prefiltering": {
+			"project_level_time": 0.0,
+			"file_level_time": 0.0,
+			"rules_with_project_prefilters_ratio": 0.0,
+			"rules_with_file_prefilters_ratio": 0.9797507788161994,
+			"rules_selected_ratio": 0.1261682242990654,
+			"rules_matched_ratio": 0.1261682242990654
+		},
+		"targets": [],
+		"total_bytes": 0,
+		"max_memory_bytes": 339122432
+	},
+	"engine_requested": "OSS",
+	"skipped_rules": [],
+	"profiling_results": []
+}

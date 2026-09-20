@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BugCollection version="4.8.3" threshold="low" effort="max">
+	<file classname="com.example.vulnerabilities.A01_BrokenAccessControl">
+		<BugInstance type="DM_DEFAULT_ENCODING" priority="High" category="I18N" message="Found reliance on default encoding in com.example.vulnerabilities.A01_BrokenAccessControl.readUserFile(String): new String(byte[])" lineNumber="23" />
+		<BugInstance type="PATH_TRAVERSAL_IN" priority="Normal" category="SECURITY" message="This API (java/nio/file/Paths.get(Ljava/lang/String;[Ljava/lang/String;)Ljava/nio/file/Path;) reads a file whose location might be specified by user input" lineNumber="50" />
+		<BugInstance type="PATH_TRAVERSAL_IN" priority="Normal" category="SECURITY" message="This API (java/io/File.&lt;init&gt;(Ljava/lang/String;)V) reads a file whose location might be specified by user input" lineNumber="22" />
+	</file>
+	<file classname="com.example.vulnerabilities.A02_CryptographicFailures">
+		<BugInstance type="CIPHER_INTEGRITY" priority="High" category="SECURITY" message="The cipher does not provide data integrity" lineNumber="28" />
+		<BugInstance type="CIPHER_INTEGRITY" priority="High" category="SECURITY" message="The cipher does not provide data integrity" lineNumber="73" />
+		<BugInstance type="DES_USAGE" priority="Normal" category="SECURITY" message="DES should be replaced with AES" lineNumber="28" />
+		<BugInstance type="DMI_RANDOM_USED_ONLY_ONCE" priority="High" category="BAD_PRACTICE" message="Random object created and used only once in com.example.vulnerabilities.A02_CryptographicFailures.generateSessionToken()" lineNumber="62" />
+		<BugInstance type="DM_DEFAULT_ENCODING" priority="High" category="I18N" message="Found reliance on default encoding in com.example.vulnerabilities.A02_CryptographicFailures.encryptWithDES(String): String.getBytes()" lineNumber="27" />
+		<BugInstance type="DM_DEFAULT_ENCODING" priority="High" category="I18N" message="Found reliance on default encoding in com.example.vulnerabilities.A02_CryptographicFailures.encryptWithECB(String): String.getBytes()" lineNumber="72" />
+		<BugInstance type="DM_DEFAULT_ENCODING" priority="High" category="I18N" message="Found reliance on default encoding in com.example.vulnerabilities.A02_CryptographicFailures.hashPasswordMD5(String): String.getBytes()" lineNumber="40" />
+		<BugInstance type="DM_DEFAULT_ENCODING" priority="High" category="I18N" message="Found reliance on default encoding in com.example.vulnerabilities.A02_CryptographicFailures.hashPasswordSHA1(String): String.getBytes()" lineNumber="51" />
+		<BugInstance type="ECB_MODE" priority="High" category="SECURITY" message="The cipher uses ECB mode, which provides poor confidentiality for encrypted data" lineNumber="28" />
+		<BugInstance type="ECB_MODE" priority="High" category="SECURITY" message="The cipher uses ECB mode, which provides poor confidentiality for encrypted data" lineNumber="73" />
+		<BugInstance type="EI_EXPOSE_REP" priority="Normal" category="MALICIOUS_CODE" message="com.example.vulnerabilities.A02_CryptographicFailures.getStaticIV() may expose internal representation by returning A02_CryptographicFailures.STATIC_IV" lineNumber="95" />
+		<BugInstance type="HARD_CODE_KEY" priority="High" category="SECURITY" message="Hard coded cryptographic key found" lineNumber="27" />
+		<BugInstance type="HARD_CODE_KEY" priority="High" category="SECURITY" message="Hard coded cryptographic key found" lineNumber="72" />
+		<BugInstance type="PREDICTABLE_RANDOM" priority="Normal" category="SECURITY" message="This random generator (java.util.Random) is predictable" lineNumber="61" />
+		<BugInstance type="WEAK_MESSAGE_DIGEST_MD5" priority="High" category="SECURITY" message="This API MD5 (MDX) is not a recommended cryptographic hash function" lineNumber="39" />
+		<BugInstance type="WEAK_MESSAGE_DIGEST_SHA1" priority="Normal" category="SECURITY" message="This API SHA-1 (SHA-1) is not a recommended cryptographic hash function" lineNumber="50" />
+	</file>
+	<file classname="com.example.vulnerabilities.A03_Injection">
+		<BugInstance type="COMMAND_INJECTION" priority="Normal" category="SECURITY" message="This usage of java/lang/ProcessBuilder.&lt;init&gt;([Ljava/lang/String;)V can be vulnerable to Command Injection" lineNumber="65" />
+		<BugInstance type="COMMAND_INJECTION" priority="Normal" category="SECURITY" message="This usage of java/lang/Runtime.exec(Ljava/lang/String;)Ljava/lang/Process; can be vulnerable to Command Injection" lineNumber="55" />
+		<BugInstance type="DLS_DEAD_LOCAL_STORE" priority="Normal" category="STYLE" message="Dead store to process in com.example.vulnerabilities.A03_Injection.pingHost(String)" lineNumber="55" />
+		<BugInstance type="DMI_CONSTANT_DB_PASSWORD" priority="Normal" category="SECURITY" message="Hardcoded constant database password in com.example.vulnerabilities.A03_Injection.getUserByUsername(String)" lineNumber="25" />
+		<BugInstance type="DMI_CONSTANT_DB_PASSWORD" priority="Normal" category="SECURITY" message="Hardcoded constant database password in com.example.vulnerabilities.A03_Injection.searchUsers(String, String)" lineNumber="42" />
+		<BugInstance type="DM_DEFAULT_ENCODING" priority="High" category="I18N" message="Found reliance on default encoding in com.example.vulnerabilities.A03_Injection.parseXML(String): String.getBytes()" lineNumber="78" />
+		<BugInstance type="HARD_CODE_PASSWORD" priority="High" category="SECURITY" message="Hard coded password found" lineNumber="25" />
+		<BugInstance type="HARD_CODE_PASSWORD" priority="High" category="SECURITY" message="Hard coded password found" lineNumber="42" />
+		<BugInstance type="OBL_UNSATISFIED_OBLIGATION" priority="Normal" category="EXPERIMENTAL" message="com.example.vulnerabilities.A03_Injection.getUserByUsername(String) may fail to clean up java.sql.ResultSet" lineNumber="28" />
+		<BugInstance type="OBL_UNSATISFIED_OBLIGATION" priority="Normal" category="EXPERIMENTAL" message="com.example.vulnerabilities.A03_Injection.getUserByUsername(String) may fail to clean up java.sql.Statement" lineNumber="26" />
+		<BugInstance type="OBL_UNSATISFIED_OBLIGATION" priority="Normal" category="EXPERIMENTAL" message="com.example.vulnerabilities.A03_Injection.searchUsers(String, String) may fail to clean up java.sql.ResultSet" lineNumber="45" />
+		<BugInstance type="OBL_UNSATISFIED_OBLIGATION" priority="Normal" category="EXPERIMENTAL" message="com.example.vulnerabilities.A03_Injection.searchUsers(String, String) may fail to clean up java.sql.Statement" lineNumber="43" />
+		<BugInstance type="ODR_OPEN_DATABASE_RESOURCE" priority="Normal" category="BAD_PRACTICE" message="com.example.vulnerabilities.A03_Injection.getUserByUsername(String) may fail to close Connection" lineNumber="25" />
+		<BugInstance type="ODR_OPEN_DATABASE_RESOURCE" priority="Normal" category="BAD_PRACTICE" message="com.example.vulnerabilities.A03_Injection.getUserByUsername(String) may fail to close Statement" lineNumber="26" />
+		<BugInstance type="ODR_OPEN_DATABASE_RESOURCE" priority="Normal" category="BAD_PRACTICE" message="com.example.vulnerabilities.A03_Injection.searchUsers(String, String) may fail to close Connection" lineNumber="42" />
+		<BugInstance type="ODR_OPEN_DATABASE_RESOURCE" priority="Normal" category="BAD_PRACTICE" message="com.example.vulnerabilities.A03_Injection.searchUsers(String, String) may fail to close Statement" lineNumber="43" />
+		<BugInstance type="RV_RETURN_VALUE_IGNORED" priority="Normal" category="CORRECTNESS" message="Return value of java.sql.Statement.executeQuery(String) ignored in com.example.vulnerabilities.A03_Injection.searchUsers(String, String)" lineNumber="45" />
+		<BugInstance type="SQL_INJECTION_JDBC" priority="Normal" category="SECURITY" message="This use of java/sql/Statement.executeQuery(Ljava/lang/String;)Ljava/sql/ResultSet; can be vulnerable to SQL injection (with JDBC)" lineNumber="28" />
+		<BugInstance type="SQL_INJECTION_JDBC" priority="Normal" category="SECURITY" message="This use of java/sql/Statement.executeQuery(Ljava/lang/String;)Ljava/sql/ResultSet; can be vulnerable to SQL injection (with JDBC)" lineNumber="45" />
+		<BugInstance type="SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE" priority="High" category="SECURITY" message="com.example.vulnerabilities.A03_Injection.getUserByUsername(String) passes a nonconstant String to an execute or addBatch method on an SQL statement" lineNumber="28" />
+		<BugInstance type="SQL_NONCONSTANT_STRING_PASSED_TO_EXECUTE" priority="Low" category="SECURITY" message="com.example.vulnerabilities.A03_Injection.searchUsers(String, String) passes a nonconstant String to an execute or addBatch method on an SQL statement" lineNumber="45" />
+		<BugInstance type="XXE_DOCUMENT" priority="Normal" category="SECURITY" message="The use of DocumentBuilder.parse(...) (DocumentBuilder) is vulnerable to XML External Entity attacks" lineNumber="78" />
+	</file>
+	<file classname="com.example.vulnerabilities.A04_InsecureDesign">
+		<BugInstance type="HARD_CODE_PASSWORD" priority="Normal" category="SECURITY" message="Hard coded password found" lineNumber="105" />
+		<BugInstance type="UC_USELESS_OBJECT" priority="Normal" category="STYLE" message="Useless object stored in variable data of method com.example.vulnerabilities.A04_InsecureDesign.processUserData(int)" lineNumber="49" />
+		<BugInstance type="UC_USELESS_VOID_METHOD" priority="Normal" category="STYLE" message="Method com.example.vulnerabilities.A04_InsecureDesign.processUserData(int) seems to be useless" lineNumber="53" />
+	</file>
+	<file classname="com.example.vulnerabilities.A05_SecurityMisconfiguration">
+		<BugInstance type="HARD_CODE_PASSWORD" priority="Normal" category="SECURITY" message="Hard coded password found" lineNumber="96" />
+		<BugInstance type="INFORMATION_EXPOSURE_THROUGH_AN_ERROR_MESSAGE" priority="Low" category="SECURITY" message="Possible information exposure through an error message" lineNumber="74" />
+		<BugInstance type="SIC_INNER_SHOULD_BE_STATIC_ANON" priority="Low" category="PERFORMANCE" message="The class com.example.vulnerabilities.A05_SecurityMisconfiguration$1 could be refactored into a named _static_ inner class" lineNumber="24" />
+		<BugInstance type="SSL_CONTEXT" priority="Normal" category="SECURITY" message="SSLContext needs to be compatible with TLS 1.2" lineNumber="36" />
+	</file>
+	<file classname="com.example.vulnerabilities.A05_SecurityMisconfiguration$1">
+		<BugInstance type="PZLA_PREFER_ZERO_LENGTH_ARRAYS" priority="Low" category="STYLE" message="Should com.example.vulnerabilities.A05_SecurityMisconfiguration$1.getAcceptedIssuers() return a zero length array rather than null?" lineNumber="27" />
+		<BugInstance type="WEAK_TRUST_MANAGER" priority="Normal" category="SECURITY" message="TrustManager that accept any certificates makes communication vulnerable to a MITM attack" lineNumber="30" />
+		<BugInstance type="WEAK_TRUST_MANAGER" priority="Normal" category="SECURITY" message="TrustManager that accept any certificates makes communication vulnerable to a MITM attack" lineNumber="32" />
+		<BugInstance type="WEAK_TRUST_MANAGER" priority="Normal" category="SECURITY" message="TrustManager that accept any certificates makes communication vulnerable to a MITM attack" lineNumber="27" />
+	</file>
+	<file classname="com.example.vulnerabilities.A06_VulnerableComponents">
+		<BugInstance type="CRLF_INJECTION_LOGS" priority="Low" category="SECURITY" message="This use of org/apache/logging/log4j/Logger.info(Ljava/lang/String;)V might be used to include CRLF characters into log messages" lineNumber="78" />
+	</file>
+	<file classname="com.example.vulnerabilities.A08_SoftwareDataIntegrityFailures">
+		<BugInstance type="DLS_DEAD_LOCAL_STORE" priority="Normal" category="STYLE" message="Dead store to in in com.example.vulnerabilities.A08_SoftwareDataIntegrityFailures.downloadAndExecute(String)" lineNumber="55" />
+		<BugInstance type="DLS_DEAD_LOCAL_STORE" priority="Normal" category="STYLE" message="Dead store to plugin in com.example.vulnerabilities.A08_SoftwareDataIntegrityFailures.loadPlugin(File)" lineNumber="85" />
+		<BugInstance type="DP_CREATE_CLASSLOADER_INSIDE_DO_PRIVILEGED" priority="Normal" category="MALICIOUS_CODE" message="com.example.vulnerabilities.A08_SoftwareDataIntegrityFailures.loadUntrustedJar(String) creates a java.net.URLClassLoader classloader, which should be performed within a doPrivileged block" lineNumber="43" />
+		<BugInstance type="OBJECT_DESERIALIZATION" priority="High" category="SECURITY" message="Object deserialization is used in com.example.vulnerabilities.A08_SoftwareDataIntegrityFailures.deserializeObject(byte[])" lineNumber="22" />
+		<BugInstance type="OBJECT_DESERIALIZATION" priority="High" category="SECURITY" message="Object deserialization is used in com.example.vulnerabilities.A08_SoftwareDataIntegrityFailures.loadObjectFromFile(String)" lineNumber="33" />
+		<BugInstance type="OBJECT_DESERIALIZATION" priority="High" category="SECURITY" message="Object deserialization is used in com.example.vulnerabilities.A08_SoftwareDataIntegrityFailures.loadPlugin(File)" lineNumber="85" />
+		<BugInstance type="OS_OPEN_STREAM" priority="Normal" category="BAD_PRACTICE" message="com.example.vulnerabilities.A08_SoftwareDataIntegrityFailures.loadObjectFromFile(String) may fail to close stream" lineNumber="32" />
+		<BugInstance type="OS_OPEN_STREAM" priority="Normal" category="BAD_PRACTICE" message="com.example.vulnerabilities.A08_SoftwareDataIntegrityFailures.loadPlugin(File) may fail to close stream" lineNumber="84" />
+		<BugInstance type="PATH_TRAVERSAL_IN" priority="Normal" category="SECURITY" message="This API (java/io/FileInputStream.&lt;init&gt;(Ljava/lang/String;)V) reads a file whose location might be specified by user input" lineNumber="31" />
+		<BugInstance type="URLCONNECTION_SSRF_FD" priority="Normal" category="SECURITY" message="This web server request could be used by an attacker to expose internal services and filesystem." lineNumber="55" />
+	</file>
+	<file classname="com.example.vulnerabilities.A09_SecurityLoggingFailures">
+		<BugInstance type="DE_MIGHT_IGNORE" priority="Low" category="BAD_PRACTICE" message="com.example.vulnerabilities.A09_SecurityLoggingFailures.processPayment(String) might ignore java.lang.Exception" lineNumber="68" />
+		<BugInstance type="HARD_CODE_PASSWORD" priority="Normal" category="SECURITY" message="Hard coded password found" lineNumber="79" />
+		<BugInstance type="HARD_CODE_PASSWORD" priority="Normal" category="SECURITY" message="Hard coded password found" lineNumber="16" />
+		<BugInstance type="UCF_USELESS_CONTROL_FLOW" priority="Low" category="STYLE" message="Useless control flow in com.example.vulnerabilities.A09_SecurityLoggingFailures.detectBruteForce(String, int)" lineNumber="115" />
+		<BugInstance type="UC_USELESS_VOID_METHOD" priority="Low" category="STYLE" message="Method com.example.vulnerabilities.A09_SecurityLoggingFailures.detectBruteForce(String, int) seems to be useless" lineNumber="118" />
+	</file>
+	<file classname="com.example.vulnerabilities.A10_SSRF">
+		<BugInstance type="DM_DEFAULT_ENCODING" priority="High" category="I18N" message="Found reliance on default encoding in com.example.vulnerabilities.A10_SSRF.fetchURL(String): new java.io.InputStreamReader(InputStream)" lineNumber="27" />
+		<BugInstance type="DM_DEFAULT_ENCODING" priority="High" category="I18N" message="Found reliance on default encoding in com.example.vulnerabilities.A10_SSRF.readResource(String): new java.io.InputStreamReader(InputStream)" lineNumber="69" />
+		<BugInstance type="DM_DEFAULT_ENCODING" priority="High" category="I18N" message="Found reliance on default encoding in com.example.vulnerabilities.A10_SSRF.triggerWebhook(String, String): String.getBytes()" lineNumber="109" />
+		<BugInstance type="OS_OPEN_STREAM_EXCEPTION_PATH" priority="Low" category="BAD_PRACTICE" message="com.example.vulnerabilities.A10_SSRF.fetchURL(String) may fail to close stream on exception" lineNumber="27" />
+		<BugInstance type="OS_OPEN_STREAM_EXCEPTION_PATH" priority="Low" category="BAD_PRACTICE" message="com.example.vulnerabilities.A10_SSRF.readResource(String) may fail to close stream on exception" lineNumber="69" />
+		<BugInstance type="URLCONNECTION_SSRF_FD" priority="Normal" category="SECURITY" message="This web server request could be used by an attacker to expose internal services and filesystem." lineNumber="58" />
+		<BugInstance type="URLCONNECTION_SSRF_FD" priority="Normal" category="SECURITY" message="This web server request could be used by an attacker to expose internal services and filesystem." lineNumber="88" />
+		<BugInstance type="URLCONNECTION_SSRF_FD" priority="Normal" category="SECURITY" message="This web server request could be used by an attacker to expose internal services and filesystem." lineNumber="26" />
+		<BugInstance type="URLCONNECTION_SSRF_FD" priority="Normal" category="SECURITY" message="This web server request could be used by an attacker to expose internal services and filesystem." lineNumber="144" />
+		<BugInstance type="URLCONNECTION_SSRF_FD" priority="Normal" category="SECURITY" message="This web server request could be used by an attacker to expose internal services and filesystem." lineNumber="46" />
+		<BugInstance type="URLCONNECTION_SSRF_FD" priority="Normal" category="SECURITY" message="This web server request could be used by an attacker to expose internal services and filesystem." lineNumber="120" />
+		<BugInstance type="URLCONNECTION_SSRF_FD" priority="Normal" category="SECURITY" message="This web server request could be used by an attacker to expose internal services and filesystem." lineNumber="131" />
+		<BugInstance type="URLCONNECTION_SSRF_FD" priority="Normal" category="SECURITY" message="This web server request could be used by an attacker to expose internal services and filesystem." lineNumber="154" />
+		<BugInstance type="URLCONNECTION_SSRF_FD" priority="Normal" category="SECURITY" message="This web server request could be used by an attacker to expose internal services and filesystem." lineNumber="69" />
+		<BugInstance type="URLCONNECTION_SSRF_FD" priority="Normal" category="SECURITY" message="This web server request could be used by an attacker to expose internal services and filesystem." lineNumber="106" />
+	</file>
+	<Error>
+	</Error>
+	<Project>
+		<SrcDir>
+			/home/runner/work/vulnerable-jar/vulnerable-jar/src/main/java
+		</SrcDir>
+		<SrcDir>
+			/home/runner/work/vulnerable-jar/vulnerable-jar/target/generated-sources/annotations
+		</SrcDir>
+		<SrcDir>
+			/home/runner/work/vulnerable-jar/vulnerable-jar/src/test/java
+		</SrcDir>
+	</Project>
+</BugCollection>
