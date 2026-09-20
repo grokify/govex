@@ -9,6 +9,7 @@ import (
 	"github.com/grokify/govex/letter"
 	"github.com/grokify/govex/reports/sitewriter"
 	"github.com/grokify/govex/reports/vulnreport"
+	"github.com/grokify/govex/slaexception"
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -42,4 +43,5 @@ func init() {
 	}
 	rootCmd.AddCommand(letter.CmdLetterCobra())
 	rootCmd.AddCommand(vulnreport.CmdReportCobra(""))
+	rootCmd.AddCommand(slaexception.CmdSLALetterCobra())
 }
