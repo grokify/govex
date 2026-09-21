@@ -7,6 +7,33 @@
   "maintainers": ["grokify"],
   "releases": [
     {
+      "version": "v0.22.0",
+      "date": "2026-09-20",
+      "highlights": [
+        { "description": "SLA exception notification letters: JSON IR, Pandoc Markdown, JSON Schema, and the govex slaletter CLI" },
+        { "description": "Vulnerability-intelligence packages: NVD CVE-history client, CVE-ID parser, security exception-request model, and package-info supply-chain reference data" }
+      ],
+      "added": [
+        { "description": "`slaexception`: new package generating SLA exception notification letters via an `Exception{}` JSON IR (schema 1.0), Pandoc Markdown from `Markdown()`/`WriteMarkdownFile()`, and JSON Schema for agent integration", "commit": "ff82a81" },
+        { "description": "`govex slaletter` CLI with `generate`, `schema`, and `example` subcommands", "commit": "fec9e56" },
+        { "description": "`nvd`: NVD CVE History API client with `Client.GetCVEHitory()` returning `CVEHistoryResponse`, millisecond ISO-8601 timestamp handling, and the `getcvehist` CLI", "commit": "96c7e06" },
+        { "description": "`cve`: `ParseCVEIDs()` extracting CVE IDs from arbitrary text, with a `parse` CLI", "commit": "184493e" },
+        { "description": "`exceptionrequest`: `Request{}`/`Requests` and `RequestSet.Status()` modeling vulnerability risk-exception requests through an approval workflow with table rendering", "commit": "089d4bc" },
+        { "description": "`govex`: `Policy{}` capturing an SLA policy at a point in time", "commit": "8939788" },
+        { "description": "`severity`: `Mitigation{}` linking a vulnerability to its mitigation reason and residual risk", "commit": "8939788" },
+        { "description": "`pkginfo`: `PkgInfo{}`/`PkgInfos` with reference lists of publicly-disclosed compromised npm packages and the `qixevent` CLI", "commit": "5cc774f" },
+        { "description": "`fileroutes`: JSON-serializable `FileRouteMap{}` mapping URL paths to source files and HTTP methods/handlers", "commit": "33b8159" },
+        { "description": "`analyzers/semgrep`, `analyzers/spotbugs`: `parse` CLIs for analyzer output", "commit": "150a587" },
+        { "description": "`cmd/dedupe`, `cmd/siteindex`: standalone utility CLIs", "commit": "dc5b5e8" }
+      ],
+      "fixed": [
+        { "description": "`severity`: corrected inverted SLA status logic in the dormant sla.go helper", "commit": "691b032" }
+      ],
+      "documentation": [
+        { "description": "Package guides for slaexception, nvd, cve, exceptionrequest, pkginfo, and fileroutes; govex slaletter, dedupe, and siteindex CLI references; semgrep/spotbugs parse CLI notes; v0.22.0 release notes", "commit": "cfd5e79" }
+      ]
+    },
+    {
       "version": "v0.21.0",
       "date": "2026-08-22",
       "highlights": [
