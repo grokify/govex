@@ -47,12 +47,22 @@ nav:
       - govex merge: cli/merge.md
       - govex homepage: cli/homepage.md
       - govex letter: cli/letter.md
+      - govex slaletter: cli/slaletter.md
       - govex report: cli/report.md
+      - Utilities:
+          - dedupe: cli/dedupe.md
+          - siteindex: cli/siteindex.md
   - Packages:
       - Core (govex): packages/core.md
       - Severity & SLA: packages/severity.md
       - Risk: packages/risk.md
       - Letter Generation: packages/letter.md
+      - SLA Exceptions: packages/slaexception.md
+      - Exception Requests: packages/exceptionrequest.md
+      - NVD Client: packages/nvd.md
+      - CVE Parsing: packages/cve.md
+      - Package Info: packages/pkginfo.md
+      - File Routes: packages/fileroutes.md
   - Integrations:
       - Overview: integrations/index.md
       - Analyzers:
@@ -81,6 +91,7 @@ nav:
       - SLA Management: reference/sla.md
   - Releases:
       - Overview: releases/index.md
+      - v0.22.0: releases/v0.22.0.md
       - v0.21.0: releases/v0.21.0.md
       - v0.20.0: releases/v0.20.0.md
       - v0.19.0: releases/v0.19.0.md

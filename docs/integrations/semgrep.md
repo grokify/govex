@@ -86,6 +86,28 @@ semgrep --config p/owasp-top-ten --json -o results.json .
 | `path` | `Location.File` |
 | `start.line` | `Location.Line` |
 
+## Parse CLI
+
+The `analyzers/semgrep/cmd/parse` tool is a minimal standalone utility that parses Semgrep JSON output and writes an Excel report of the findings. Input paths are hardcoded, so no command-line flags are required.
+
+### Usage
+
+Place a `semgrep.json` file in the current directory, then run:
+
+```bash
+go run ./analyzers/semgrep/cmd/parse
+```
+
+### Behavior
+
+The tool performs the following steps:
+
+- Parses `semgrep.json` via `semgrep.ParseJSONFromFile` and prints the parsed structure and result count.
+- Converts the Semgrep results to GoVEX vulnerabilities via `ToGovexVulnerabilities`.
+- Additionally parses a sibling SpotBugs XML file (`../../../spotbugs/cmd/parse/spotbugs-findsecbugs_raw.xml`) and appends those findings, demonstrating a combined SAST report.
+- Builds a table with `TableColumnDefinitionSetSASTSCAReport` and writes `semgrep.json.xlsx` (sheet `findings`).
+- Prints `DONE` on success.
+
 ## Related
 
 - [Integrations Overview](index.md)

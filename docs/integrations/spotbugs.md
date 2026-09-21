@@ -119,6 +119,28 @@ For security-focused analysis, use Find Security Bugs:
 | `SourceLine.sourcepath` | `Location.File` |
 | `SourceLine.start` | `Location.Line` |
 
+## Parse CLI
+
+The `analyzers/spotbugs/cmd/parse` tool is a minimal standalone utility that parses SpotBugs (Find Security Bugs) XML output and writes an Excel report of the findings. The input path is hardcoded, so no command-line flags are required.
+
+### Usage
+
+Place a `spotbugs-findsecbugs_raw.xml` file in the current directory, then run:
+
+```bash
+go run ./analyzers/spotbugs/cmd/parse
+```
+
+### Behavior
+
+The tool performs the following steps:
+
+- Parses `spotbugs-findsecbugs_raw.xml` via `spotbugs.ParseBugCollectionFromFile` and prints the parsed bug collection and total bug-instance count.
+- Converts the bug collection to GoVEX vulnerabilities via `ToGovexVulnerabilities`.
+- Builds a table with `TableColumnDefinitionSetSASTSCAReport` and writes `spotbugs-findsecbugs_raw.xlsx` (sheet `findings`).
+- Prints the converted vulnerabilities and their count.
+- Prints `DONE` on success.
+
 ## Related
 
 - [Integrations Overview](index.md)
