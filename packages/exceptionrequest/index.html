@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://grokify.github.io/govex/standards/cwe/">
+        <link rel="canonical" href="https://grokify.github.io/govex/packages/exceptionrequest/">
       
       
-        <link rel="prev" href="../cvss/">
+        <link rel="prev" href="../slaexception/">
       
       
-        <link rel="next" href="../csaf/">
+        <link rel="next" href="../nvd/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>CWE - GoVEX Documentation</title>
+        <title>Exception Requests - GoVEX Documentation</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cwe-support" class="md-skip">
+        <a href="#exceptionrequest-package" class="md-skip">
           Skip to content
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              CWE
+              Exception Requests
             
           </span>
         </div>
@@ -747,8 +747,10 @@
       
   
   
+    
   
   
+  
     
     
     
@@ -759,13 +761,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
@@ -786,7 +786,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -804,7 +804,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../packages/core/" class="md-nav__link">
+      <a href="../core/" class="md-nav__link">
         
   
   
@@ -832,7 +832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../packages/severity/" class="md-nav__link">
+      <a href="../severity/" class="md-nav__link">
         
   
   
@@ -860,7 +860,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../packages/risk/" class="md-nav__link">
+      <a href="../risk/" class="md-nav__link">
         
   
   
@@ -888,7 +888,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../packages/letter/" class="md-nav__link">
+      <a href="../letter/" class="md-nav__link">
         
   
   
@@ -916,7 +916,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../packages/slaexception/" class="md-nav__link">
+      <a href="../slaexception/" class="md-nav__link">
         
   
   
@@ -941,10 +941,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../packages/exceptionrequest/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exception Requests
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -960,6 +987,103 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Request
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vulnerability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vulnerability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Requests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#serset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SERSet
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requestset-and-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RequestSet and Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Related
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -972,7 +1096,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../packages/nvd/" class="md-nav__link">
+      <a href="../nvd/" class="md-nav__link">
         
   
   
@@ -1000,7 +1124,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../packages/cve/" class="md-nav__link">
+      <a href="../cve/" class="md-nav__link">
         
   
   
@@ -1028,7 +1152,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../packages/pkginfo/" class="md-nav__link">
+      <a href="../pkginfo/" class="md-nav__link">
         
   
   
@@ -1056,7 +1180,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../packages/fileroutes/" class="md-nav__link">
+      <a href="../fileroutes/" class="md-nav__link">
         
   
   
@@ -1379,8 +1503,6 @@
       
   
   
-    
-  
   
   
     
@@ -1393,11 +1515,13 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
@@ -1418,7 +1542,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1436,7 +1560,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+      <a href="../../standards/" class="md-nav__link">
         
   
   
@@ -1464,7 +1588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cve/" class="md-nav__link">
+      <a href="../../standards/cve/" class="md-nav__link">
         
   
   
@@ -1492,7 +1616,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cvss/" class="md-nav__link">
+      <a href="../../standards/cvss/" class="md-nav__link">
         
   
   
@@ -1517,37 +1641,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    CWE
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../standards/cwe/" class="md-nav__link">
         
   
   
@@ -1563,120 +1660,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Installation
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Overview
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Usage
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Usage">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#parse-cwe-id" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Parse CWE ID
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#parse-multiple-cwes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Parse Multiple CWEs
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-cwes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common CWEs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#owasp-top-10-mapping" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        OWASP Top 10 Mapping
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Related
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1689,7 +1672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../csaf/" class="md-nav__link">
+      <a href="../../standards/csaf/" class="md-nav__link">
         
   
   
@@ -2368,143 +2351,307 @@
   
 
 
-<h1 id="cwe-support">CWE Support<a class="headerlink" href="#cwe-support" title="Permanent link">&para;</a></h1>
-<p>Support for Common Weakness Enumeration (CWE).</p>
+<h1 id="exceptionrequest-package">ExceptionRequest Package<a class="headerlink" href="#exceptionrequest-package" title="Permanent link">&para;</a></h1>
+<p>The <code>exceptionrequest</code> package models vulnerability risk-exception requests tracked through an approval workflow. Each request records why a specific finding is being accepted rather than remediated, the compensating controls in place, and the risk characteristics reviewers weigh when approving or denying the exception.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;github.com/grokify/govex/standards/cwe&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;github.com/grokify/govex/exceptionrequest&quot;</span>
 </code></pre></div>
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>CWE is a community-developed list of software and hardware weakness types. GoVEX supports parsing CWE identifiers and XML data.</p>
-<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
-<h3 id="parse-cwe-id">Parse CWE ID<a class="headerlink" href="#parse-cwe-id" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// Parse CWE identifier</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nx">id</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">cwe</span><span class="p">.</span><span class="nx">ParseCWEAsPrefix</span><span class="p">(</span><span class="s">&quot;CWE-79&quot;</span><span class="p">)</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">}</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;CWE Number:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="c1">// 79</span>
-</code></pre></div>
-<h3 id="parse-multiple-cwes">Parse Multiple CWEs<a class="headerlink" href="#parse-multiple-cwes" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// Parse multiple CWE identifiers</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nx">ids</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">cwe</span><span class="p">.</span><span class="nx">ParseCWEsAsPrefix</span><span class="p">([]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;CWE-79&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CWE-89&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;CWE-22&quot;</span><span class="p">})</span>
-</code></pre></div>
-<h2 id="common-cwes">Common CWEs<a class="headerlink" href="#common-cwes" title="Permanent link">&para;</a></h2>
+<h2 id="request">Request<a class="headerlink" href="#request" title="Permanent link">&para;</a></h2>
+<p>A <code>Request</code> is a single risk-exception request tied to one <code>Vulnerability</code>. Its fields capture the request's provenance, timeline, risk characteristics, and approval state:</p>
 <table>
 <thead>
 <tr>
-<th>CWE</th>
-<th>Name</th>
-<th>Category</th>
+<th>Field</th>
+<th>Type</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>CWE-79</td>
-<td>Cross-site Scripting (XSS)</td>
-<td>Injection</td>
+<td><code>ID</code></td>
+<td><code>string</code></td>
+<td>Exception identifier</td>
 </tr>
 <tr>
-<td>CWE-89</td>
-<td>SQL Injection</td>
-<td>Injection</td>
+<td><code>InRelease</code></td>
+<td><code>bool</code></td>
+<td>Whether the affected implementation is in a release</td>
 </tr>
 <tr>
-<td>CWE-22</td>
-<td>Path Traversal</td>
-<td>Input Validation</td>
+<td><code>Vulnerability</code></td>
+<td><code>Vulnerability</code></td>
+<td>The finding the exception covers</td>
 </tr>
 <tr>
-<td>CWE-78</td>
-<td>OS Command Injection</td>
-<td>Injection</td>
+<td><code>ApplicationDate</code></td>
+<td><code>*time.Time</code></td>
+<td>When the exception was requested</td>
 </tr>
 <tr>
-<td>CWE-352</td>
-<td>Cross-Site Request Forgery</td>
-<td>Session Management</td>
+<td><code>ExceptionEndDate</code></td>
+<td><code>*time.Time</code></td>
+<td>When the exception expires</td>
 </tr>
 <tr>
-<td>CWE-287</td>
-<td>Improper Authentication</td>
-<td>Authentication</td>
+<td><code>Department</code></td>
+<td><code>string</code></td>
+<td>Owning department</td>
 </tr>
 <tr>
-<td>CWE-862</td>
-<td>Missing Authorization</td>
-<td>Authorization</td>
+<td><code>RequestorEmail</code></td>
+<td><code>string</code></td>
+<td>Requestor's email address</td>
 </tr>
 <tr>
-<td>CWE-798</td>
-<td>Hard-coded Credentials</td>
-<td>Credentials</td>
+<td><code>Description</code></td>
+<td><code>string</code></td>
+<td>Free-text description</td>
 </tr>
 <tr>
-<td>CWE-200</td>
-<td>Information Exposure</td>
-<td>Information Leak</td>
+<td><code>ExposesPII</code></td>
+<td><code>*bool</code></td>
+<td>Whether exploitation exposes PII</td>
 </tr>
 <tr>
-<td>CWE-502</td>
-<td>Deserialization</td>
-<td>Input Validation</td>
+<td><code>RequiresCompromisingTenant</code></td>
+<td><code>*bool</code></td>
+<td>Whether exploitation requires compromising a tenant</td>
+</tr>
+<tr>
+<td><code>EnablesLateralMovement</code></td>
+<td><code>*bool</code></td>
+<td>Whether exploitation enables lateral movement</td>
+</tr>
+<tr>
+<td><code>CompensatingControlsDescription</code></td>
+<td><code>string</code></td>
+<td>Controls mitigating the residual risk</td>
+</tr>
+<tr>
+<td><code>Risk</code></td>
+<td><code>string</code></td>
+<td>Risk characterization</td>
+</tr>
+<tr>
+<td><code>CVSSScore</code></td>
+<td><code>float32</code></td>
+<td>CVSS base score</td>
+</tr>
+<tr>
+<td><code>CVSSVersion</code></td>
+<td><code>float32</code></td>
+<td>CVSS version</td>
+</tr>
+<tr>
+<td><code>ExceptionURL</code></td>
+<td><code>string</code></td>
+<td>Link to the exception record</td>
+</tr>
+<tr>
+<td><code>ReferenceURL</code></td>
+<td><code>string</code></td>
+<td>Link to the implementation/reference record</td>
+</tr>
+<tr>
+<td><code>IsClosed</code></td>
+<td><code>bool</code></td>
+<td>Whether the request has been closed</td>
 </tr>
 </tbody>
 </table>
-<h2 id="owasp-top-10-mapping">OWASP Top 10 Mapping<a class="headerlink" href="#owasp-top-10-mapping" title="Permanent link">&para;</a></h2>
+<p>The three risk-characteristic fields are <code>*bool</code> so that "unknown" (nil) is distinct from an explicit true/false. The following accessors render them, along with the exception end date, as strings suitable for tables and reports:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">req</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">exceptionrequest</span><span class="p">.</span><span class="nx">Request</span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nx">ID</span><span class="p">:</span><span class="w">                              </span><span class="s">&quot;SER-1001&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nx">Department</span><span class="p">:</span><span class="w">                      </span><span class="s">&quot;Platform&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nx">RequestorEmail</span><span class="p">:</span><span class="w">                  </span><span class="s">&quot;owner@example.com&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nx">Description</span><span class="p">:</span><span class="w">                     </span><span class="s">&quot;Third-party dependency finding pending upstream fix.&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nx">CompensatingControlsDescription</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Network segmentation and WAF rule in place.&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nx">CVSSScore</span><span class="p">:</span><span class="w">                       </span><span class="mf">7.5</span><span class="p">,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nx">CVSSVersion</span><span class="p">:</span><span class="w">                     </span><span class="mf">3.1</span><span class="p">,</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nx">ExceptionURL</span><span class="p">:</span><span class="w">                    </span><span class="s">&quot;https://tracker.example.com/ser/1001&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">}</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="nx">_</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">ExceptionEndDateString</span><span class="p">()</span><span class="w">          </span><span class="c1">// &quot;&quot; when ExceptionEndDate is nil, else YYYY-MM-DD</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nx">_</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">ExposesPIIString</span><span class="p">()</span><span class="w">                </span><span class="c1">// &quot;&quot; for nil, otherwise &quot;true&quot;/&quot;false&quot;</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="nx">_</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">EnablesLateralMovementString</span><span class="p">()</span><span class="w">    </span><span class="c1">// &quot;&quot;/&quot;true&quot;/&quot;false&quot;</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="nx">_</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">RequiresCompromisingTenantString</span><span class="p">()</span><span class="c1">// &quot;&quot;/&quot;true&quot;/&quot;false&quot;</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="nx">_</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">req</span><span class="p">.</span><span class="nx">ExceptionLink</span><span class="p">()</span><span class="w">                   </span><span class="c1">// markdown link, or &quot;&lt;ID&gt; - no SER&quot; when ExceptionURL is empty</span>
+</code></pre></div>
+<h2 id="vulnerability">Vulnerability<a class="headerlink" href="#vulnerability" title="Permanent link">&para;</a></h2>
+<p>A <code>Request</code> embeds a <code>Vulnerability</code>, the finding under exception. It carries the identifiers and per-team severity/reporting state used when rendering exception tables:</p>
 <table>
 <thead>
 <tr>
-<th>OWASP 2021</th>
-<th>Related CWEs</th>
+<th>Field</th>
+<th>Type</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>A01 Broken Access Control</td>
-<td>CWE-200, CWE-284, CWE-862</td>
+<td><code>ID</code></td>
+<td><code>string</code></td>
+<td>Vulnerability identifier</td>
 </tr>
 <tr>
-<td>A02 Cryptographic Failures</td>
-<td>CWE-259, CWE-327, CWE-331</td>
+<td><code>AliasIDs</code></td>
+<td><code>[]string</code></td>
+<td>Alternate identifiers</td>
 </tr>
 <tr>
-<td>A03 Injection</td>
-<td>CWE-79, CWE-89, CWE-78</td>
+<td><code>ItemType</code></td>
+<td><code>string</code></td>
+<td>Finding type</td>
 </tr>
 <tr>
-<td>A04 Insecure Design</td>
-<td>CWE-209, CWE-256, CWE-501</td>
+<td><code>SeverityEngineering</code></td>
+<td><code>string</code></td>
+<td>Engineering-assessed severity</td>
 </tr>
 <tr>
-<td>A05 Security Misconfiguration</td>
-<td>CWE-16, CWE-611, CWE-1004</td>
+<td><code>SeverityAppSecEnvironmental</code></td>
+<td><code>string</code></td>
+<td>AppSec environmental severity</td>
 </tr>
 <tr>
-<td>A06 Vulnerable Components</td>
-<td>CWE-937</td>
+<td><code>SeverityAppSecResidual</code></td>
+<td><code>string</code></td>
+<td>AppSec residual severity</td>
 </tr>
 <tr>
-<td>A07 Auth Failures</td>
-<td>CWE-287, CWE-384, CWE-613</td>
+<td><code>ReportedAppSec</code></td>
+<td><code>bool</code></td>
+<td>Reported by AppSec</td>
 </tr>
 <tr>
-<td>A08 Integrity Failures</td>
-<td>CWE-494, CWE-502, CWE-829</td>
+<td><code>ReportedEngineering</code></td>
+<td><code>bool</code></td>
+<td>Reported by Engineering</td>
 </tr>
 <tr>
-<td>A09 Logging Failures</td>
-<td>CWE-117, CWE-223, CWE-532</td>
+<td><code>ReportedExceptionRequest</code></td>
+<td><code>bool</code></td>
+<td>Reported via exception request</td>
 </tr>
 <tr>
-<td>A10 SSRF</td>
-<td>CWE-918</td>
+<td><code>Parent</code></td>
+<td><code>*Vulnerability</code></td>
+<td>Optional parent finding</td>
+</tr>
+</tbody>
+</table>
+<p><code>Vulnerabilities</code> is a <code>[]Vulnerability</code> slice type. <code>VulnerabilitiesSet</code> is an ID-keyed collection; construct it with <code>NewVulnerabilitiesSet()</code> and populate it with <code>Add</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">set</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">exceptionrequest</span><span class="p">.</span><span class="nx">NewVulnerabilitiesSet</span><span class="p">()</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nx">set</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nx">exceptionrequest</span><span class="p">.</span><span class="nx">Vulnerability</span><span class="p">{</span><span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;VULN-1&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">SeverityAppSecResidual</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Medium&quot;</span><span class="p">},</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nx">exceptionrequest</span><span class="p">.</span><span class="nx">Vulnerability</span><span class="p">{</span><span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;VULN-2&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">SeverityAppSecResidual</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Low&quot;</span><span class="p">},</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1">// set.Data is map[string]Vulnerability keyed by ID</span>
+</code></pre></div>
+<h2 id="requests">Requests<a class="headerlink" href="#requests" title="Permanent link">&para;</a></h2>
+<p><code>Requests</code> is a <code>[]Request</code> slice type with lookup and rendering helpers:</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Returns</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IDsMap()</code></td>
+<td><code>map[string]int</code></td>
+<td>Counts occurrences of each request ID</td>
+</tr>
+<tr>
+<td><code>Request(id)</code></td>
+<td><code>(*Request, error)</code></td>
+<td>Returns the request with the given ID, or an error if not found</td>
+</tr>
+<tr>
+<td><code>Table()</code></td>
+<td><code>*table.Table</code></td>
+<td>Renders the requests as a <code>gocharts</code> table</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">reqs</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">exceptionrequest</span><span class="p">.</span><span class="nx">Requests</span><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">        </span><span class="nx">ID</span><span class="p">:</span><span class="w">          </span><span class="s">&quot;SER-1001&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">        </span><span class="nx">Description</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Awaiting upstream patch.&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="nx">Vulnerability</span><span class="p">:</span><span class="w"> </span><span class="nx">exceptionrequest</span><span class="p">.</span><span class="nx">Vulnerability</span><span class="p">{</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">            </span><span class="nx">ID</span><span class="p">:</span><span class="w">                          </span><span class="s">&quot;VULN-1&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">            </span><span class="nx">SeverityAppSecEnvironmental</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;High&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">            </span><span class="nx">SeverityAppSecResidual</span><span class="p">:</span><span class="w">      </span><span class="s">&quot;Medium&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">        </span><span class="p">},</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="nx">ExceptionURL</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://tracker.example.com/ser/1001&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">}</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="nx">tbl</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">reqs</span><span class="p">.</span><span class="nx">Table</span><span class="p">()</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="nx">_</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">tbl</span><span class="w"> </span><span class="c1">// render with the gocharts table writers</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="nx">found</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">reqs</span><span class="p">.</span><span class="nx">Request</span><span class="p">(</span><span class="s">&quot;SER-1001&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">    </span><span class="c1">// handle not-found</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="p">}</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="nx">_</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">found</span>
+</code></pre></div>
+<h2 id="serset">SERSet<a class="headerlink" href="#serset" title="Permanent link">&para;</a></h2>
+<p><code>SERSet</code> is an ID-keyed set of requests. Construct it with <code>NewSERSet()</code>, add requests with <code>Add</code>, and render with <code>Table()</code>, which produces a wider table than <code>Requests.Table()</code> — including aliases, in-release state, and all three per-team severities:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">set</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">exceptionrequest</span><span class="p">.</span><span class="nx">NewSERSet</span><span class="p">()</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nx">set</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">reqs</span><span class="o">...</span><span class="p">)</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nx">tbl</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">set</span><span class="p">.</span><span class="nx">Table</span><span class="p">()</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nx">_</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">tbl</span>
+</code></pre></div>
+<h2 id="requestset-and-status">RequestSet and Status<a class="headerlink" href="#requestset-and-status" title="Permanent link">&para;</a></h2>
+<p><code>RequestSet</code> categorizes filed exception IDs against their approval state. It holds the full list of filed <code>IDs</code> plus the <code>Approved</code> and <code>InProgress</code> request slices:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">set</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">exceptionrequest</span><span class="p">.</span><span class="nx">NewRequestSet</span><span class="p">()</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nx">set</span><span class="p">.</span><span class="nx">IDs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&quot;SER-1001&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SER-1002&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SER-1003&quot;</span><span class="p">}</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nx">set</span><span class="p">.</span><span class="nx">Approved</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">exceptionrequest</span><span class="p">.</span><span class="nx">Requests</span><span class="p">{{</span><span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SER-1001&quot;</span><span class="p">}}</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nx">set</span><span class="p">.</span><span class="nx">InProgress</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">exceptionrequest</span><span class="p">.</span><span class="nx">Requests</span><span class="p">{</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="p">{</span><span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SER-1002&quot;</span><span class="p">},</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="p">{</span><span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SER-1003&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">IsClosed</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">},</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">}</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="nx">stats</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">set</span><span class="p">.</span><span class="nx">Status</span><span class="p">()</span>
+</code></pre></div>
+<p><code>Status()</code> returns a <code>StatusStats</code> that buckets every filed ID (sorted). A request found in <code>InProgress</code> with <code>IsClosed</code> set is counted as closed; otherwise it is recorded against approved and/or in-progress; IDs matching neither are flagged as not categorized:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IDsFiledAll</code></td>
+<td>Every filed ID</td>
+</tr>
+<tr>
+<td><code>IDsFiledClosed</code></td>
+<td>Filed and closed</td>
+</tr>
+<tr>
+<td><code>IDsFiledApproved</code></td>
+<td>Filed and approved</td>
+</tr>
+<tr>
+<td><code>IDsFiledInProgress</code></td>
+<td>Filed and in progress</td>
+</tr>
+<tr>
+<td><code>IDsFiledNotCategorized</code></td>
+<td>Filed but matching neither approved nor in-progress</td>
 </tr>
 </tbody>
 </table>
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../cve/">CVE Support</a></li>
-<li><a href="../../integrations/semgrep/">Semgrep Integration</a> - CWE mapping from SAST</li>
+<li><a href="../severity/">Severity Package</a> - Severity classification carried on each <code>Vulnerability</code></li>
+<li><a href="../../reference/residual-risk/">Compensating Controls &amp; Residual Risk</a> - Conceptual model behind compensating controls and residual risk</li>
 </ul>
 
 
