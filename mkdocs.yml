@@ -91,6 +91,7 @@ nav:
       - SLA Management: reference/sla.md
   - Releases:
       - Overview: releases/index.md
+      - v0.22.1: releases/v0.22.1.md
       - v0.22.0: releases/v0.22.0.md
       - v0.21.0: releases/v0.21.0.md
       - v0.20.0: releases/v0.20.0.md

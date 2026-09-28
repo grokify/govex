@@ -7,6 +7,20 @@
   "maintainers": ["grokify"],
   "releases": [
     {
+      "version": "v0.22.1",
+      "date": "2026-09-28",
+      "highlights": [
+        { "description": "Dependency maintenance release (no API changes)" }
+      ],
+      "dependencies": [
+        { "description": "Updated `github.com/grokify/gocharts/v2` v2.27.0 → v2.27.1", "commit": "0266d82" },
+        { "description": "Updated `github.com/grokify/mogo` v0.74.7 → v0.74.9", "commit": "0266d82" },
+        { "description": "Updated `github.com/johnfercher/maroto/v2` v2.4.1 → v2.4.2", "commit": "0266d82" },
+        { "description": "Updated `github.com/quay/claircore/toolkit` v1.6.1 → v1.7.0", "commit": "0266d82" },
+        { "description": "Updated indirect dependencies (`golang.org/x/*`, `goccy/go-json`, `huandu/xstrings`, `mattn/go-runewidth`, `olekukonko/tablewriter`, `richardlehane/mscfb`, `xuri/efp`)", "commit": "0266d82" }
+      ]
+    },
+    {
       "version": "v0.22.0",
       "date": "2026-09-20",
       "highlights": [
