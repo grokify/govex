@@ -1,6 +1,6 @@
 module github.com/grokify/govex
 
-go 1.26.1
+go 1.26.4
 
 require (
 	github.com/essentialkaos/go-badge v1.4.3
@@ -12,6 +12,7 @@ require (
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/johnfercher/maroto/v2 v2.4.2
 	github.com/pandatix/go-cvss v0.6.4
+	github.com/plexusone/findingspec v0.1.0
 	github.com/quay/claircore/toolkit v1.7.0
 	github.com/relvacode/iso8601 v1.8.0
 	github.com/shopspring/decimal v1.4.0
@@ -31,6 +32,7 @@ require (
 	github.com/golang/freetype v0.0.0-20170609003504-e2365dfdc4a0 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/grokify/base36 v1.0.5 // indirect
+	github.com/grokify/priority-frameworks v0.4.0 // indirect
 	github.com/hhrutter/tiff v1.0.6 // indirect
 	github.com/huandu/xstrings v1.6.1 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
