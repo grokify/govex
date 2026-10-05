@@ -44,6 +44,7 @@
 1. **Titled Reports:** Render a vulnerability set as a titled report (title, classification, executive summary, per-finding details) in Markdown, HTML, or PDF via `reports/vulnreport` and `govex report`.
 1. **Reporter Tracking:** Track internal vs. external reporters with filtering and statistics capabilities.
 1. **Security Letters:** Generate SLA exception notifications and security hardening notices in Markdown (Pandoc-compatible for DOCX/PDF).
+1. **POA&M from findingspec:** Generate Plan of Action & Milestones tables from any scanner that emits the shared [findingspec](https://github.com/plexusone/findingspec) IR (AWS Inspector, Grype, Trivy, …) via `reports/poam.FromFindings`, independent of any scanner-specific adapter.
 
 ## Packages
 

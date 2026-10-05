@@ -6,6 +6,9 @@ Release notes for GoVEX versions.
 
 | Version | Date | Highlights |
 |---------|------|------------|
+| [v0.23.0](v0.23.0.md) | 2026-10-05 | Scanner-agnostic POA&M generation from findingspec findings |
+| [v0.22.1](v0.22.1.md) | 2026-09-28 | Dependency maintenance release |
+| [v0.22.0](v0.22.0.md) | 2026-09-20 | SLA exception letters and vulnerability-intelligence packages |
 | [v0.21.0](v0.21.0.md) | 2026-08-22 | Residual risk model and titled Markdown/HTML/PDF reports |
 | [v0.20.0](v0.20.0.md) | 2026-06-28 | Pentest remediation status reports |
 | [v0.19.0](v0.19.0.md) | 2026-04-11 | Security notification letter generation |

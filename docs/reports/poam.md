@@ -43,6 +43,28 @@ entry := poam.Entry{
 entries := vulns.ToPOAMEntries()
 ```
 
+### From findingspec findings
+
+POA&M generation is scanner-agnostic: any adapter that emits the shared
+[findingspec](https://github.com/plexusone/findingspec) IR — AWS Inspector,
+Grype, Trivy, and others — can produce a POA&M table through
+`poam.FromFindings`, without a scanner-specific adapter.
+
+```go
+import (
+    "github.com/grokify/govex"
+    "github.com/grokify/govex/reports/poam"
+    "github.com/plexusone/findingspec"
+)
+
+// findings is []findingspec.Finding produced by any adapter.
+tbl, err := poam.FromFindings(findings, &govex.ValueOptions{}, nil)
+```
+
+`poam.Finding` wraps a `findingspec.Finding` as a `POAMItem`, resolving
+open/closed status, per-field values, CVE identifiers, and remediation-plan text
+from the finding's security detail.
+
 ## POAM Fields
 
 | Field | Description |
