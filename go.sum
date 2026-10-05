@@ -35,8 +35,8 @@ github.com/grokify/gocharts/v2 v2.27.1 h1:TA+HJdJajtGxhTFIbFoUq1Ag44MWSVNUeP3DId
 github.com/grokify/gocharts/v2 v2.27.1/go.mod h1:2LrVcAnzVElrK/2XZJRdUVTrBHEA6FvLJ/jQhozwFjk=
 github.com/grokify/google-fonts v0.1.9 h1:KgJgTyMbKUbwvImZ9EMsCTA2/PIDNO+h/E533t0ux9s=
 github.com/grokify/google-fonts v0.1.9/go.mod h1:QfXZ/LRQmQ2g389jfdVucuVIiVstQAHBlsOfaOb7RAQ=
-github.com/grokify/mogo v0.74.9 h1:kNByiqh2cskqioePUtjnz1pj1t/Z71rgQF0OUEy0/h0=
-github.com/grokify/mogo v0.74.9/go.mod h1:MuKguiqlqmBt83ebEzdc0fRLhC3tz7W3PvTJglVjLaw=
+github.com/grokify/mogo v0.75.0 h1:YVOGu49NWvltMfG9wh3aarRD6CTF7y0llEFU+HU9drc=
+github.com/grokify/mogo v0.75.0/go.mod h1:FLksmFRywriEucyYLAGyub7C0po49Yc/nHc9q9gX67w=
 github.com/grokify/sogo v0.15.0 h1:RS4DPxNhZQLmz/qcLa5t1Mr+SjGwSZPJgpefp9BJInE=
 github.com/grokify/sogo v0.15.0/go.mod h1:BZjNVHThtkfC80J2kcPWCytQzu5XKtHTxCRffpZaWb8=
 github.com/hhrutter/tiff v1.0.6 h1:p5I4Oi20jit3uWIBBaAoMDqrKztw/1JQCQC2TgqK1qU=
