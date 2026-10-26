@@ -10,7 +10,7 @@ require (
 	github.com/grokify/sogo v0.15.0
 	github.com/invopop/jsonschema v0.14.0
 	github.com/jessevdk/go-flags v1.6.1
-	github.com/johnfercher/maroto/v2 v2.4.3
+	github.com/johnfercher/maroto/v2 v2.4.4
 	github.com/pandatix/go-cvss v0.6.4
 	github.com/plexusone/findingspec v0.1.0
 	github.com/quay/claircore/toolkit v1.7.0
@@ -47,7 +47,7 @@ require (
 	github.com/package-url/packageurl-go v0.1.7 // indirect
 	github.com/pb33f/go-yaml v0.1.1 // indirect
 	github.com/pb33f/ordered-map/v2 v2.3.2 // indirect
-	github.com/pdfcpu/pdfcpu v0.15.0 // indirect
+	github.com/pdfcpu/pdfcpu v0.16.2 // indirect
 	github.com/phpdave11/gofpdf v1.4.3 // indirect
 	github.com/richardlehane/mscfb v1.0.9 // indirect
 	github.com/richardlehane/msoleps v1.0.6 // indirect
@@ -55,6 +55,7 @@ require (
 	github.com/tiendc/go-deepcopy v1.7.2 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/quicktemplate v1.8.0 // indirect
+	github.com/xdg-go/stringprep v1.0.4 // indirect
 	github.com/xuri/efp v0.0.2 // indirect
 	github.com/xuri/excelize/v2 v2.11.0 // indirect
 	github.com/xuri/nfp v0.0.2-0.20250530014748-2ddeb826f9a9 // indirect
