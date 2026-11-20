@@ -12,7 +12,7 @@ require (
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/johnfercher/maroto/v2 v2.4.3
 	github.com/pandatix/go-cvss v0.6.4
-	github.com/plexusone/findingspec v0.1.0
+	github.com/plexusone/findingspec v0.2.0
 	github.com/quay/claircore/toolkit v1.7.0
 	github.com/relvacode/iso8601 v1.8.1
 	github.com/shopspring/decimal v1.5.0

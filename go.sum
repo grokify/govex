@@ -92,8 +92,8 @@ github.com/phpdave11/gofpdf v1.4.3/go.mod h1:MAwzoUIgD3J55u0rxIG2eu37c+XWhBtXSpP
 github.com/phpdave11/gofpdi v1.0.15/go.mod h1:vBmVV0Do6hSBHC8uKUQ71JGW+ZGQq74llk/7bXwjDoI=
 github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
-github.com/plexusone/findingspec v0.1.0 h1:AJpVBCGPDeCV0yiM9a2kA1TUfVwLUIuYCt0vgHote50=
-github.com/plexusone/findingspec v0.1.0/go.mod h1:12TFwkV7CgsZli9WCJNlWQoxrmg/sDEn2ePz8ArLf68=
+github.com/plexusone/findingspec v0.2.0 h1:1uIwYOXHBqTwaH/sk/+p7o5elEYM1TWA3OIrqL0fVjc=
+github.com/plexusone/findingspec v0.2.0/go.mod h1:12TFwkV7CgsZli9WCJNlWQoxrmg/sDEn2ePz8ArLf68=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/quay/claircore/toolkit v1.7.0 h1:flobJ7hTofiArNSBs1SKq8vDZ9h57dW02RxLyYn+bMw=
